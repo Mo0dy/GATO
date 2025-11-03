@@ -266,7 +266,40 @@
             </geometry>
         </collision>
     </link>
-    <link name="flange"/>
+
+    <!-- CONTACT (modeled by a tennis ball) -->
+    <link name="flange">
+        <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <mass value="0.057"/>
+      <inertia ixx="0.0000354" ixy="0.0" ixz="0.0" iyy="0.0000354" iyz="0.0" izz="0.0000354"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.033"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.8 0.8 0.8 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.033"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.8 0.8 0.8 1.0"/>
+      </material>
+    </collision>
+    <!-- Bullet specific paramters -->
+    <contact>
+      <lateral_friction value="1.0"/>
+      <restitution value="0.5"/>
+    </contact>
+  </link>
+    
+
     <material name="rizon_light_grey">
         <color rgba="0.7 0.7 0.7 1.0"/>
     </material>

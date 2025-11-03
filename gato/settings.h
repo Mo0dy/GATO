@@ -38,6 +38,8 @@ constexpr uint32_t SIM_FORWARD_THREADS = 128;
     #include "dynamics/iiwa14/iiwa14_plant.cuh"
 #elif defined(PLANT_FLEXIV_RIZON_4S)
     #include "dynamics/flexiv_rizon4s/flexiv_rizon4s_plant.cuh"
+#elif defined(PLANT_FLEXIV_RIZON_10S)
+    #include "dynamics/flexiv_rizon10s/flexiv_rizon10s_plant.cuh"
 #else
-    #error "Plant type must be defined: PLANT_INDY7 or PLANT_IIWA14 or PLANT_FLEXIV_RIZON_4S"
+    #error "Plant type must be defined: PLANT_INDY7 or PLANT_IIWA14 or PLANT_FLEXIV_RIZON_4S or PLANT_FLEXIV_RIZON_10S"
 #endif

@@ -213,12 +213,12 @@ class BSQP:
         pin.forwardKinematics(self.model, self.data, q)
         return self.data.oMi[self.model.njoints - 1].translation
     
-    def ee_pos(self, q):
-        """Get end-effector position using solver model (robot only)."""
-        pin.forwardKinematics(self.model, self.data, q)
-        jid_ee_pin = self.model.getFrameId("flange") # End-effector Reference Frame
-        jid_eep_pin = self.model.frames[jid_ee_pin].parentJoint
-        return self.data.oMi[jid_eep_pin].translation
+    # def ee_pos(self, q):
+    #     """Get end-effector position using solver model (robot only)."""
+    #     pin.forwardKinematics(self.model, self.data, q)
+    #     jid_ee_pin = self.model.getFrameId("flange") # End-effector Reference Frame
+    #     jid_eep_pin = self.model.frames[jid_ee_pin].parentJoint
+    #     return self.data.oMi[jid_eep_pin].translation
 
     # def ee_pos(self, q):
     #     frame_id = self.model.getFrameId("flange")

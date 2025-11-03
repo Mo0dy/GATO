@@ -37,6 +37,12 @@ FLEXIV_RIZON_4S_START_CONFIGS = {
     'home': np.array([0.0, -0.698, 0.000, 1.571, -0.000, 0.698, -0.000]), 
 }
 
+# Standard starting configurations for Flexiv Rizon 10s
+FLEXIV_RIZON_10S_START_CONFIGS = {
+    'zero': np.zeros(7),
+    'home': np.array([0.0, -0.698, 0.000, 1.571, -0.000, 0.698, -0.000]), 
+}
+
 # MPC solver parameters
 DEFAULT_SOLVER_PARAMS = {
     'max_sqp_iters': 1,
@@ -55,23 +61,6 @@ DEFAULT_SOLVER_PARAMS = {
     'rho': 0.01
 }
 
-# PICKPLACE_SOLVER_PARAMS = {
-#     'max_sqp_iters': 5,
-#     'kkt_tol': 0.0,
-#     'max_pcg_iters': 100,
-#     'pcg_tol': 1e-6,
-#     'solve_ratio': 1.0,
-#     'mu': 10.0,
-#     'q_cost': 5.0,
-#     'qd_cost': 1e-2,
-#     'u_cost': 5e-7,
-#     'N_cost': 50.0,
-#     'q_lim_cost': 0.0,
-#     'vel_lim_cost': 0.0,
-#     'ctrl_lim_cost': 0.0,
-#     'rho': 0.001
-# }
-
 PICKPLACE_SOLVER_PARAMS = {
     'max_sqp_iters': 5,
     'kkt_tol': 0.0,
@@ -79,15 +68,32 @@ PICKPLACE_SOLVER_PARAMS = {
     'pcg_tol': 1e-6,
     'solve_ratio': 1.0,
     'mu': 10.0,
-    'q_cost': 0.5,
-    'qd_cost': 1e-4,
-    'u_cost': 1e-7,
-    'N_cost': 10.0,
+    'q_cost': 5.0,
+    'qd_cost': 1e-2,
+    'u_cost': 5e-7,
+    'N_cost': 50.0,
     'q_lim_cost': 0.0,
     'vel_lim_cost': 0.0,
     'ctrl_lim_cost': 0.0,
-    'rho': 0.01
+    'rho': 0.001
 }
+
+# PICKPLACE_SOLVER_PARAMS = {
+#     'max_sqp_iters': 5,
+#     'kkt_tol': 0.0,
+#     'max_pcg_iters': 100,
+#     'pcg_tol': 1e-6,
+#     'solve_ratio': 1.0,
+#     'mu': 10.0,
+#     'q_cost': 0.5,
+#     'qd_cost': 1e-4,
+#     'u_cost': 1e-7,
+#     'N_cost': 10.0,
+#     'q_lim_cost': 0.0,
+#     'vel_lim_cost': 0.0,
+#     'ctrl_lim_cost': 0.0,
+#     'rho': 0.01
+# }
 
 PICKPLACE_MPC_DEFAULTS = {
     'goal_timeout': 5.0,

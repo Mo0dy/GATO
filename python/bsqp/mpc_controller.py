@@ -362,6 +362,218 @@ class MPC_GATO:
         
         return model
     
+    def init_mpc_goals(
+        self, 
+        x_start, 
+        goals, 
+        sim_dt=0.001, 
+        goal_timeout=5.0,
+        goal_threshold=0.05,
+        velocity_threshold=1.0
+    ):
+        """
+        Initialize MPC controller tracking discrete goal positions.
+        
+        Args:
+            x_start: Initial state (robot only, no pendulum)
+            goals: List of 3D goal positions np.array([x, y, z])
+            sim_dt: Simulation timestep
+            goal_timeout: Max time per goal before timeout
+            goal_threshold: Distance threshold for goal reached (m)
+            velocity_threshold: Velocity threshold for goal reached (rad/s L1 norm)
+            
+        Returns:
+            q_traj: Joint trajectory (robot only)
+            stats: Dictionary with tracking statistics including:
+                - goal_outcomes: ['reached', 'timeout', ...] per goal
+                - goal_reached_times: [time1, time2, ...] or None
+                - time_to_all_reached: total time if all succeeded, else None
+                - standard tracking stats (solve_times, timestamps, etc.)
+        """
+        # Initialize statistics
+        stats = {
+            'timestamps': [],
+            'solve_times': [],
+            'goal_distances': [],
+            'ee_actual': [],
+            'joint_positions': [],
+            'joint_velocities': [],
+            'best_trajectory_id': []
+        }
+        
+        if self.track_full_stats:
+            stats['sqp_iters'] = []
+            stats['pcg_iters'] = []
+            
+        stats['goal_outcomes'] = ['not_reached'] * len(goals)
+        stats['goal_reached_times'] = [None] * len(goals)
+        stats['time_to_all_reached'] = None
+
+        # Initialize augmented state with pendulum if configured
+        if self.has_pendulum:
+            x_start_aug = np.zeros(self.nq + self.nv)
+            x_start_aug[:self.nx] = x_start  # Robot state
+            # Pendulum initial angle
+            pendulum_init = self.pendulum_config.get('initial_angle', np.array([0.3, 0.0, 0.0]))
+            x_start_aug[self.nq_robot:self.nq_robot+3] = pendulum_init
+            q = x_start_aug[:self.nq]
+            dq = x_start_aug[self.nq:]
+        else:
+            q = x_start[:self.nq]
+            dq = x_start[self.nq:]
+
+        q_robot = q[:self.nq_robot] if self.has_pendulum else q
+        ee_pos = self.solver.ee_pos(q_robot)
+        
+        # Print starting state
+        print(f"Starting joint positions: [{q_robot[0]:.4f}, {q_robot[1]:.4f}, {q_robot[2]:.4f}, {q_robot[3]:.4f}, {q_robot[4]:.4f}, {q_robot[5]:.4f}, {q_robot[6]:.4f}]rad")
+        print(f"Starting EE position: [{ee_pos[0]:.4f}, {ee_pos[1]:.4f}, {ee_pos[2]:.4f}]m")
+        
+        # Solver uses robot-only state
+        x_curr = x_start
+        
+        # Initialize first goal
+        current_goal_idx = 0
+        current_goal = goals[current_goal_idx]
+        ee_g = np.tile(np.concatenate([current_goal, np.zeros(3)]), self.N)
+        
+        return None, stats, x_curr, ee_g
+
+    def warm_start_mpc_goals(
+        self,
+        x_curr,
+        ee_g
+    ):
+        """
+        Warm start MPC controller tracking discrete goal positions.
+        
+        Args:
+            x_start: Initial state (robot only, no pendulum)
+            goals: List of 3D goal positions np.array([x, y, z])
+            sim_dt: Simulation timestep
+            goal_timeout: Max time per goal before timeout
+            goal_threshold: Distance threshold for goal reached (m)
+            velocity_threshold: Velocity threshold for goal reached (rad/s L1 norm)
+            
+        Returns:
+            q_traj: Joint trajectory (robot only)
+            stats: Dictionary with tracking statistics including:
+                - goal_outcomes: ['reached', 'timeout', ...] per goal
+                - goal_reached_times: [time1, time2, ...] or None
+                - time_to_all_reached: total time if all succeeded, else None
+                - standard tracking stats (solve_times, timestamps, etc.)
+        """
+        x_curr_batch = np.tile(x_curr, (self.batch_size, 1))
+        ee_g_batch = np.tile(ee_g, (self.batch_size, 1))
+
+        q = x_curr[:self.nq]
+
+        # Initialize warm start
+        XU = np.zeros(self.N*(self.nx+self.nu)-self.nu)
+        for i in range(self.N):
+            start_idx = i * (self.nx + self.nu)
+            XU[start_idx:start_idx+self.nx] = x_curr
+        self.solver.reset_dual()
+        XU_batch = np.tile(XU, (self.batch_size, 1))
+        
+        # Warm up solve
+        self.update_force_batch(q[:self.nq_robot] if self.has_pendulum else q)
+        XU_batch, _ = self.solver.solve(x_curr_batch, ee_g_batch, XU_batch)
+        XU_best = XU_batch[0, :]
+
+        return XU_best, XU_batch, ee_g_batch
+    
+    def srun_mpc_goals(
+        self,
+        x_last,
+        u_last, 
+        x_curr,
+        XU_best,
+        XU_batch,
+        ee_g,
+        ee_g_batch,
+        goals,
+        current_goal_idx,
+        goal_start_time,
+        total_sim_time, 
+        sim_dt=0.001, 
+        goal_timeout=5.0,
+        goal_threshold=0.05,
+        velocity_threshold=1.0
+    ):
+        """
+        Run MPC controller tracking discrete goal positions.
+        
+        Args:
+            x_start: Initial state (robot only, no pendulum)
+            goals: List of 3D goal positions np.array([x, y, z])
+            sim_dt: Simulation timestep
+            goal_timeout: Max time per goal before timeout
+            goal_threshold: Distance threshold for goal reached (m)
+            velocity_threshold: Velocity threshold for goal reached (rad/s L1 norm)
+            
+        Returns:
+            q_traj: Joint trajectory (robot only)
+            stats: Dictionary with tracking statistics including:
+                - goal_outcomes: ['reached', 'timeout', ...] per goal
+                - goal_reached_times: [time1, time2, ...] or None
+                - time_to_all_reached: total time if all succeeded, else None
+                - standard tracking stats (solve_times, timestamps, etc.)
+        """
+        # Timing
+        solve_time = self.dt
+        run_flag = True
+
+        # Simulate forward with current control
+        timestep = solve_time
+        
+        # Update solver state (robot only)
+        q_robot = x_curr[:self.nq]
+        dq_robot = x_curr[self.nq:]
+        
+        # Check goal reached or timeout
+        ee_pos = self.solver.ee_pos(q_robot)
+        current_dist = np.linalg.norm(ee_pos - goals[current_goal_idx])
+        current_vel = np.linalg.norm(dq_robot, ord=1)
+        reached = (current_dist < goal_threshold) and (current_vel < velocity_threshold)
+        timeout = (total_sim_time - goal_start_time) >= goal_timeout
+        
+        if reached or timeout:
+            if reached:
+                stats['goal_outcomes'][current_goal_idx] = 'reached'
+                stats['goal_reached_times'][current_goal_idx] = total_sim_time
+            else:
+                stats['goal_outcomes'][current_goal_idx] = 'timeout'
+                
+            current_goal_idx += 1
+            if current_goal_idx >= len(goals):
+                run_flag = False
+                
+            current_goal = goals[current_goal_idx]
+            ee_g = np.tile(np.concatenate([current_goal, np.zeros(3)]), self.N)
+            goal_start_time = total_sim_time
+            self.solver.reset_rho()
+        
+        # Prepare next optimization
+        x_curr_batch = np.tile(x_curr, (self.batch_size, 1))
+        ee_g_batch[:, :] = ee_g
+        XU_batch[:, :self.nx] = x_curr
+        
+        # Update forces and solve
+        self.update_force_batch(q_robot)
+        self.solver.reset_rho()
+        
+        start = time.time()
+        XU_batch_new, gpu_solve_time = self.solver.solve(x_curr_batch, ee_g_batch, XU_batch)
+        solve_time = time.time() - start
+        
+        # Select best trajectory
+        best_id = self.evaluate_best_trajectory(x_last, u_last, x_curr, max(sim_dt, round(timestep / sim_dt) * sim_dt))
+        XU_best = XU_batch_new[best_id, :]
+        XU_batch[:, :] = XU_best
+
+        return XU_best, XU_batch, run_flag 
+
     def run_mpc_goals(
         self, 
         x_start, 
@@ -554,6 +766,9 @@ class MPC_GATO:
             best_id = self.evaluate_best_trajectory(x_last, u_last, x_curr, max(sim_dt, round(timestep / sim_dt) * sim_dt))
             XU_best = XU_batch_new[best_id, :]
             XU_batch[:, :] = XU_best
+
+            tau_ff = XU_best[self.nx:self.nx+self.nu]
+            print(f"tau_ff: {tau_ff}")
             
             # Collect statistics
             stats['timestamps'].append(total_sim_time)

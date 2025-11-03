@@ -215,6 +215,8 @@ class PyBSQP {
 #define PLANT_SUFFIX iiwa14
 #elif defined(PLANT_FLEXIV_RIZON_4S)
 #define PLANT_SUFFIX flexiv_rizon4s
+#elif defined(PLANT_FLEXIV_RIZON_10S)
+#define PLANT_SUFFIX flexiv_rizon10s
 #else
 #error "Unknown plant configuration for bindings"
 #endif

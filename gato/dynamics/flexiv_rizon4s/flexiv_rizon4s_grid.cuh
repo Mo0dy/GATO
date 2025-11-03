@@ -1700,42 +1700,42 @@ namespace grid {
         h_XImats[466] = static_cast<T>(0.0);
         h_XImats[467] = static_cast<T>(2.2);
         // I[6]
-        h_XImats[468] = static_cast<T>(0.0034999999999999996);
+        h_XImats[468] = static_cast<T>(0.004411831999999999);
         h_XImats[469] = static_cast<T>(0.0);
         h_XImats[470] = static_cast<T>(0.0);
         h_XImats[471] = static_cast<T>(0.0);
-        h_XImats[472] = static_cast<T>(-0.06999999999999999);
+        h_XImats[472] = static_cast<T>(-0.077068);
         h_XImats[473] = static_cast<T>(0.0);
         h_XImats[474] = static_cast<T>(0.0);
-        h_XImats[475] = static_cast<T>(0.0034999999999999996);
+        h_XImats[475] = static_cast<T>(0.004411831999999999);
         h_XImats[476] = static_cast<T>(0.0);
-        h_XImats[477] = static_cast<T>(0.06999999999999999);
+        h_XImats[477] = static_cast<T>(0.077068);
         h_XImats[478] = static_cast<T>(0.0);
         h_XImats[479] = static_cast<T>(0.0);
         h_XImats[480] = static_cast<T>(0.0);
         h_XImats[481] = static_cast<T>(0.0);
-        h_XImats[482] = static_cast<T>(0.0);
+        h_XImats[482] = static_cast<T>(3.54e-05);
         h_XImats[483] = static_cast<T>(0.0);
         h_XImats[484] = static_cast<T>(0.0);
         h_XImats[485] = static_cast<T>(0.0);
         h_XImats[486] = static_cast<T>(0.0);
-        h_XImats[487] = static_cast<T>(0.06999999999999999);
+        h_XImats[487] = static_cast<T>(0.077068);
         h_XImats[488] = static_cast<T>(0.0);
-        h_XImats[489] = static_cast<T>(1.4);
+        h_XImats[489] = static_cast<T>(1.4569999999999999);
         h_XImats[490] = static_cast<T>(0.0);
         h_XImats[491] = static_cast<T>(0.0);
-        h_XImats[492] = static_cast<T>(-0.06999999999999999);
+        h_XImats[492] = static_cast<T>(-0.077068);
         h_XImats[493] = static_cast<T>(0.0);
         h_XImats[494] = static_cast<T>(0.0);
         h_XImats[495] = static_cast<T>(0.0);
-        h_XImats[496] = static_cast<T>(1.4);
+        h_XImats[496] = static_cast<T>(1.4569999999999999);
         h_XImats[497] = static_cast<T>(0.0);
         h_XImats[498] = static_cast<T>(0.0);
         h_XImats[499] = static_cast<T>(0.0);
         h_XImats[500] = static_cast<T>(0.0);
         h_XImats[501] = static_cast<T>(0.0);
         h_XImats[502] = static_cast<T>(0.0);
-        h_XImats[503] = static_cast<T>(1.4);
+        h_XImats[503] = static_cast<T>(1.4569999999999999);
         // Xhom[0]
         h_XImats[504] = static_cast<T>(0);
         h_XImats[505] = static_cast<T>(0);
@@ -8157,8 +8157,8 @@ namespace grid {
 
             // Transform S
             for(int i = threadIdx.x + threadIdx.y*blockDim.x; i < 6*NUM_JOINTS; i += blockDim.x*blockDim.y){
-                int jid = i / 6;
-                S[i] = Xdown[jid*XIMAT_SIZE + s_topology_helpers[jid]*6 + (i % 6)];
+                int joint = i / 6;
+                S[i] = Xdown[joint*XIMAT_SIZE + s_topology_helpers[joint]*6 + (i % 6)];
             }
             __syncthreads();
             
