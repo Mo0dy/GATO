@@ -9,7 +9,7 @@ sys.path.append('./python/bsqp')
 sys.path.append('./python')
 
 from bsqp.mpc_controller_m import MPC_GATO
-from bsqp.common import figure8
+from bsqp.common import figure8, rk4
 from bsqp.config import (
     EXPERIMENT_BATCH_SIZES,
     FIG8_DEFAULT_PARAMS, 
@@ -92,30 +92,55 @@ for batch_size in config['batch_sizes']:
         constant_f_ext=config['f_ext'],
         track_full_stats=True
     )
-    _, stats, x_curr, ee_g = mpc.init_mpc(
-        x_start,
-        fig8_traj,
-        problem_type="figure8"
-    )
-
-    ws_XU_best, ws_XU_batch, ee_g_batch = mpc.warm_start_mpc(
-        x_curr,
-        ee_g
-    )
-
-    XU_batch = ws_XU_batch
-    XU_best = ws_XU_best
-
-    mpc_flag = True     
+    # Initialize MPC
+    stats, x_curr, ee_g = mpc.init_mpc_fig8(x_start, fig8_traj)
+    
+    # Warm start
+    XU_best, XU_batch, ee_g_batch = mpc.warm_start_mpc_fig8(x_curr, ee_g)
+    
+    # Initialize simulation state
     total_sim_time = 0.0
-
-    while mpc_flag == True and total_sim_time < config['sim_time']:
-
+    accumulated_time = 0.0
+    q = x_start[:mpc.nq]
+    dq = x_start[mpc.nq:mpc.nx]
+    
+    # Main control loop
+    mpc_flag = True
+    solve_time = mpc.dt
+    
+    while mpc_flag and total_sim_time < config['sim_time']:
+        # Store state for force estimation
         x_last = x_curr
         u_last = XU_best[mpc.nx:mpc.nx + mpc.nu]
-
-        # Run MPC for the current goal
-        XU_best, XU_batch,mpc_flag = mpc.srun_mpc_figure8(
+        
+        # Simulate forward with current control
+        timestep = solve_time
+        nsteps = int(timestep / config['sim_dt'])
+        
+        for i in range(nsteps):
+            offset = int(i / (mpc.dt / config['sim_dt']))
+            u_idx = mpc.nx + (mpc.nx + mpc.nu) * min(offset, mpc.N - 1)
+            u = XU_best[u_idx:u_idx + mpc.nu]
+            
+            # Integrate dynamics
+            q, dq = rk4(mpc.model, mpc.data, q, dq, u, config['sim_dt'], mpc.actual_f_ext)
+            total_sim_time += config['sim_dt']
+        
+        # Handle residual time
+        if timestep % config['sim_dt'] > 1e-5:
+            accumulated_time += timestep % config['sim_dt']
+            if accumulated_time >= config['sim_dt']:
+                accumulated_time = 0.0
+                offset = int(nsteps / (mpc.dt / config['sim_dt']))
+                u_idx = mpc.nx + (mpc.nx + mpc.nu) * min(offset, mpc.N - 1)
+                u = XU_best[u_idx:u_idx + mpc.nu]
+                q, dq = rk4(mpc.model, mpc.data, q, dq, u, config['sim_dt'], mpc.actual_f_ext)
+                total_sim_time += config['sim_dt']
+        
+        x_curr = np.concatenate([q, dq])
+        
+        # Run single MPC step
+        XU_best, mpc_flag = mpc.srun_mpc_fig8(
             x_last,
             u_last,
             x_curr,
@@ -123,10 +148,14 @@ for batch_size in config['batch_sizes']:
             ee_g_batch,
             total_sim_time,
             fig8_traj,
-            stats,
-            sim_dt=config['sim_dt']
+            stats
         )
-
+        
+        if not mpc_flag:
+            break
+        
+        solve_time = mpc.dt  # Could track actual solve time if needed
+    
     # Convert to numpy arrays
     for key in stats:
         if stats[key]:
@@ -135,7 +164,7 @@ for batch_size in config['batch_sizes']:
             except (ValueError, TypeError):
                 # Keep as list if conversion fails
                 pass
-            
+    
     # Print summary
     print(f"Avg error: {np.mean(stats['goal_distances']):.4f}m")
     print(f"Avg solve time: {np.mean(stats['solve_times']):.3f}ms")

@@ -155,11 +155,18 @@ class MPC_GATO:
         else:
             self.force_estimator = None
             
-    def run_mpc_fig8(self, x_start, fig8_traj, sim_dt=0.001, sim_time=5.0):
+    def init_mpc_fig8(self, x_start, fig8_traj):
         """
-        Run MPC controller tracking figure-8 trajectory.
+        Initialize MPC controller for figure-8 trajectory tracking.
         
-        Returns only essential statistics for visualization and analysis.
+        Args:
+            x_start: Initial state vector
+            fig8_traj: Full figure-8 trajectory
+            
+        Returns:
+            stats: Statistics dictionary
+            x_curr: Current state
+            ee_g: Initial goal vector
         """
         # Initialize essential statistics
         stats = {
@@ -174,18 +181,30 @@ class MPC_GATO:
         # Add SQP iterations only if tracking full stats
         if self.track_full_stats:
             stats['sqp_iters'] = []
-            
-        # Initialize simulation
-        total_sim_time = 0.0
-        accumulated_time = 0.0
         
         x_curr = x_start
-        q = x_start[:self.nq]
-        dq = x_start[self.nq:self.nx]
-        
-        # Prepare batch inputs
-        x_curr_batch = np.tile(x_curr, (self.batch_size, 1))
         ee_g = fig8_traj[:6*self.N]
+        
+        q = x_start[:self.nq]
+        ee_pos = self.solver.ee_pos(q)
+        print(f"Starting EE position: [{ee_pos[0]:.4f}, {ee_pos[1]:.4f}, {ee_pos[2]:.4f}]m")
+        
+        return stats, x_curr, ee_g
+    
+    def warm_start_mpc_fig8(self, x_curr, ee_g):
+        """
+        Warm start MPC controller for figure-8 trajectory.
+        
+        Args:
+            x_curr: Current state vector
+            ee_g: Goal vector
+            
+        Returns:
+            XU_best: Best trajectory solution
+            XU_batch: Batch of trajectory solutions
+            ee_g_batch: Batch of goal vectors
+        """
+        x_curr_batch = np.tile(x_curr, (self.batch_size, 1))
         ee_g_batch = np.tile(ee_g, (self.batch_size, 1))
         
         # Initialize warm start
@@ -199,14 +218,118 @@ class MPC_GATO:
         self.solver.reset_dual()
         
         # Warm up solve
+        q = x_curr[:self.nq]
         self.update_force_batch(q)
         XU_batch, _ = self.solver.solve(x_curr_batch, ee_g_batch, XU_batch)
         XU_best = XU_batch[0, :]
         
-        print(f"\nRunning MPC: N={self.N}, batch={self.batch_size}, time={sim_time}s")
+        print(f"\nRunning MPC: N={self.N}, batch={self.batch_size}")
         if np.any(self.constant_f_ext_world):
             print(f"External force: {self.constant_f_ext_world[:3]}")
+        
+        return XU_best, XU_batch, ee_g_batch
+    
+    def srun_mpc_fig8(
+        self,
+        x_last,
+        u_last,
+        x_curr,
+        XU_batch,
+        ee_g_batch,
+        total_sim_time,
+        fig8_traj,
+        stats
+    ):
+        """
+        Run single MPC iteration for figure-8 trajectory tracking.
+        
+        Args:
+            x_last: Previous state
+            u_last: Previous control
+            x_curr: Current state
+            XU_batch: Batch of trajectory solutions (modified in-place)
+            ee_g_batch: Batch of goal vectors (modified in-place)
+            total_sim_time: Current simulation time
+            fig8_traj: Full figure-8 trajectory
+            stats: Statistics dictionary (modified in-place)
             
+        Returns:
+            XU_best: Best trajectory solution
+            run_flag: True to continue, False if trajectory complete
+        """
+        q = x_curr[:self.nq]
+        dq = x_curr[self.nq:]
+        
+        # Check if trajectory is complete
+        eepos_offset = int(total_sim_time / self.dt)
+        if eepos_offset >= len(fig8_traj)/6 - 6*self.N:
+            return None, False
+        
+        # Prepare next optimization
+        self._x_curr_batch_buffer[:] = x_curr
+        ee_g = fig8_traj[6*eepos_offset:6*(eepos_offset+self.N)]
+        ee_g_batch[:] = ee_g
+        XU_batch[:, :self.nx] = x_curr
+        
+        # Update forces and solve
+        self.update_force_batch(q)
+        self.solver.reset_rho()
+        
+        XU_batch_new, gpu_solve_time = self.solver.solve(
+            self._x_curr_batch_buffer,
+            ee_g_batch,
+            XU_batch
+        )
+        
+        # Select best trajectory
+        best_id = self.evaluate_best_trajectory(
+            x_last,
+            u_last,
+            x_curr,
+            max(self.sim_dt, round(self.dt / self.sim_dt) * self.sim_dt)
+        )
+        XU_best = XU_batch_new[best_id, :]
+        XU_batch[:] = XU_best
+        
+        # Collect essential statistics
+        ee_pos = self.solver.ee_pos(q)
+        goal_dist = np.linalg.norm(ee_pos[:3] - ee_g[6:9])
+        
+        stats['timestamps'].append(total_sim_time)
+        stats['solve_times'].append(gpu_solve_time/1000.0)  # Convert to ms
+        stats['goal_distances'].append(goal_dist)
+        stats['ee_actual'].append(ee_pos.copy())
+        stats['joint_positions'].append(q.copy())
+        stats['joint_velocities'].append(dq.copy())
+        
+        if self.track_full_stats:
+            solver_stats = self.solver.get_stats()
+            sqp_iters = solver_stats['sqp_iters']
+            if isinstance(sqp_iters, np.ndarray):
+                stats['sqp_iters'].append(int(sqp_iters[0]))
+            else:
+                stats['sqp_iters'].append(int(sqp_iters))
+        
+        return XU_best, True
+    
+    def run_mpc_fig8(self, x_start, fig8_traj, sim_dt=0.001, sim_time=5.0):
+        """
+        Run MPC controller tracking figure-8 trajectory.
+        
+        Returns only essential statistics for visualization and analysis.
+        """
+        # Initialize
+        stats, x_curr, ee_g = self.init_mpc_fig8(x_start, fig8_traj)
+        
+        # Warm start
+        XU_best, XU_batch, ee_g_batch = self.warm_start_mpc_fig8(x_curr, ee_g)
+        
+        # Initialize simulation
+        total_sim_time = 0.0
+        accumulated_time = 0.0
+        q = x_start[:self.nq]
+        dq = x_start[self.nq:self.nx]
+        
         # Main control loop
         solve_time = self.dt
         while total_sim_time < sim_time:
@@ -239,49 +362,22 @@ class MPC_GATO:
                     
             x_curr = np.concatenate([q, dq])
             
-            # Check if trajectory is complete
-            eepos_offset = int(total_sim_time / self.dt)
-            if eepos_offset >= len(fig8_traj)/6 - 6*self.N:
+            # Run single MPC step
+            XU_best, run_flag = self.srun_mpc_fig8(
+                x_last,
+                u_last,
+                x_curr,
+                XU_batch,
+                ee_g_batch,
+                total_sim_time,
+                fig8_traj,
+                stats
+            )
+            
+            if not run_flag:
                 break
-                
-            # Prepare next optimization
-            x_curr_batch = np.tile(x_curr, (self.batch_size, 1))
-            ee_g = fig8_traj[6*eepos_offset:6*(eepos_offset+self.N)]
-            ee_g_batch[:, :] = ee_g
-            XU_batch[:, :self.nx] = x_curr
             
-            # Update forces and solve
-            self.update_force_batch(q)
-            self.solver.reset_rho()
-            
-            start = time.time()
-            XU_batch_new, gpu_solve_time = self.solver.solve(x_curr_batch, ee_g_batch, XU_batch)
-            solve_time = time.time() - start
-            
-            # Select best trajectory
-            best_id = self.evaluate_best_trajectory(x_last, u_last, x_curr, max(sim_dt, round(timestep / sim_dt) * sim_dt))
-            XU_best = XU_batch_new[best_id, :]
-            XU_batch[:, :] = XU_best
-            
-            # Collect essential statistics
-            ee_pos = self.solver.ee_pos(q)
-            goal_dist = np.linalg.norm(ee_pos[:3] - ee_g[6:9])
-            
-            stats['timestamps'].append(total_sim_time)
-            stats['solve_times'].append(gpu_solve_time/1000.0)  # Convert to ms
-            stats['goal_distances'].append(goal_dist)
-            stats['ee_actual'].append(ee_pos.copy())
-            stats['joint_positions'].append(q.copy())
-            stats['joint_velocities'].append(dq.copy())
-            
-            if self.track_full_stats:
-                solver_stats = self.solver.get_stats()
-                # Get first element from batch for sqp_iters
-                sqp_iters = solver_stats['sqp_iters']
-                if isinstance(sqp_iters, np.ndarray):
-                    stats['sqp_iters'].append(int(sqp_iters[0]))
-                else:
-                    stats['sqp_iters'].append(int(sqp_iters))
+            solve_time = self.dt  # Use actual solve time if tracking
                 
         # Convert to numpy arrays
         for key in stats:
