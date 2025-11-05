@@ -1192,20 +1192,12 @@ namespace grid {
         if (row < aLength && col < bLength) dest[col * aLength + row] = a[row] * b[col];
     }
 
-    /**
-     * Initializes the topology_helpers in GPU memory
-     *
-     * @return A pointer to the topology_helpers memory in the GPU
-     */
+    //
+    // Topology Helpers not needed!
+    //
     template <typename T>
     __host__
-    int *init_topology_helpers() {
-        int h_topology_helpers[] = {2,1,2,1,2,1,2}; // S_inds
-        int *d_topology_helpers; gpuErrchk(cudaMalloc((void**)&d_topology_helpers,7*sizeof(int)));
-        gpuErrchk(cudaMemcpy(d_topology_helpers,h_topology_helpers,7*sizeof(int),cudaMemcpyHostToDevice));
-        return d_topology_helpers;
-    }
-
+    int *init_topology_helpers(){return nullptr;}
     /**
      * Initializes the Xmats and Imats in GPU memory
      *
@@ -1260,11 +1252,11 @@ namespace grid {
         h_XImats[37] = static_cast<T>(0);
         h_XImats[38] = static_cast<T>(0);
         h_XImats[39] = static_cast<T>(0);
-        h_XImats[40] = static_cast<T>(-0.210000000000000);
-        h_XImats[41] = static_cast<T>(0);
+        h_XImats[40] = static_cast<T>(0);
+        h_XImats[41] = static_cast<T>(-0.210000000000000);
         h_XImats[42] = static_cast<T>(0);
-        h_XImats[43] = static_cast<T>(1.00000000000000);
-        h_XImats[44] = static_cast<T>(0);
+        h_XImats[43] = static_cast<T>(0);
+        h_XImats[44] = static_cast<T>(1.00000000000000);
         h_XImats[45] = static_cast<T>(0);
         h_XImats[46] = static_cast<T>(0);
         h_XImats[47] = static_cast<T>(0);
@@ -1284,8 +1276,8 @@ namespace grid {
         h_XImats[61] = static_cast<T>(0);
         h_XImats[62] = static_cast<T>(0);
         h_XImats[63] = static_cast<T>(0);
-        h_XImats[64] = static_cast<T>(1.00000000000000);
-        h_XImats[65] = static_cast<T>(0);
+        h_XImats[64] = static_cast<T>(0);
+        h_XImats[65] = static_cast<T>(1.00000000000000);
         h_XImats[66] = static_cast<T>(0);
         h_XImats[67] = static_cast<T>(0);
         h_XImats[68] = static_cast<T>(0);
@@ -1334,11 +1326,11 @@ namespace grid {
         h_XImats[109] = static_cast<T>(0);
         h_XImats[110] = static_cast<T>(0);
         h_XImats[111] = static_cast<T>(0);
-        h_XImats[112] = static_cast<T>(0.190000000000000);
-        h_XImats[113] = static_cast<T>(0);
+        h_XImats[112] = static_cast<T>(0);
+        h_XImats[113] = static_cast<T>(0.190000000000000);
         h_XImats[114] = static_cast<T>(0);
-        h_XImats[115] = static_cast<T>(-1.00000000000000);
-        h_XImats[116] = static_cast<T>(0);
+        h_XImats[115] = static_cast<T>(0);
+        h_XImats[116] = static_cast<T>(-1.00000000000000);
         h_XImats[117] = static_cast<T>(0);
         h_XImats[118] = static_cast<T>(0);
         h_XImats[119] = static_cast<T>(0);
@@ -1346,8 +1338,8 @@ namespace grid {
         h_XImats[121] = static_cast<T>(0);
         h_XImats[122] = static_cast<T>(0);
         h_XImats[123] = static_cast<T>(0);
-        h_XImats[124] = static_cast<T>(0.0200000000000000);
-        h_XImats[125] = static_cast<T>(0);
+        h_XImats[124] = static_cast<T>(0);
+        h_XImats[125] = static_cast<T>(0.0200000000000000);
         h_XImats[126] = static_cast<T>(0);
         h_XImats[127] = static_cast<T>(0);
         h_XImats[128] = static_cast<T>(0);
@@ -1358,8 +1350,8 @@ namespace grid {
         h_XImats[133] = static_cast<T>(0);
         h_XImats[134] = static_cast<T>(0);
         h_XImats[135] = static_cast<T>(0);
-        h_XImats[136] = static_cast<T>(-1.00000000000000);
-        h_XImats[137] = static_cast<T>(0);
+        h_XImats[136] = static_cast<T>(0);
+        h_XImats[137] = static_cast<T>(-1.00000000000000);
         h_XImats[138] = static_cast<T>(0);
         h_XImats[139] = static_cast<T>(0);
         h_XImats[140] = static_cast<T>(0);
@@ -1408,11 +1400,11 @@ namespace grid {
         h_XImats[181] = static_cast<T>(0);
         h_XImats[182] = static_cast<T>(0);
         h_XImats[183] = static_cast<T>(0);
-        h_XImats[184] = static_cast<T>(-0.190000000000000);
-        h_XImats[185] = static_cast<T>(0);
+        h_XImats[184] = static_cast<T>(0);
+        h_XImats[185] = static_cast<T>(-0.190000000000000);
         h_XImats[186] = static_cast<T>(0);
-        h_XImats[187] = static_cast<T>(1.00000000000000);
-        h_XImats[188] = static_cast<T>(0);
+        h_XImats[187] = static_cast<T>(0);
+        h_XImats[188] = static_cast<T>(1.00000000000000);
         h_XImats[189] = static_cast<T>(0);
         h_XImats[190] = static_cast<T>(0);
         h_XImats[191] = static_cast<T>(0);
@@ -1432,8 +1424,8 @@ namespace grid {
         h_XImats[205] = static_cast<T>(0);
         h_XImats[206] = static_cast<T>(0);
         h_XImats[207] = static_cast<T>(0);
-        h_XImats[208] = static_cast<T>(1.00000000000000);
-        h_XImats[209] = static_cast<T>(0);
+        h_XImats[208] = static_cast<T>(0);
+        h_XImats[209] = static_cast<T>(1.00000000000000);
         h_XImats[210] = static_cast<T>(0);
         h_XImats[211] = static_cast<T>(0);
         h_XImats[212] = static_cast<T>(0);
@@ -1759,11 +1751,11 @@ namespace grid {
         h_XImats[522] = static_cast<T>(0);
         h_XImats[523] = static_cast<T>(0);
         h_XImats[524] = static_cast<T>(0);
-        h_XImats[525] = static_cast<T>(1.00000000000000);
+        h_XImats[525] = static_cast<T>(0);
         h_XImats[526] = static_cast<T>(0);
         h_XImats[527] = static_cast<T>(0);
         h_XImats[528] = static_cast<T>(0);
-        h_XImats[529] = static_cast<T>(0);
+        h_XImats[529] = static_cast<T>(1.00000000000000);
         h_XImats[530] = static_cast<T>(0);
         h_XImats[531] = static_cast<T>(0);
         h_XImats[532] = static_cast<T>(0);
@@ -1793,11 +1785,11 @@ namespace grid {
         h_XImats[554] = static_cast<T>(0);
         h_XImats[555] = static_cast<T>(0);
         h_XImats[556] = static_cast<T>(0);
-        h_XImats[557] = static_cast<T>(-1.00000000000000);
+        h_XImats[557] = static_cast<T>(0);
         h_XImats[558] = static_cast<T>(0);
         h_XImats[559] = static_cast<T>(0);
         h_XImats[560] = static_cast<T>(0);
-        h_XImats[561] = static_cast<T>(0);
+        h_XImats[561] = static_cast<T>(-1.00000000000000);
         h_XImats[562] = static_cast<T>(0);
         h_XImats[563] = static_cast<T>(0);
         h_XImats[564] = static_cast<T>(-0.0200000000000000);
@@ -1827,11 +1819,11 @@ namespace grid {
         h_XImats[586] = static_cast<T>(0);
         h_XImats[587] = static_cast<T>(0);
         h_XImats[588] = static_cast<T>(0);
-        h_XImats[589] = static_cast<T>(1.00000000000000);
+        h_XImats[589] = static_cast<T>(0);
         h_XImats[590] = static_cast<T>(0);
         h_XImats[591] = static_cast<T>(0);
         h_XImats[592] = static_cast<T>(0);
-        h_XImats[593] = static_cast<T>(0);
+        h_XImats[593] = static_cast<T>(1.00000000000000);
         h_XImats[594] = static_cast<T>(0);
         h_XImats[595] = static_cast<T>(0);
         h_XImats[596] = static_cast<T>(0);
@@ -2212,18 +2204,14 @@ namespace grid {
      *
      * @param s_XImats is the (shared) memory destination location for the XImats
      * @param s_q is the (shared) memory location of the current configuration
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param d_robotModel is the pointer to the initialized model specific helpers (XImats, mxfuncs, topology_helpers, etc.)
      * @param s_temp is temporary (shared) memory used to compute sin and cos if needed of size: 14
      */
     template <typename T>
     __device__
-    void load_update_XImats_helpers(T *s_XImats, const T *s_q, int *s_topology_helpers, const robotModel<T> *d_robotModel, T *s_temp) {
+    void load_update_XImats_helpers(T *s_XImats, const T *s_q, const robotModel<T> *d_robotModel, T *s_temp) {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 504; ind += blockDim.x*blockDim.y){
             s_XImats[ind] = d_robotModel->d_XImats[ind];
-        }
-        for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
-            s_topology_helpers[ind] = d_robotModel->d_topology_helpers[ind];
         }
         for(int k = threadIdx.x + threadIdx.y*blockDim.x; k < 7; k += blockDim.x*blockDim.y){
             s_temp[k] = static_cast<T>(sin(s_q[k]));
@@ -2242,15 +2230,15 @@ namespace grid {
             s_XImats[10] = static_cast<T>(0.155*s_temp[0]);
             // X[1]
             s_XImats[36] = static_cast<T>(s_temp[8]);
-            s_XImats[38] = static_cast<T>(s_temp[1]);
+            s_XImats[37] = static_cast<T>(-s_temp[1]);
             s_XImats[39] = static_cast<T>(-0.03*s_temp[1]);
-            s_XImats[41] = static_cast<T>(0.03*s_temp[8]);
+            s_XImats[40] = static_cast<T>(-0.03*s_temp[8]);
             s_XImats[45] = static_cast<T>(0.21*s_temp[8]);
-            s_XImats[47] = static_cast<T>(0.21*s_temp[1]);
+            s_XImats[46] = static_cast<T>(-0.21*s_temp[1]);
             s_XImats[48] = static_cast<T>(-s_temp[1]);
-            s_XImats[50] = static_cast<T>(s_temp[8]);
+            s_XImats[49] = static_cast<T>(-s_temp[8]);
             s_XImats[51] = static_cast<T>(-0.03*s_temp[8]);
-            s_XImats[53] = static_cast<T>(-0.03*s_temp[1]);
+            s_XImats[52] = static_cast<T>(0.03*s_temp[1]);
             // X[2]
             s_XImats[72] = static_cast<T>(s_temp[9]);
             s_XImats[73] = static_cast<T>(-s_temp[2]);
@@ -2264,15 +2252,15 @@ namespace grid {
             s_XImats[88] = static_cast<T>(0.035*s_temp[2]);
             // X[3]
             s_XImats[108] = static_cast<T>(-s_temp[10]);
-            s_XImats[110] = static_cast<T>(-s_temp[3]);
+            s_XImats[109] = static_cast<T>(s_temp[3]);
             s_XImats[111] = static_cast<T>(0.03*s_temp[3]);
-            s_XImats[113] = static_cast<T>(-0.03*s_temp[10]);
+            s_XImats[112] = static_cast<T>(0.03*s_temp[10]);
             s_XImats[117] = static_cast<T>(-0.02*s_temp[3] - 0.19*s_temp[10]);
-            s_XImats[119] = static_cast<T>(-0.19*s_temp[3] + 0.02*s_temp[10]);
+            s_XImats[118] = static_cast<T>(0.19*s_temp[3] - 0.02*s_temp[10]);
             s_XImats[120] = static_cast<T>(-s_temp[3]);
-            s_XImats[122] = static_cast<T>(s_temp[10]);
+            s_XImats[121] = static_cast<T>(-s_temp[10]);
             s_XImats[123] = static_cast<T>(-0.03*s_temp[10]);
-            s_XImats[125] = static_cast<T>(-0.03*s_temp[3]);
+            s_XImats[124] = static_cast<T>(0.03*s_temp[3]);
             // X[4]
             s_XImats[144] = static_cast<T>(-s_temp[11]);
             s_XImats[145] = static_cast<T>(s_temp[4]);
@@ -2286,15 +2274,15 @@ namespace grid {
             s_XImats[160] = static_cast<T>(-0.025*s_temp[4] + 0.02*s_temp[11]);
             // X[5]
             s_XImats[180] = static_cast<T>(s_temp[12]);
-            s_XImats[182] = static_cast<T>(s_temp[5]);
+            s_XImats[181] = static_cast<T>(-s_temp[5]);
             s_XImats[183] = static_cast<T>(-0.03*s_temp[5]);
-            s_XImats[185] = static_cast<T>(0.03*s_temp[12]);
+            s_XImats[184] = static_cast<T>(-0.03*s_temp[12]);
             s_XImats[189] = static_cast<T>(0.19*s_temp[12]);
-            s_XImats[191] = static_cast<T>(0.19*s_temp[5]);
+            s_XImats[190] = static_cast<T>(-0.19*s_temp[5]);
             s_XImats[192] = static_cast<T>(-s_temp[5]);
-            s_XImats[194] = static_cast<T>(s_temp[12]);
+            s_XImats[193] = static_cast<T>(-s_temp[12]);
             s_XImats[195] = static_cast<T>(-0.03*s_temp[12]);
-            s_XImats[197] = static_cast<T>(-0.03*s_temp[5]);
+            s_XImats[196] = static_cast<T>(0.03*s_temp[5]);
             // X[6]
             s_XImats[219] = static_cast<T>(-0.11*s_temp[6] + 0.073*s_temp[13]);
             s_XImats[220] = static_cast<T>(-0.073*s_temp[6] - 0.11*s_temp[13]);
@@ -2321,18 +2309,14 @@ namespace grid {
      *
      * @param s_XmatsHom is the (shared) memory destination location for the XmatsHom
      * @param s_q is the (shared) memory location of the current configuration
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param d_robotModel is the pointer to the initialized model specific helpers (XImats, mxfuncs, topology_helpers, etc.)
      * @param s_temp is temporary (shared) memory used to compute sin and cos if needed of size: 14
      */
     template <typename T>
     __device__
-    void load_update_XmatsHom_helpers(T *s_XmatsHom, int *s_topology_helpers, const T *s_q, const robotModel<T> *d_robotModel, T *s_temp) {
+    void load_update_XmatsHom_helpers(T *s_XmatsHom, const T *s_q, const robotModel<T> *d_robotModel, T *s_temp) {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 112; ind += blockDim.x*blockDim.y){
             s_XmatsHom[ind] = d_robotModel->d_XImats[ind+504];
-        }
-        for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
-            s_topology_helpers[ind] = d_robotModel->d_topology_helpers[ind];
         }
         for(int k = threadIdx.x + threadIdx.y*blockDim.x; k < 7; k += blockDim.x*blockDim.y){
             s_temp[k] = static_cast<T>(sin(s_q[k]));
@@ -2348,8 +2332,8 @@ namespace grid {
             // X_hom[1]
             s_XmatsHom[16] = static_cast<T>(s_temp[8]);
             s_XmatsHom[18] = static_cast<T>(-s_temp[1]);
-            s_XmatsHom[24] = static_cast<T>(s_temp[1]);
-            s_XmatsHom[26] = static_cast<T>(s_temp[8]);
+            s_XmatsHom[20] = static_cast<T>(-s_temp[1]);
+            s_XmatsHom[22] = static_cast<T>(-s_temp[8]);
             // X_hom[2]
             s_XmatsHom[32] = static_cast<T>(s_temp[9]);
             s_XmatsHom[33] = static_cast<T>(s_temp[2]);
@@ -2358,8 +2342,8 @@ namespace grid {
             // X_hom[3]
             s_XmatsHom[48] = static_cast<T>(-s_temp[10]);
             s_XmatsHom[50] = static_cast<T>(-s_temp[3]);
-            s_XmatsHom[56] = static_cast<T>(-s_temp[3]);
-            s_XmatsHom[58] = static_cast<T>(s_temp[10]);
+            s_XmatsHom[52] = static_cast<T>(s_temp[3]);
+            s_XmatsHom[54] = static_cast<T>(-s_temp[10]);
             // X_hom[4]
             s_XmatsHom[64] = static_cast<T>(-s_temp[11]);
             s_XmatsHom[65] = static_cast<T>(-s_temp[4]);
@@ -2368,8 +2352,8 @@ namespace grid {
             // X_hom[5]
             s_XmatsHom[80] = static_cast<T>(s_temp[12]);
             s_XmatsHom[82] = static_cast<T>(-s_temp[5]);
-            s_XmatsHom[88] = static_cast<T>(s_temp[5]);
-            s_XmatsHom[90] = static_cast<T>(s_temp[12]);
+            s_XmatsHom[84] = static_cast<T>(-s_temp[5]);
+            s_XmatsHom[86] = static_cast<T>(-s_temp[12]);
             // X_hom[6]
             s_XmatsHom[97] = static_cast<T>(s_temp[6]);
             s_XmatsHom[98] = static_cast<T>(s_temp[13]);
@@ -2385,19 +2369,15 @@ namespace grid {
      * @param s_XmatsHom is the (shared) memory destination location for the XmatsHom
      * @param s_dXmatsHom is the (shared) memory destination location for the dXmatsHom
      * @param s_q is the (shared) memory location of the current configuration
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param d_robotModel is the pointer to the initialized model specific helpers (XImats, mxfuncs, topology_helpers, etc.)
      * @param s_temp is temporary (shared) memory used to compute sin and cos if needed of size: 14
      */
     template <typename T>
     __device__
-    void load_update_XmatsHom_helpers(T *s_XmatsHom, T *s_dXmatsHom, int *s_topology_helpers, const T *s_q, const robotModel<T> *d_robotModel, T *s_temp) {
+    void load_update_XmatsHom_helpers(T *s_XmatsHom, T *s_dXmatsHom, const T *s_q, const robotModel<T> *d_robotModel, T *s_temp) {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 112; ind += blockDim.x*blockDim.y){
             s_XmatsHom[ind] = d_robotModel->d_XImats[ind+504];
             s_dXmatsHom[ind] = d_robotModel->d_XImats[ind+616];
-        }
-        for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
-            s_topology_helpers[ind] = d_robotModel->d_topology_helpers[ind];
         }
         for(int k = threadIdx.x + threadIdx.y*blockDim.x; k < 7; k += blockDim.x*blockDim.y){
             s_temp[k] = static_cast<T>(sin(s_q[k]));
@@ -2413,8 +2393,8 @@ namespace grid {
             // X_hom[1]
             s_XmatsHom[16] = static_cast<T>(s_temp[8]);
             s_XmatsHom[18] = static_cast<T>(-s_temp[1]);
-            s_XmatsHom[24] = static_cast<T>(s_temp[1]);
-            s_XmatsHom[26] = static_cast<T>(s_temp[8]);
+            s_XmatsHom[20] = static_cast<T>(-s_temp[1]);
+            s_XmatsHom[22] = static_cast<T>(-s_temp[8]);
             // X_hom[2]
             s_XmatsHom[32] = static_cast<T>(s_temp[9]);
             s_XmatsHom[33] = static_cast<T>(s_temp[2]);
@@ -2423,8 +2403,8 @@ namespace grid {
             // X_hom[3]
             s_XmatsHom[48] = static_cast<T>(-s_temp[10]);
             s_XmatsHom[50] = static_cast<T>(-s_temp[3]);
-            s_XmatsHom[56] = static_cast<T>(-s_temp[3]);
-            s_XmatsHom[58] = static_cast<T>(s_temp[10]);
+            s_XmatsHom[52] = static_cast<T>(s_temp[3]);
+            s_XmatsHom[54] = static_cast<T>(-s_temp[10]);
             // X_hom[4]
             s_XmatsHom[64] = static_cast<T>(-s_temp[11]);
             s_XmatsHom[65] = static_cast<T>(-s_temp[4]);
@@ -2433,8 +2413,8 @@ namespace grid {
             // X_hom[5]
             s_XmatsHom[80] = static_cast<T>(s_temp[12]);
             s_XmatsHom[82] = static_cast<T>(-s_temp[5]);
-            s_XmatsHom[88] = static_cast<T>(s_temp[5]);
-            s_XmatsHom[90] = static_cast<T>(s_temp[12]);
+            s_XmatsHom[84] = static_cast<T>(-s_temp[5]);
+            s_XmatsHom[86] = static_cast<T>(-s_temp[12]);
             // X_hom[6]
             s_XmatsHom[97] = static_cast<T>(s_temp[6]);
             s_XmatsHom[98] = static_cast<T>(s_temp[13]);
@@ -2448,8 +2428,8 @@ namespace grid {
             // dX_hom[1]
             s_dXmatsHom[16] = static_cast<T>(-s_temp[1]);
             s_dXmatsHom[18] = static_cast<T>(-s_temp[8]);
-            s_dXmatsHom[24] = static_cast<T>(s_temp[8]);
-            s_dXmatsHom[26] = static_cast<T>(-s_temp[1]);
+            s_dXmatsHom[20] = static_cast<T>(-s_temp[8]);
+            s_dXmatsHom[22] = static_cast<T>(s_temp[1]);
             // dX_hom[2]
             s_dXmatsHom[32] = static_cast<T>(-s_temp[2]);
             s_dXmatsHom[33] = static_cast<T>(s_temp[9]);
@@ -2458,8 +2438,8 @@ namespace grid {
             // dX_hom[3]
             s_dXmatsHom[48] = static_cast<T>(s_temp[3]);
             s_dXmatsHom[50] = static_cast<T>(-s_temp[10]);
-            s_dXmatsHom[56] = static_cast<T>(-s_temp[10]);
-            s_dXmatsHom[58] = static_cast<T>(-s_temp[3]);
+            s_dXmatsHom[52] = static_cast<T>(s_temp[10]);
+            s_dXmatsHom[54] = static_cast<T>(s_temp[3]);
             // dX_hom[4]
             s_dXmatsHom[64] = static_cast<T>(s_temp[4]);
             s_dXmatsHom[65] = static_cast<T>(-s_temp[11]);
@@ -2468,8 +2448,8 @@ namespace grid {
             // dX_hom[5]
             s_dXmatsHom[80] = static_cast<T>(-s_temp[5]);
             s_dXmatsHom[82] = static_cast<T>(-s_temp[12]);
-            s_dXmatsHom[88] = static_cast<T>(s_temp[12]);
-            s_dXmatsHom[90] = static_cast<T>(-s_temp[5]);
+            s_dXmatsHom[84] = static_cast<T>(-s_temp[12]);
+            s_dXmatsHom[86] = static_cast<T>(s_temp[5]);
             // dX_hom[6]
             s_dXmatsHom[97] = static_cast<T>(s_temp[13]);
             s_dXmatsHom[98] = static_cast<T>(-s_temp[6]);
@@ -2486,20 +2466,16 @@ namespace grid {
      * @param s_d2XmatsHom is the (shared) memory destination location for the d2XmatsHom
      * @param s_dXmatsHom is the (shared) memory destination location for the dXmatsHom
      * @param s_q is the (shared) memory location of the current configuration
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param d_robotModel is the pointer to the initialized model specific helpers (XImats, mxfuncs, topology_helpers, etc.)
      * @param s_temp is temporary (shared) memory used to compute sin and cos if needed of size: 14
      */
     template <typename T>
     __device__
-    void load_update_XmatsHom_helpers(T *s_XmatsHom, T *s_dXmatsHom, T *s_d2XmatsHom, int *s_topology_helpers, const T *s_q, const robotModel<T> *d_robotModel, T *s_temp) {
+    void load_update_XmatsHom_helpers(T *s_XmatsHom, T *s_dXmatsHom, T *s_d2XmatsHom, const T *s_q, const robotModel<T> *d_robotModel, T *s_temp) {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 112; ind += blockDim.x*blockDim.y){
             s_XmatsHom[ind] = d_robotModel->d_XImats[ind+504];
             s_dXmatsHom[ind] = d_robotModel->d_XImats[ind+616];
             s_d2XmatsHom[ind] = d_robotModel->d_XImats[ind+728];
-        }
-        for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
-            s_topology_helpers[ind] = d_robotModel->d_topology_helpers[ind];
         }
         for(int k = threadIdx.x + threadIdx.y*blockDim.x; k < 7; k += blockDim.x*blockDim.y){
             s_temp[k] = static_cast<T>(sin(s_q[k]));
@@ -2515,8 +2491,8 @@ namespace grid {
             // X_hom[1]
             s_XmatsHom[16] = static_cast<T>(s_temp[8]);
             s_XmatsHom[18] = static_cast<T>(-s_temp[1]);
-            s_XmatsHom[24] = static_cast<T>(s_temp[1]);
-            s_XmatsHom[26] = static_cast<T>(s_temp[8]);
+            s_XmatsHom[20] = static_cast<T>(-s_temp[1]);
+            s_XmatsHom[22] = static_cast<T>(-s_temp[8]);
             // X_hom[2]
             s_XmatsHom[32] = static_cast<T>(s_temp[9]);
             s_XmatsHom[33] = static_cast<T>(s_temp[2]);
@@ -2525,8 +2501,8 @@ namespace grid {
             // X_hom[3]
             s_XmatsHom[48] = static_cast<T>(-s_temp[10]);
             s_XmatsHom[50] = static_cast<T>(-s_temp[3]);
-            s_XmatsHom[56] = static_cast<T>(-s_temp[3]);
-            s_XmatsHom[58] = static_cast<T>(s_temp[10]);
+            s_XmatsHom[52] = static_cast<T>(s_temp[3]);
+            s_XmatsHom[54] = static_cast<T>(-s_temp[10]);
             // X_hom[4]
             s_XmatsHom[64] = static_cast<T>(-s_temp[11]);
             s_XmatsHom[65] = static_cast<T>(-s_temp[4]);
@@ -2535,8 +2511,8 @@ namespace grid {
             // X_hom[5]
             s_XmatsHom[80] = static_cast<T>(s_temp[12]);
             s_XmatsHom[82] = static_cast<T>(-s_temp[5]);
-            s_XmatsHom[88] = static_cast<T>(s_temp[5]);
-            s_XmatsHom[90] = static_cast<T>(s_temp[12]);
+            s_XmatsHom[84] = static_cast<T>(-s_temp[5]);
+            s_XmatsHom[86] = static_cast<T>(-s_temp[12]);
             // X_hom[6]
             s_XmatsHom[97] = static_cast<T>(s_temp[6]);
             s_XmatsHom[98] = static_cast<T>(s_temp[13]);
@@ -2550,8 +2526,8 @@ namespace grid {
             // dX_hom[1]
             s_dXmatsHom[16] = static_cast<T>(-s_temp[1]);
             s_dXmatsHom[18] = static_cast<T>(-s_temp[8]);
-            s_dXmatsHom[24] = static_cast<T>(s_temp[8]);
-            s_dXmatsHom[26] = static_cast<T>(-s_temp[1]);
+            s_dXmatsHom[20] = static_cast<T>(-s_temp[8]);
+            s_dXmatsHom[22] = static_cast<T>(s_temp[1]);
             // dX_hom[2]
             s_dXmatsHom[32] = static_cast<T>(-s_temp[2]);
             s_dXmatsHom[33] = static_cast<T>(s_temp[9]);
@@ -2560,8 +2536,8 @@ namespace grid {
             // dX_hom[3]
             s_dXmatsHom[48] = static_cast<T>(s_temp[3]);
             s_dXmatsHom[50] = static_cast<T>(-s_temp[10]);
-            s_dXmatsHom[56] = static_cast<T>(-s_temp[10]);
-            s_dXmatsHom[58] = static_cast<T>(-s_temp[3]);
+            s_dXmatsHom[52] = static_cast<T>(s_temp[10]);
+            s_dXmatsHom[54] = static_cast<T>(s_temp[3]);
             // dX_hom[4]
             s_dXmatsHom[64] = static_cast<T>(s_temp[4]);
             s_dXmatsHom[65] = static_cast<T>(-s_temp[11]);
@@ -2570,8 +2546,8 @@ namespace grid {
             // dX_hom[5]
             s_dXmatsHom[80] = static_cast<T>(-s_temp[5]);
             s_dXmatsHom[82] = static_cast<T>(-s_temp[12]);
-            s_dXmatsHom[88] = static_cast<T>(s_temp[12]);
-            s_dXmatsHom[90] = static_cast<T>(-s_temp[5]);
+            s_dXmatsHom[84] = static_cast<T>(-s_temp[12]);
+            s_dXmatsHom[86] = static_cast<T>(s_temp[5]);
             // dX_hom[6]
             s_dXmatsHom[97] = static_cast<T>(s_temp[13]);
             s_dXmatsHom[98] = static_cast<T>(-s_temp[6]);
@@ -2585,8 +2561,8 @@ namespace grid {
             // d2X_hom[1]
             s_d2XmatsHom[16] = static_cast<T>(-s_temp[8]);
             s_d2XmatsHom[18] = static_cast<T>(s_temp[1]);
-            s_d2XmatsHom[24] = static_cast<T>(-s_temp[1]);
-            s_d2XmatsHom[26] = static_cast<T>(-s_temp[8]);
+            s_d2XmatsHom[20] = static_cast<T>(s_temp[1]);
+            s_d2XmatsHom[22] = static_cast<T>(s_temp[8]);
             // d2X_hom[2]
             s_d2XmatsHom[32] = static_cast<T>(-s_temp[9]);
             s_d2XmatsHom[33] = static_cast<T>(-s_temp[2]);
@@ -2595,8 +2571,8 @@ namespace grid {
             // d2X_hom[3]
             s_d2XmatsHom[48] = static_cast<T>(s_temp[10]);
             s_d2XmatsHom[50] = static_cast<T>(s_temp[3]);
-            s_d2XmatsHom[56] = static_cast<T>(s_temp[3]);
-            s_d2XmatsHom[58] = static_cast<T>(-s_temp[10]);
+            s_d2XmatsHom[52] = static_cast<T>(-s_temp[3]);
+            s_d2XmatsHom[54] = static_cast<T>(s_temp[10]);
             // d2X_hom[4]
             s_d2XmatsHom[64] = static_cast<T>(s_temp[11]);
             s_d2XmatsHom[65] = static_cast<T>(s_temp[4]);
@@ -2605,8 +2581,8 @@ namespace grid {
             // d2X_hom[5]
             s_d2XmatsHom[80] = static_cast<T>(-s_temp[12]);
             s_d2XmatsHom[82] = static_cast<T>(s_temp[5]);
-            s_d2XmatsHom[88] = static_cast<T>(-s_temp[5]);
-            s_d2XmatsHom[90] = static_cast<T>(-s_temp[12]);
+            s_d2XmatsHom[84] = static_cast<T>(s_temp[5]);
+            s_d2XmatsHom[86] = static_cast<T>(s_temp[12]);
             // d2X_hom[6]
             s_d2XmatsHom[97] = static_cast<T>(-s_temp[6]);
             s_d2XmatsHom[98] = static_cast<T>(-s_temp[13]);
@@ -2625,12 +2601,11 @@ namespace grid {
      * @param s_eePos is a pointer to shared memory of size 6*NUM_EE where NUM_EE = 1
      * @param s_q is the vector of joint positions
      * @param s_Xhom is the pointer to the homogenous transformation matricies 
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 32
      */
     template <typename T>
     __device__
-    void end_effector_pose_inner(T *s_eePos, const T *s_q, const T *s_Xhom, int *s_topology_helpers, T *s_temp) {
+    void end_effector_pose_inner(T *s_eePos, const T *s_q, const T *s_Xhom, T *s_temp) {
         //
         // For each branch in parallel chain up the transform
         // Keep chaining until reaching the root (starting from the leaves)
@@ -2710,11 +2685,29 @@ namespace grid {
     template <typename T>
     __device__
     void end_effector_pose_device(T *s_eePos, const T *s_q, const robotModel<T> *d_robotModel) {
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XHomTemp[]; T *s_XmatsHom = s_XHomTemp; T *s_temp = &s_XHomTemp[112];
-        load_update_XmatsHom_helpers<T>(s_XmatsHom, s_topology_helpers, s_q, d_robotModel, s_temp);
-        end_effector_pose_inner<T>(s_eePos, s_q, s_XmatsHom, s_topology_helpers, s_temp);
+        load_update_XmatsHom_helpers<T>(s_XmatsHom, s_q, d_robotModel, s_temp);
+        end_effector_pose_inner<T>(s_eePos, s_q, s_XmatsHom, s_temp);
     }
+
+    /**
+     * Computes the End Effector Position
+     *
+     * @param s_eePos is a pointer to shared memory of size 6*NUM_EE where NUM_EE = 1
+     * @param s_q is the vector of joint positions
+     * @param s_temp_in is the pointer to the temporary shared memory
+     * @param d_robotModel is the pointer to the initialized model specific helpers on the GPU (XImats, topology_helpers, etc.)
+     */
+    template <typename T>
+    __device__
+    void end_effector_pose_device(T *s_eePos, const T *s_q, T* s_temp_in, const robotModel<T> *d_robotModel) {
+        T* s_XHomTemp = s_temp_in;
+        T* s_XmatsHom = s_XHomTemp;
+        T* s_temp = &s_XHomTemp[112];
+        load_update_XmatsHom_helpers<T>(s_XmatsHom, s_q, d_robotModel, s_temp);
+        end_effector_pose_inner<T>(s_eePos, s_q, s_XmatsHom, s_temp);
+    }
+
 
     /**
      * Compute the End Effector Position
@@ -2730,7 +2723,6 @@ namespace grid {
     void end_effector_pose_kernel_single_timing(T *d_eePos, const T *d_q, const int stride_q, const robotModel<T> *d_robotModel, const int NUM_TIMESTEPS) {
         __shared__ T s_q[7];
         __shared__ T s_eePos[6];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XHomTemp[]; T *s_XmatsHom = s_XHomTemp; T *s_temp = &s_XHomTemp[112];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
@@ -2739,7 +2731,7 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_topology_helpers, s_q, d_robotModel, s_temp);
+            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_q, d_robotModel, s_temp);
             end_effector_pose_inner<T>(s_eePos, s_q, s_XmatsHom, s_temp);
         }
         // save down to global
@@ -2763,7 +2755,6 @@ namespace grid {
     void end_effector_pose_kernel(T *d_eePos, const T *d_q, const int stride_q, const robotModel<T> *d_robotModel, const int NUM_TIMESTEPS) {
         __shared__ T s_q[7];
         __shared__ T s_eePos[6];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XHomTemp[]; T *s_XmatsHom = s_XHomTemp; T *s_temp = &s_XHomTemp[112];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -2773,7 +2764,7 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_topology_helpers, s_q, d_robotModel, s_temp);
+            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_q, d_robotModel, s_temp);
             end_effector_pose_inner<T>(s_eePos, s_q, s_XmatsHom, s_temp);
             __syncthreads();
             // save down to global
@@ -2869,12 +2860,11 @@ namespace grid {
      * @param s_q is the vector of joint positions
      * @param s_Xhom is the pointer to the homogenous transformation matricies 
      * @param s_dXhom is the pointer to the gradient of the homogenous transformation matricies 
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 448
      */
     template <typename T>
     __device__
-    void end_effector_pose_gradient_inner(T *s_deePos, const T *s_q, const T *s_Xhom, const T *s_dXhom, int *s_topology_helpers, T *s_temp) {
+    void end_effector_pose_gradient_inner(T *s_deePos, const T *s_q, const T *s_Xhom, const T *s_dXhom, T *s_temp) {
         //
         // For each branch/gradient in parallel chain up the transform
         // Keep chaining until reaching the root (starting from the leaves)
@@ -2974,15 +2964,15 @@ namespace grid {
      *
      * @param s_deePos is a pointer to shared memory of size 6*NUM_JOINTS*NUM_EE where NUM_JOINTS = 7 and NUM_EE = 1
      * @param s_q is the vector of joint positions
+     * @param s_temp_in is the pointer to the temporary shared memory
      * @param d_robotModel is the pointer to the initialized model specific helpers on the GPU (XImats, topology_helpers, etc.)
      */
     template <typename T>
     __device__
-    void end_effector_pose_gradient_device(T *s_deePos, const T *s_q, const robotModel<T> *d_robotModel) {
-        __shared__ int s_topology_helpers[7];
-        extern __shared__ T s_XHomTemp[]; T *s_XmatsHom = s_XHomTemp; T *s_dXmatsHom = &s_XHomTemp[112]; T *s_temp = &s_dXmatsHom[112];
-        load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_topology_helpers, s_q, d_robotModel, s_temp);
-        end_effector_pose_gradient_inner<T>(s_deePos, s_q, s_XmatsHom, s_dXmatsHom, s_topology_helpers, s_temp);
+    void end_effector_pose_gradient_device(T *s_deePos, const T *s_q, T* s_temp_in, const robotModel<T> *d_robotModel) {
+        T* s_XHomTemp = s_temp_in; T *s_XmatsHom = s_XHomTemp; T *s_dXmatsHom = &s_XHomTemp[112]; T *s_temp = &s_dXmatsHom[112];
+        load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_q, d_robotModel, s_temp);
+        end_effector_pose_gradient_inner<T>(s_deePos, s_q, s_XmatsHom, s_dXmatsHom, s_temp);
     }
 
     /**
@@ -2999,7 +2989,6 @@ namespace grid {
     void end_effector_pose_gradient_kernel_single_timing(T *d_deePos, const T *d_q, const int stride_q, const robotModel<T> *d_robotModel, const int NUM_TIMESTEPS) {
         __shared__ T s_q[7];
         __shared__ T s_deePos[42];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XHomTemp[]; T *s_XmatsHom = s_XHomTemp; T *s_dXmatsHom = &s_XHomTemp[112]; T *s_temp = &s_dXmatsHom[112];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
@@ -3008,7 +2997,7 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_topology_helpers, s_q, d_robotModel, s_temp);
+            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_q, d_robotModel, s_temp);
             end_effector_pose_gradient_inner<T>(s_deePos, s_q, s_XmatsHom, s_dXmatsHom, s_temp);
         }
         // save down to global
@@ -3032,7 +3021,6 @@ namespace grid {
     void end_effector_pose_gradient_kernel(T *d_deePos, const T *d_q, const int stride_q, const robotModel<T> *d_robotModel, const int NUM_TIMESTEPS) {
         __shared__ T s_q[7];
         __shared__ T s_deePos[42];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XHomTemp[]; T *s_XmatsHom = s_XHomTemp; T *s_dXmatsHom = &s_XHomTemp[112]; T *s_temp = &s_dXmatsHom[112];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -3042,7 +3030,7 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_topology_helpers, s_q, d_robotModel, s_temp);
+            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_q, d_robotModel, s_temp);
             end_effector_pose_gradient_inner<T>(s_deePos, s_q, s_XmatsHom, s_dXmatsHom, s_temp);
             __syncthreads();
             // save down to global
@@ -3140,12 +3128,11 @@ namespace grid {
      * @param s_Xhom is the pointer to the homogenous transformation matricies 
      * @param s_dXhom is the pointer to the 1st derivative of the homogenous transformation matricies 
      * @param s_d2Xhom is the pointer to the 2nd derivative of the homogenous transformation matricies 
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 448
      */
     template <typename T>
     __device__
-    void end_effector_pose_gradient_hessian_inner(T *s_d2eePos, T *s_deePos, const T *s_q, const T *s_Xhom, const T *s_dXhom, const T *s_d2Xhom, int *s_topology_helpers, T *s_temp) {
+    void end_effector_pose_gradient_hessian_inner(T *s_d2eePos, T *s_deePos, const T *s_q, const T *s_Xhom, const T *s_dXhom, const T *s_d2Xhom, T *s_temp) {
         //
         // For each branch/gradient in parallel chain up the transform
         // Keep chaining until reaching the root (starting from the leaves)
@@ -3341,9 +3328,8 @@ namespace grid {
     template <typename T>
     __device__
     void end_effector_pose_gradient_hessian_device(T *s_d2eePos, T *s_deePos, const T *s_q, const robotModel<T> *d_robotModel) {
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XHomTemp[]; T *s_XmatsHom = s_XHomTemp; T *s_dXmatsHom = &s_XHomTemp[112]; T *s_d2XmatsHom = &s_dXmatsHom[112]; T *s_temp = &s_d2XmatsHom[112];
-        load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_d2XmatsHom, s_topology_helpers, s_q, d_robotModel, s_temp);
+        load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_d2XmatsHom, s_q, d_robotModel, s_temp);
         end_effector_pose_gradient_hessian_inner<T>(s_d2eePos, s_deePos, s_q, s_XmatsHom, s_dXmatsHom, s_d2XmatsHom, s_temp);
     }
 
@@ -3363,7 +3349,6 @@ namespace grid {
         __shared__ T s_q[7];
         __shared__ T s_d2eePos[294];
         __shared__ T s_deePos[42];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XHomTemp[]; T *s_XmatsHom = s_XHomTemp; T *s_dXmatsHom = &s_XHomTemp[112]; T *s_d2XmatsHom = &s_dXmatsHom[112]; T *s_temp = &s_d2XmatsHom[112];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
@@ -3372,7 +3357,7 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_d2XmatsHom, s_topology_helpers, s_q, d_robotModel, s_temp);
+            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_d2XmatsHom, s_q, d_robotModel, s_temp);
             end_effector_pose_gradient_hessian_inner<T>(s_d2eePos, s_deePos, s_q, s_XmatsHom, s_dXmatsHom, s_d2XmatsHom, s_temp);
         }
         // save down to global
@@ -3403,7 +3388,6 @@ namespace grid {
         __shared__ T s_q[7];
         __shared__ T s_d2eePos[294];
         __shared__ T s_deePos[42];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XHomTemp[]; T *s_XmatsHom = s_XHomTemp; T *s_dXmatsHom = &s_XHomTemp[112]; T *s_d2XmatsHom = &s_dXmatsHom[112]; T *s_temp = &s_d2XmatsHom[112];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -3413,7 +3397,7 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_d2XmatsHom, s_topology_helpers, s_q, d_robotModel, s_temp);
+            load_update_XmatsHom_helpers<T>(s_XmatsHom, s_dXmatsHom, s_d2XmatsHom, s_q, d_robotModel, s_temp);
             end_effector_pose_gradient_hessian_inner<T>(s_d2eePos, s_deePos, s_q, s_XmatsHom, s_dXmatsHom, s_d2XmatsHom, s_temp);
             __syncthreads();
             // save down to global
@@ -3520,13 +3504,12 @@ namespace grid {
      * @param s_qdd is (optional vector of joint accelerations
      * @param s_XI is the pointer to the transformation and inertia matricies 
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 6*NUM_JOINTS = 42
      * @param gravity is the gravity constant
      */
     template <typename T>
     __device__
-    void inverse_dynamics_inner(T *s_c,  T *s_vaf, const T *s_q, const T *s_qd, const T *s_qdd, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity) {
+    void inverse_dynamics_inner(T *s_c,  T *s_vaf, const T *s_q, const T *s_qd, const T *s_qdd, T *s_XImats, T *s_temp, const T gravity) {
         //
         // Forward Pass
         //
@@ -3548,14 +3531,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 1;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[1] + !vFlag * s_qdd[1]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[1] + !vFlag * s_qdd[1]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*0]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[48], &s_vaf[6], s_qd[1]);
+            mx2_peq_scaled<T>(&s_vaf[48], &s_vaf[6], s_qd[1]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 2
@@ -3582,14 +3565,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 3;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[3] + !vFlag * s_qdd[3]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[3] + !vFlag * s_qdd[3]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*2]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[60], &s_vaf[18], s_qd[3]);
+            mx2_peq_scaled<T>(&s_vaf[60], &s_vaf[18], s_qd[3]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 4
@@ -3616,14 +3599,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 5;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[5] + !vFlag * s_qdd[5]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[5] + !vFlag * s_qdd[5]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*4]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[72], &s_vaf[30], s_qd[5]);
+            mx2_peq_scaled<T>(&s_vaf[72], &s_vaf[30], s_qd[5]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 6
@@ -3735,7 +3718,7 @@ namespace grid {
         // s_c extracted in parallel (S*f)
         //
         for(int dof_id = threadIdx.x + threadIdx.y*blockDim.x; dof_id < 7; dof_id += blockDim.x*blockDim.y){
-            s_c[dof_id] = s_vaf[84 + 6*dof_id + s_topology_helpers[dof_id]];
+            s_c[dof_id] = s_vaf[84 + 6*dof_id + 2];
         }
         __syncthreads();
     }
@@ -3753,13 +3736,12 @@ namespace grid {
      * @param s_qd is the vector of joint velocities
      * @param s_XI is the pointer to the transformation and inertia matricies 
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 6*NUM_JOINTS = 42
      * @param gravity is the gravity constant
      */
     template <typename T>
     __device__
-    void inverse_dynamics_inner(T *s_c,  T *s_vaf, const T *s_q, const T *s_qd, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity, T *d_f_ext) {
+    void inverse_dynamics_inner(T *s_c,  T *s_vaf, const T *s_q, const T *s_qd, T *s_XImats, T *s_temp, const T gravity) {
         //
         // Forward Pass
         //
@@ -3781,14 +3763,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 1;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[1]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[1]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*0]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[48], &s_vaf[6], s_qd[1]);
+            mx2_peq_scaled<T>(&s_vaf[48], &s_vaf[6], s_qd[1]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 2
@@ -3815,14 +3797,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 3;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[3]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[3]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*2]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[60], &s_vaf[18], s_qd[3]);
+            mx2_peq_scaled<T>(&s_vaf[60], &s_vaf[18], s_qd[3]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 4
@@ -3849,14 +3831,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 5;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[5]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[5]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*4]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[72], &s_vaf[30], s_qd[5]);
+            mx2_peq_scaled<T>(&s_vaf[72], &s_vaf[30], s_qd[5]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 6
@@ -3893,13 +3875,6 @@ namespace grid {
         for(int jid = threadIdx.x + threadIdx.y*blockDim.x; jid < 7; jid += blockDim.x*blockDim.y){
             int jid6 = 6*jid;
             fx_times_v_peq<T>(&s_vaf[84 + jid6], &s_vaf[jid6], &s_temp[jid6]);
-
-            if (jid == 6 && d_f_ext != nullptr) {
-                // Add external forces if provided
-                for (int row = 0; row < 6; ++row) {
-                    s_vaf[84 + jid6 + row] -= d_f_ext[row];
-                }
-            }
         }
         __syncthreads();
         //
@@ -3975,7 +3950,7 @@ namespace grid {
         // s_c extracted in parallel (S*f)
         //
         for(int dof_id = threadIdx.x + threadIdx.y*blockDim.x; dof_id < 7; dof_id += blockDim.x*blockDim.y){
-            s_c[dof_id] = s_vaf[84 + 6*dof_id + s_topology_helpers[dof_id]];
+            s_c[dof_id] = s_vaf[84 + 6*dof_id + 2];
         }
         __syncthreads();
     }
@@ -3993,13 +3968,12 @@ namespace grid {
      * @param s_qdd is (optional vector of joint accelerations
      * @param s_XI is the pointer to the transformation and inertia matricies 
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 6*NUM_JOINTS = 42
      * @param gravity is the gravity constant
      */
     template <typename T>
     __device__
-    void inverse_dynamics_inner_vaf(T *s_vaf, const T *s_q, const T *s_qd, const T *s_qdd, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity, T *d_f_ext) {
+    void inverse_dynamics_inner_vaf(T *s_vaf, const T *s_q, const T *s_qd, const T *s_qdd, T *s_XImats, T *s_temp, const T gravity) {
         //
         // Forward Pass
         //
@@ -4021,14 +3995,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 1;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[1] + !vFlag * s_qdd[1]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[1] + !vFlag * s_qdd[1]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*0]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[48], &s_vaf[6], s_qd[1]);
+            mx2_peq_scaled<T>(&s_vaf[48], &s_vaf[6], s_qd[1]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 2
@@ -4055,14 +4029,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 3;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[3] + !vFlag * s_qdd[3]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[3] + !vFlag * s_qdd[3]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*2]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[60], &s_vaf[18], s_qd[3]);
+            mx2_peq_scaled<T>(&s_vaf[60], &s_vaf[18], s_qd[3]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 4
@@ -4089,14 +4063,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 5;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[5] + !vFlag * s_qdd[5]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[5] + !vFlag * s_qdd[5]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*4]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[72], &s_vaf[30], s_qd[5]);
+            mx2_peq_scaled<T>(&s_vaf[72], &s_vaf[30], s_qd[5]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 6
@@ -4133,14 +4107,6 @@ namespace grid {
         for(int jid = threadIdx.x + threadIdx.y*blockDim.x; jid < 7; jid += blockDim.x*blockDim.y){
             int jid6 = 6*jid;
             fx_times_v_peq<T>(&s_vaf[84 + jid6], &s_vaf[jid6], &s_temp[jid6]);
-
-            if (jid == 6 && d_f_ext != nullptr) {
-                // Add external forces if provided
-                for (int row = 0; row < 6; ++row) {
-                    s_vaf[84 + jid6 + row] -= d_f_ext[row];
-                }
-            }
-
         }
         __syncthreads();
         //
@@ -4227,13 +4193,12 @@ namespace grid {
      * @param s_qd is the vector of joint velocities
      * @param s_XI is the pointer to the transformation and inertia matricies 
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 6*NUM_JOINTS = 42
      * @param gravity is the gravity constant
      */
     template <typename T>
     __device__
-    void inverse_dynamics_inner_vaf(T *s_vaf, const T *s_q, const T *s_qd, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity) {
+    void inverse_dynamics_inner_vaf(T *s_vaf, const T *s_q, const T *s_qd, T *s_XImats, T *s_temp, const T gravity) {
         //
         // Forward Pass
         //
@@ -4255,14 +4220,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 1;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[1]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[1]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*0]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[48], &s_vaf[6], s_qd[1]);
+            mx2_peq_scaled<T>(&s_vaf[48], &s_vaf[6], s_qd[1]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 2
@@ -4289,14 +4254,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 3;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[3]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[3]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*2]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[60], &s_vaf[18], s_qd[3]);
+            mx2_peq_scaled<T>(&s_vaf[60], &s_vaf[18], s_qd[3]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 4
@@ -4323,14 +4288,14 @@ namespace grid {
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
             int vaOffset = !vFlag * 42; int jid6 = 6 * 5;
-            T qd_qdd_val = (row == 1) * (vFlag * s_qd[5]);
+            T qd_qdd_val = (row == 2) * (vFlag * s_qd[5]);
             // compute based on the branch and use bool multiply for no branch
             s_vaf[vaOffset + jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_vaf[vaOffset + 6*4]) + qd_qdd_val;
         }
         // sync before a += MxS(v)*qd[S] 
         __syncthreads();
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
-            mx1_peq_scaled<T>(&s_vaf[72], &s_vaf[30], s_qd[5]);
+            mx2_peq_scaled<T>(&s_vaf[72], &s_vaf[30], s_qd[5]);
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 6
@@ -4454,10 +4419,9 @@ namespace grid {
     __device__
     void inverse_dynamics_device(T *s_c,  const T *s_q, const T *s_qd, const T *s_qdd, const robotModel<T> *d_robotModel, const T gravity) {
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
     }
 
     /**
@@ -4476,10 +4440,9 @@ namespace grid {
     __device__
     void inverse_dynamics_device(T *s_c,  const T *s_q, const T *s_qd, const robotModel<T> *d_robotModel, const T gravity) {
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, s_temp, gravity);
     }
 
     /**
@@ -4497,10 +4460,9 @@ namespace grid {
     template <typename T>
     __device__
     void inverse_dynamics_vaf_device(T *s_vaf, const T *s_q, const T *s_qd, const T *s_qdd, const robotModel<T> *d_robotModel, const T gravity) {
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
     }
 
     /**
@@ -4518,10 +4480,9 @@ namespace grid {
     template <typename T>
     __device__
     void inverse_dynamics_vaf_device(T *s_vaf, const T *s_q, const T *s_qd, const robotModel<T> *d_robotModel, const T gravity) {
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_XImats, s_temp, gravity);
     }
 
     /**
@@ -4541,7 +4502,6 @@ namespace grid {
         __shared__ T s_qdd[7]; 
         __shared__ T s_c[7];
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 14; ind += blockDim.x*blockDim.y){
@@ -4553,8 +4513,8 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
         }
         // save down to global
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
@@ -4580,7 +4540,6 @@ namespace grid {
         __shared__ T s_qdd[7]; 
         __shared__ T s_c[7];
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -4594,8 +4553,8 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
             __syncthreads();
             // save down to global
             T *d_c_k = &d_c[k*7];
@@ -4624,7 +4583,6 @@ namespace grid {
         __shared__ T s_q_qd[2*7]; T *s_q = s_q_qd; T *s_qd = &s_q_qd[7];
         __shared__ T s_c[7];
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 14; ind += blockDim.x*blockDim.y){
@@ -4633,8 +4591,8 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, s_temp, gravity);
         }
         // save down to global
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
@@ -4661,7 +4619,6 @@ namespace grid {
         __shared__ T s_q_qd[2*7]; T *s_q = s_q_qd; T *s_qd = &s_q_qd[7];
         __shared__ T s_c[7];
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -4671,8 +4628,8 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, s_temp, gravity);
             __syncthreads();
             // save down to global
             T *d_c_k = &d_c[k*7];
@@ -4790,12 +4747,11 @@ namespace grid {
      * @param s_Minv is a pointer to memory for the final result
      * @param s_q is the vector of joint positions
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 667
      */
     template <typename T>
     __device__
-    void direct_minv_inner(T *s_Minv, const T *s_q, T *s_XImats, int *s_topology_helpers, T *s_temp) {
+    void direct_minv_inner(T *s_Minv, const T *s_q, T *s_XImats, T *s_temp) {
         // T *s_F = &s_temp[0]; T *s_IA = &s_temp[294]; T *s_U = &s_temp[546]; T *s_Dinv = &s_temp[588]; T *s_Ia = &s_temp[595]; T *s_IaTemp = &s_temp[631];
         // Initialize IA = I
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 252; ind += blockDim.x*blockDim.y){
@@ -4859,9 +4815,9 @@ namespace grid {
         //     links are: link6
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
-            s_temp[546 + 30 + row] = s_temp[294 + 6*30 + 6*1 + row];
-            if(row == 1){
-                s_temp[588 + 5] = static_cast<T>(1)/s_temp[546 + 30 + 1];
+            s_temp[546 + 30 + row] = s_temp[294 + 6*30 + 6*2 + row];
+            if(row == 2){
+                s_temp[588 + 5] = static_cast<T>(1)/s_temp[546 + 30 + 2];
                 s_Minv[8 * 5] = s_temp[588 + 5];
             }
         }
@@ -4870,7 +4826,7 @@ namespace grid {
         // Temp Comp: F[i,:,subTreeInds] += U*Minv[i,subTreeInds] - to start Fparent Update
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 2; ind += blockDim.x*blockDim.y){
             int jid_subtree6 = 6*(5 + ind); int jid_subtreeN = 7*(5 + ind);
-            s_Minv[jid_subtreeN + 5] -= s_temp[588 + 5] * s_temp[0 + 42*5 + jid_subtree6 + 1];
+            s_Minv[jid_subtreeN + 5] -= s_temp[588 + 5] * s_temp[0 + 42*5 + jid_subtree6 + 2];
             for(int row = 0; row < 6; row++) {
                 s_temp[0 + 42*5 + jid_subtree6 + row] += s_temp[546 + 6*5 + row] * s_Minv[jid_subtreeN + 5];
             }
@@ -4949,9 +4905,9 @@ namespace grid {
         //     links are: link4
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
-            s_temp[546 + 18 + row] = s_temp[294 + 6*18 + 6*1 + row];
-            if(row == 1){
-                s_temp[588 + 3] = static_cast<T>(1)/s_temp[546 + 18 + 1];
+            s_temp[546 + 18 + row] = s_temp[294 + 6*18 + 6*2 + row];
+            if(row == 2){
+                s_temp[588 + 3] = static_cast<T>(1)/s_temp[546 + 18 + 2];
                 s_Minv[8 * 3] = s_temp[588 + 3];
             }
         }
@@ -4960,7 +4916,7 @@ namespace grid {
         // Temp Comp: F[i,:,subTreeInds] += U*Minv[i,subTreeInds] - to start Fparent Update
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 4; ind += blockDim.x*blockDim.y){
             int jid_subtree6 = 6*(3 + ind); int jid_subtreeN = 7*(3 + ind);
-            s_Minv[jid_subtreeN + 3] -= s_temp[588 + 3] * s_temp[0 + 42*3 + jid_subtree6 + 1];
+            s_Minv[jid_subtreeN + 3] -= s_temp[588 + 3] * s_temp[0 + 42*3 + jid_subtree6 + 2];
             for(int row = 0; row < 6; row++) {
                 s_temp[0 + 42*3 + jid_subtree6 + row] += s_temp[546 + 6*3 + row] * s_Minv[jid_subtreeN + 3];
             }
@@ -5039,9 +4995,9 @@ namespace grid {
         //     links are: link2
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
-            s_temp[546 + 6 + row] = s_temp[294 + 6*6 + 6*1 + row];
-            if(row == 1){
-                s_temp[588 + 1] = static_cast<T>(1)/s_temp[546 + 6 + 1];
+            s_temp[546 + 6 + row] = s_temp[294 + 6*6 + 6*2 + row];
+            if(row == 2){
+                s_temp[588 + 1] = static_cast<T>(1)/s_temp[546 + 6 + 2];
                 s_Minv[8 * 1] = s_temp[588 + 1];
             }
         }
@@ -5050,7 +5006,7 @@ namespace grid {
         // Temp Comp: F[i,:,subTreeInds] += U*Minv[i,subTreeInds] - to start Fparent Update
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int jid_subtree6 = 6*(1 + ind); int jid_subtreeN = 7*(1 + ind);
-            s_Minv[jid_subtreeN + 1] -= s_temp[588 + 1] * s_temp[0 + 42*1 + jid_subtree6 + 1];
+            s_Minv[jid_subtreeN + 1] -= s_temp[588 + 1] * s_temp[0 + 42*1 + jid_subtree6 + 2];
             for(int row = 0; row < 6; row++) {
                 s_temp[0 + 42*1 + jid_subtree6 + row] += s_temp[546 + 6*1 + row] * s_Minv[jid_subtreeN + 1];
             }
@@ -5123,7 +5079,7 @@ namespace grid {
             int col_ind = ind + 1;
             T *s_Fcol = &s_temp[42 + 6*col_ind];
             s_Minv[7 * col_ind + 1] -= s_temp[589] * dot_prod<T,6,1,1>(s_Fcol,&s_temp[552]);
-            s_Fcol[1] += s_Minv[7 * col_ind + 1];
+            s_Fcol[2] += s_Minv[7 * col_ind + 1];
         }
         __syncthreads();
         // forward pass for jid: 2
@@ -5159,7 +5115,7 @@ namespace grid {
             int col_ind = ind + 3;
             T *s_Fcol = &s_temp[126 + 6*col_ind];
             s_Minv[7 * col_ind + 3] -= s_temp[591] * dot_prod<T,6,1,1>(s_Fcol,&s_temp[564]);
-            s_Fcol[1] += s_Minv[7 * col_ind + 3];
+            s_Fcol[2] += s_Minv[7 * col_ind + 3];
         }
         __syncthreads();
         // forward pass for jid: 4
@@ -5195,7 +5151,7 @@ namespace grid {
             int col_ind = ind + 5;
             T *s_Fcol = &s_temp[210 + 6*col_ind];
             s_Minv[7 * col_ind + 5] -= s_temp[593] * dot_prod<T,6,1,1>(s_Fcol,&s_temp[576]);
-            s_Fcol[1] += s_Minv[7 * col_ind + 5];
+            s_Fcol[2] += s_Minv[7 * col_ind + 5];
         }
         __syncthreads();
         // forward pass for jid: 6
@@ -5230,10 +5186,9 @@ namespace grid {
     template <typename T>
     __device__
     void direct_minv_device(T *s_Minv, const T *s_q, const robotModel<T> *d_robotModel){
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
     }
 
     /**
@@ -5252,7 +5207,6 @@ namespace grid {
     void direct_minv_kernel_single_timing(T *d_Minv, const T *d_q, const int stride_q, const robotModel<T> *d_robotModel, const int NUM_TIMESTEPS){
         __shared__ T s_q[7];
         __shared__ T s_Minv[49];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
@@ -5261,8 +5215,8 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
         }
         // save down to global
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 49; ind += blockDim.x*blockDim.y){
@@ -5287,7 +5241,6 @@ namespace grid {
     void direct_minv_kernel(T *d_Minv, const T *d_q, const int stride_q, const robotModel<T> *d_robotModel, const int NUM_TIMESTEPS){
         __shared__ T s_q[7];
         __shared__ T s_Minv[49];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -5297,8 +5250,8 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
             __syncthreads();
             // save down to global
             T *d_Minv_k = &d_Minv[k*49];
@@ -5421,15 +5374,14 @@ namespace grid {
      * @param s_qd is the vector of joint velocities
      * @param s_u is the vector of joint input torques
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is the pointer to the shared memory needed of size: 891
      * @param gravity is the gravity constant
      */
     template <typename T>
     __device__
-    void forward_dynamics_inner(T *s_qdd, const T *s_q, const T *s_qd, const T *s_u, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity, T *d_f_ext) {
-        direct_minv_inner<T>(s_temp, s_q, s_XImats, s_topology_helpers, &s_temp[49]);
-        inverse_dynamics_inner<T>(&s_temp[49], &s_temp[56], s_q, s_qd, s_XImats, s_topology_helpers, &s_temp[182], gravity, d_f_ext);
+    void forward_dynamics_inner(T *s_qdd, const T *s_q, const T *s_qd, const T *s_u, T *s_XImats, T *s_temp, const T gravity) {
+        direct_minv_inner<T>(s_temp, s_q, s_XImats, &s_temp[49]);
+        inverse_dynamics_inner<T>(&s_temp[49], &s_temp[56], s_q, s_qd, s_XImats, &s_temp[182], gravity);
         forward_dynamics_finish<T>(s_qdd, s_u, &s_temp[49], s_temp);
     }
 
@@ -5446,10 +5398,9 @@ namespace grid {
     template <typename T>
     __device__
     void forward_dynamics_device(T *s_qdd, const T *s_q, const T *s_qd, const T *s_u, const robotModel<T> *d_robotModel, const T gravity) {
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_topology_helpers, s_temp, gravity, nullptr);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_temp, gravity);
     }
 
     /**
@@ -5466,7 +5417,6 @@ namespace grid {
     void forward_dynamics_kernel_single_timing(T *d_qdd, const T *d_q_qd_u, const int stride_q_qd_u, const robotModel<T> *d_robotModel, const T gravity, const int NUM_TIMESTEPS) {
         __shared__ T s_q_qd_u[21]; T *s_q = s_q_qd_u; T *s_qd = &s_q_qd_u[7]; T *s_u = &s_q_qd_u[14];
         __shared__ T s_qdd[7];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 21; ind += blockDim.x*blockDim.y){
@@ -5475,8 +5425,8 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_topology_helpers, s_temp, gravity, nullptr);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_temp, gravity);
         }
         // save down to global
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
@@ -5499,7 +5449,6 @@ namespace grid {
     void forward_dynamics_kernel(T *d_qdd, const T *d_q_qd_u, const int stride_q_qd_u, const robotModel<T> *d_robotModel, const T gravity, const int NUM_TIMESTEPS) {
         __shared__ T s_q_qd_u[21]; T *s_q = s_q_qd_u; T *s_qd = &s_q_qd_u[7]; T *s_u = &s_q_qd_u[14];
         __shared__ T s_qdd[7];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -5509,8 +5458,8 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_topology_helpers, s_temp, gravity, nullptr);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_temp, gravity);
             __syncthreads();
             // save down to global
             T *d_qdd_k = &d_qdd[k*7];
@@ -5604,13 +5553,12 @@ namespace grid {
      * @param s_qd is the vector of joint velocities
      * @param s_vaf are the helper intermediate variables computed by inverse_dynamics
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 66*NUM_JOINTS + 6*sparse_dv,da,df_col_needs = 1722
      * @param gravity is the gravity constant
      */
     template <typename T>
     __device__
-    void inverse_dynamics_gradient_inner(T *s_dc_du, const T *s_q, const T *s_qd, const T *s_vaf, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity) {
+    void inverse_dynamics_gradient_inner(T *s_dc_du, const T *s_q, const T *s_qd, const T *s_vaf, T *s_XImats, T *s_temp, const T gravity) {
         //
         // dv and da need 28 cols per dq,dqd
         // df needs 49 cols per dq,dqd
@@ -5649,7 +5597,7 @@ namespace grid {
             else if (selector == 1){ dstOffset = 1554; src = &s_temp[1302]; }
             else if (selector == 2){ dstOffset = 1596; src = &s_vaf[0]; }
             else              { dstOffset = 1638; src = &s_vaf[84]; }
-            mxX<T>(&s_temp[dstOffset + dof_id6], &src[jid6], s_topology_helpers[dof_id]);
+            mx2<T>(&s_temp[dstOffset + dof_id6], &src[jid6]);
         }
         __syncthreads();
         //
@@ -5680,7 +5628,7 @@ namespace grid {
                 dot_prod<T,6,6,1>(&s_XImats[36*1 + row],&s_temp[du_col_offset + 6*0]);
             // then add {Mx(Xv) or S for col ind}
             s_temp[du_col_offset + 6*1 + 6 + row] = 
-                dq_flag * s_temp[1512 + 6*1 + row] + (!dq_flag && row == 1) * static_cast<T>(1);
+                dq_flag * s_temp[1512 + 6*1 + row] + (!dq_flag && row == 2) * static_cast<T>(1);
         }
         __syncthreads();
         // dv/du where bfs_level is 2
@@ -5715,7 +5663,7 @@ namespace grid {
             // then add {Mx(Xv) or S for col ind}
             if (col_jid == 2) {
                 s_temp[du_col_offset + 6*6 + 6 + row] = 
-                    dq_flag * s_temp[1512 + 6*3 + row] + (!dq_flag && row == 1) * static_cast<T>(1);
+                    dq_flag * s_temp[1512 + 6*3 + row] + (!dq_flag && row == 2) * static_cast<T>(1);
             }
         }
         __syncthreads();
@@ -5751,7 +5699,7 @@ namespace grid {
             // then add {Mx(Xv) or S for col ind}
             if (col_jid == 4) {
                 s_temp[du_col_offset + 6*15 + 6 + row] = 
-                    dq_flag * s_temp[1512 + 6*5 + row] + (!dq_flag && row == 1) * static_cast<T>(1);
+                    dq_flag * s_temp[1512 + 6*5 + row] + (!dq_flag && row == 2) * static_cast<T>(1);
             }
         }
         __syncthreads();
@@ -5779,7 +5727,7 @@ namespace grid {
             int col_du = col % 28;
             // non-branching pointer selector
             int jid = (col_du < 1) * 0 + (col_du < 3 && col_du >= 1) * 1 + (col_du < 6 && col_du >= 3) * 2 + (col_du < 10 && col_du >= 6) * 3 + (col_du < 15 && col_du >= 10) * 4 + (col_du < 21 && col_du >= 15) * 5 + (col_du >= 21) * 6;
-            mxX_scaled<T>(&s_temp[336 + 6*col], &s_temp[0 + 6*col], s_qd[jid], s_topology_helpers[jid]);
+            mx2_scaled<T>(&s_temp[336 + 6*col], &s_temp[0 + 6*col], s_qd[jid]);
             // then add {MxXa, Mxv} to the appropriate column
             int dq_flag = col == col_du; int src_offset = dq_flag * 1554 + !dq_flag * 1596 + 6*jid;
             if(col_du == ((jid+1)*(jid+2)/2 - 1)){
@@ -6006,7 +5954,7 @@ namespace grid {
         // Finally dc[i]/du = S[i]^T*df[i]/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
             int jid = ind % 7; int jid_dq_qd = ind / 7; int jid_du = jid_dq_qd % 7; int dq_flag = jid_du == jid_dq_qd;
-            int Offset_src = dq_flag * 672 + !dq_flag * 966 + 6 * 7 * jid + 6 * jid_du + s_topology_helpers[jid];
+            int Offset_src = dq_flag * 672 + !dq_flag * 966 + 6 * 7 * jid + 6 * jid_du + 2;
             int Offset_dst = !dq_flag * 49 + 7 * jid_du + jid;
             s_dc_du[Offset_dst] = s_temp[Offset_src];
         }
@@ -6027,11 +5975,10 @@ namespace grid {
     __device__
     void inverse_dynamics_gradient_device(T *s_dc_du, const T *s_q, const T *s_qd, const T *s_qdd, const robotModel<T> *d_robotModel, const T gravity) {
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-        inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+        inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
     }
 
     /**
@@ -6050,11 +5997,10 @@ namespace grid {
     __device__
     void inverse_dynamics_gradient_device(T *s_dc_du, const T *s_q, const T *s_qd, const robotModel<T> *d_robotModel, const T gravity) {
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
-        inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_XImats, s_temp, gravity);
+        inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
     }
 
     /**
@@ -6075,7 +6021,6 @@ namespace grid {
         __shared__ T s_qdd[7]; 
         __shared__ T s_dc_du[98];
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 14; ind += blockDim.x*blockDim.y){
@@ -6087,9 +6032,9 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
         }
         // save down to global
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
@@ -6116,7 +6061,6 @@ namespace grid {
         __shared__ T s_qdd[7]; 
         __shared__ T s_dc_du[98];
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -6130,9 +6074,9 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
             __syncthreads();
             // save down to global
             T *d_dc_du_k = &d_dc_du[k*98];
@@ -6162,7 +6106,6 @@ namespace grid {
         __shared__ T s_q_qd[14]; T *s_q = s_q_qd; T *s_qd = &s_q_qd[7];
         __shared__ T s_dc_du[98];
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 14; ind += blockDim.x*blockDim.y){
@@ -6171,9 +6114,9 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
-            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_XImats, s_temp, gravity);
+            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
         }
         // save down to global
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
@@ -6201,7 +6144,6 @@ namespace grid {
         __shared__ T s_q_qd[14]; T *s_q = s_q_qd; T *s_qd = &s_q_qd[7];
         __shared__ T s_dc_du[98];
         __shared__ T s_vaf[126];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -6211,9 +6153,9 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
-            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_XImats, s_temp, gravity);
+            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
             __syncthreads();
             // save down to global
             T *d_dc_du_k = &d_dc_du[k*98];
@@ -6341,16 +6283,15 @@ namespace grid {
         __shared__ T s_dc_du[98];
         __shared__ T s_Minv[49];
         __shared__ T s_qdd[7];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
         //TODO: there is a slightly faster way as s_v does not change -- thus no recompute needed
-        direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
-        inverse_dynamics_inner<T>(s_temp, s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, &s_temp[7], gravity);
+        direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
+        inverse_dynamics_inner<T>(s_temp, s_vaf, s_q, s_qd, s_XImats, &s_temp[7], gravity);
         forward_dynamics_finish<T>(s_qdd, s_u, s_temp, s_Minv);
         __syncthreads();
-        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-        inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+        inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
             int row = ind % 7; int dc_col_offset = ind - row;
             // account for the fact that Minv is an SYMMETRIC_UPPER triangular matrix
@@ -6386,11 +6327,10 @@ namespace grid {
     void forward_dynamics_gradient_device(T *s_df_du, const T *s_q, const T *s_qd, const T *s_qdd, const T *s_Minv, const robotModel<T> *d_robotModel, const T gravity) {
         __shared__ T s_vaf[126];
         __shared__ T s_dc_du[98];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-        inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+        inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
             int row = ind % 7; int dc_col_offset = ind - row;
             // account for the fact that Minv is an SYMMETRIC_UPPER triangular matrix
@@ -6427,7 +6367,6 @@ namespace grid {
         __shared__ T s_vaf[126];
         __shared__ T s_qdd[7];
         __shared__ T s_Minv[49];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 14; ind += blockDim.x*blockDim.y){
@@ -6442,9 +6381,9 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
             for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
                 int row = ind % 7; int dc_col_offset = ind - row;
                 // account for the fact that Minv is an SYMMETRIC_UPPER triangular matrix
@@ -6487,7 +6426,6 @@ namespace grid {
         __shared__ T s_vaf[126];
         __shared__ T s_qdd[7];
         __shared__ T s_Minv[49];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -6505,9 +6443,9 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
             for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
                 int row = ind % 7; int dc_col_offset = ind - row;
                 // account for the fact that Minv is an SYMMETRIC_UPPER triangular matrix
@@ -6549,7 +6487,6 @@ namespace grid {
         __shared__ T s_vaf[126];
         __shared__ T s_qdd[7];
         __shared__ T s_Minv[49];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 21; ind += blockDim.x*blockDim.y){
@@ -6558,14 +6495,14 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
             //TODO: there is a slightly faster way as s_v does not change -- thus no recompute needed
-            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
-            inverse_dynamics_inner<T>(s_temp, s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, &s_temp[7], gravity);
+            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
+            inverse_dynamics_inner<T>(s_temp, s_vaf, s_q, s_qd, s_XImats, &s_temp[7], gravity);
             forward_dynamics_finish<T>(s_qdd, s_u, s_temp, s_Minv);
             __syncthreads();
-            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
             for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
                 int row = ind % 7; int dc_col_offset = ind - row;
                 // account for the fact that Minv is an SYMMETRIC_UPPER triangular matrix
@@ -6606,7 +6543,6 @@ namespace grid {
         __shared__ T s_vaf[126];
         __shared__ T s_qdd[7];
         __shared__ T s_Minv[49];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -6616,14 +6552,14 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
             //TODO: there is a slightly faster way as s_v does not change -- thus no recompute needed
-            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
-            inverse_dynamics_inner<T>(s_temp, s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, &s_temp[7], gravity);
+            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
+            inverse_dynamics_inner<T>(s_temp, s_vaf, s_q, s_qd, s_XImats, &s_temp[7], gravity);
             forward_dynamics_finish<T>(s_qdd, s_u, s_temp, s_Minv);
             __syncthreads();
-            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, gravity);
+            inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+            inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, gravity);
             for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
                 int row = ind % 7; int dc_col_offset = ind - row;
                 // account for the fact that Minv is an SYMMETRIC_UPPER triangular matrix
@@ -6742,13 +6678,12 @@ namespace grid {
      * @param s_qd is the vector of joint velocities
      * @param s_tau is the vector of joint torques
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is the pointer to the shared memory needed of size: 891
      * @param gravity is the gravity constant
      */
     template <typename T>
     __device__
-    void aba_inner(T *s_qdd, T *s_va, const T *s_q, const T *s_qd, const T *s_tau, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity) {
+    void aba_inner(T *s_qdd, T *s_va, const T *s_q, const T *s_qd, const T *s_tau, T *s_XImats, T *s_temp, const T gravity) {
         //
         // Forward Pass
         //
@@ -6771,7 +6706,7 @@ namespace grid {
             int row = ind % 6;
             int jid = 1;
             int jid6 = 6 * jid;
-            T qd_val = (row == 1) * (s_qd[1]);
+            T qd_val = (row == 2) * (s_qd[1]);
             s_va[jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_va[6*0]) + qd_val;
         }
         __syncthreads();
@@ -6795,7 +6730,7 @@ namespace grid {
             int row = ind % 6;
             int jid = 3;
             int jid6 = 6 * jid;
-            T qd_val = (row == 1) * (s_qd[3]);
+            T qd_val = (row == 2) * (s_qd[3]);
             s_va[jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_va[6*2]) + qd_val;
         }
         __syncthreads();
@@ -6819,7 +6754,7 @@ namespace grid {
             int row = ind % 6;
             int jid = 5;
             int jid6 = 6 * jid;
-            T qd_val = (row == 1) * (s_qd[5]);
+            T qd_val = (row == 2) * (s_qd[5]);
             s_va[jid6 + row] = dot_prod<T,6,6,1>(&s_XImats[6*jid6 + row], &s_va[6*4]) + qd_val;
         }
         __syncthreads();
@@ -6940,15 +6875,15 @@ namespace grid {
             int row = ind % 6;
             int jid = 5;
             int jid6 = 6 * 5;
-            s_temp[84*7+jid6+row] = s_temp[36*jid+row+6*(1)];
+            s_temp[84*7+jid6+row] = s_temp[36*jid+row+6*(2)];
         }
         __syncthreads();
         // d[k] = S[k]*U[k], u[k] = tau[k] - S[k].T*pA[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
             int jid = 5;
             int jid6 = 6 * 5;
-            s_temp[96 * 7 + jid] = s_temp[84 * 7 + jid6 + 1];
-            T tempval = s_temp[78 * 7 + jid6 + 1];
+            s_temp[96 * 7 + jid] = s_temp[84 * 7 + jid6 + 2];
+            T tempval = s_temp[78 * 7 + jid6 + 2];
             s_temp[97 * 7 + jid] = s_tau[jid] - tempval;
         }
         __syncthreads();
@@ -7068,15 +7003,15 @@ namespace grid {
             int row = ind % 6;
             int jid = 3;
             int jid6 = 6 * 3;
-            s_temp[84*7+jid6+row] = s_temp[36*jid+row+6*(1)];
+            s_temp[84*7+jid6+row] = s_temp[36*jid+row+6*(2)];
         }
         __syncthreads();
         // d[k] = S[k]*U[k], u[k] = tau[k] - S[k].T*pA[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
             int jid = 3;
             int jid6 = 6 * 3;
-            s_temp[96 * 7 + jid] = s_temp[84 * 7 + jid6 + 1];
-            T tempval = s_temp[78 * 7 + jid6 + 1];
+            s_temp[96 * 7 + jid] = s_temp[84 * 7 + jid6 + 2];
+            T tempval = s_temp[78 * 7 + jid6 + 2];
             s_temp[97 * 7 + jid] = s_tau[jid] - tempval;
         }
         __syncthreads();
@@ -7196,15 +7131,15 @@ namespace grid {
             int row = ind % 6;
             int jid = 1;
             int jid6 = 6 * 1;
-            s_temp[84*7+jid6+row] = s_temp[36*jid+row+6*(1)];
+            s_temp[84*7+jid6+row] = s_temp[36*jid+row+6*(2)];
         }
         __syncthreads();
         // d[k] = S[k]*U[k], u[k] = tau[k] - S[k].T*pA[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1; ind += blockDim.x*blockDim.y){
             int jid = 1;
             int jid6 = 6 * 1;
-            s_temp[96 * 7 + jid] = s_temp[84 * 7 + jid6 + 1];
-            T tempval = s_temp[78 * 7 + jid6 + 1];
+            s_temp[96 * 7 + jid] = s_temp[84 * 7 + jid6 + 2];
+            T tempval = s_temp[78 * 7 + jid6 + 2];
             s_temp[97 * 7 + jid] = s_tau[jid] - tempval;
         }
         __syncthreads();
@@ -7344,7 +7279,7 @@ namespace grid {
             int row = ind % 6;
             int jid = 1;
             int jid6 = 6 * 1;
-            T qdd_val = (row == 1) * (s_qdd[jid]);
+            T qdd_val = (row == 2) * (s_qdd[jid]);
             s_va[6*7+jid6+row] += qdd_val;
         }
         __syncthreads();
@@ -7400,7 +7335,7 @@ namespace grid {
             int row = ind % 6;
             int jid = 3;
             int jid6 = 6 * 3;
-            T qdd_val = (row == 1) * (s_qdd[jid]);
+            T qdd_val = (row == 2) * (s_qdd[jid]);
             s_va[6*7+jid6+row] += qdd_val;
         }
         __syncthreads();
@@ -7456,7 +7391,7 @@ namespace grid {
             int row = ind % 6;
             int jid = 5;
             int jid6 = 6 * 5;
-            T qdd_val = (row == 1) * (s_qdd[jid]);
+            T qdd_val = (row == 2) * (s_qdd[jid]);
             s_va[6*7+jid6+row] += qdd_val;
         }
         __syncthreads();
@@ -7502,12 +7437,11 @@ namespace grid {
     template <typename T>
     __device__
     void aba_device(const T *s_q, const T *s_qd, const T *s_tau, const robotModel<T> *d_robotModel, const T gravity) {
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         extern __shared__ T s_va[2*6*7];
         extern __shared__ T s_qdd[7];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        aba_inner<T>(s_qdd, s_va, s_q, s_qd, s_tau, s_XImats, s_topology_helpers, s_temp, gravity);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        aba_inner<T>(s_qdd, s_va, s_q, s_qd, s_tau, s_XImats, s_temp, gravity);
     }
 
     /**
@@ -7526,7 +7460,6 @@ namespace grid {
         __shared__ T s_qdd[7];
         __shared__ T s_q_qd_tau[3*7]; T *s_q = s_q_qd_tau; T *s_qd = &s_q_qd_tau[7]; T *s_tau = &s_q_qd_tau[2 * 7];
         __shared__ T s_va[84];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 21; ind += blockDim.x*blockDim.y){
@@ -7535,8 +7468,8 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            aba_inner<T>(s_qdd, s_va, s_q, s_qd, s_tau, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            aba_inner<T>(s_qdd, s_va, s_q, s_qd, s_tau, s_XImats, s_temp, gravity);
         }
         // save down to global
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 7; ind += blockDim.x*blockDim.y){
@@ -7561,7 +7494,6 @@ namespace grid {
         __shared__ T s_qdd[7];
         __shared__ T s_q_qd_tau[3*7]; T *s_q = s_q_qd_tau; T *s_qd = &s_q_qd_tau[7]; T *s_tau = &s_q_qd_tau[2 * 7];
         __shared__ T s_va[84];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -7571,8 +7503,8 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            aba_inner<T>(s_qdd, s_va, s_q, s_qd, s_tau, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            aba_inner<T>(s_qdd, s_va, s_q, s_qd, s_tau, s_XImats, s_temp, gravity);
             __syncthreads();
             // save down to global
             T *d_qdd_k = &d_qdd[k*1];
@@ -7662,13 +7594,12 @@ namespace grid {
      * @param s_qd is the vector of joint velocities
      * @param s_M is a pointer to the matrix of inertias_XI is the pointer to the transformation and inertia matricies 
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size 6*NUM_JOINTS = 980
      * @param gravity is the gravity constant
      */
     template <typename T>
     __device__
-    void crba_inner(T *s_M, const T *s_q, const T *s_qd, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity) {
+    void crba_inner(T *s_M, const T *s_q, const T *s_qd, T *s_XImats, T *s_temp, const T gravity) {
         for(int i = threadIdx.x + threadIdx.y*blockDim.x; i < 49; i += blockDim.x*blockDim.y){
             s_M[i] = static_cast<T>(0);
         }
@@ -7787,7 +7718,7 @@ namespace grid {
         // Calculation of M[ind, ind] 
         //
         for(int jid = threadIdx.x + threadIdx.y*blockDim.x; jid < 7; jid += blockDim.x*blockDim.y){
-            s_M[jid+jid*7] = s_XImats[252 + 36*jid + 6*s_topology_helpers[jid] + s_topology_helpers[jid]];
+            s_M[jid+jid*7] = s_XImats[252 + 36*jid + 6*2 + 2];
         }
         __syncthreads();
         //
@@ -7795,7 +7726,7 @@ namespace grid {
         //
         for(int i = threadIdx.x + threadIdx.y*blockDim.x; i < 42; i += blockDim.x*blockDim.y){
             int jid = i / 6; int ind = i % 6;
-            s_fh[i] = s_XImats[252 + 36*jid + 6*s_topology_helpers[jid] + ind];
+            s_fh[i] = s_XImats[252 + 36*jid + 6*2 + ind];
         }
         for(int jid = threadIdx.x + threadIdx.y*blockDim.x; jid < 7; jid += blockDim.x*blockDim.y){
             int jid_parents[] = {-1, -1, -1, -1, -1, -1};
@@ -7850,7 +7781,7 @@ namespace grid {
                 for (int k = 0; k < 6; k++) s_alpha[k] = s_fh[jid*6+k];
                 for (int k = 0; k < 6; k++) s_fh[jid*6 + k] = dot_prod<T,6,1,1>(&s_XImats[36*X_ind+k*6], &s_alpha[0]);
                 int parent_ind = jid_parents[i];
-                s_M[jid*7 + parent_ind] = s_fh[jid*6 + s_topology_helpers[jid]];
+                s_M[jid*7 + parent_ind] = s_fh[jid*6 + 2];
                 s_M[parent_ind*7 + jid] = s_M[jid*7 + parent_ind];
             }
         }
@@ -7869,10 +7800,9 @@ namespace grid {
     template <typename T>
     __device__
     void crba_device(T *s_M, const T *s_q, const T *s_qd,const robotModel<T> *d_robotModel, const T gravity) {
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
-        load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-        crba_inner<T>(s_M, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
+        load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+        crba_inner<T>(s_M, s_q, s_qd, s_XImats, s_temp, gravity);
     }
 
     /**
@@ -7890,7 +7820,6 @@ namespace grid {
     void crba_kernel_single_timing(T *d_M, const T *d_q_qd, const int stride_q_qd, const robotModel<T> *d_robotModel, const T gravity, const int NUM_TIMESTEPS) {
         __shared__ T s_M[49];
         __shared__ T s_q_qd[3*7]; T *s_q = s_q_qd; T *s_qd = &s_q_qd[7];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         // load to shared mem
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 21; ind += blockDim.x*blockDim.y){
@@ -7899,8 +7828,8 @@ namespace grid {
         __syncthreads();
         // compute with NUM_TIMESTEPS as NUM_REPS for timing
         for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            crba_inner<T>(s_M, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            crba_inner<T>(s_M, s_q, s_qd, s_XImats, s_temp, gravity);
         }
         // save down to global
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 49; ind += blockDim.x*blockDim.y){
@@ -7924,7 +7853,6 @@ namespace grid {
     void crba_kernel(T *d_M, const T *d_q_qd, const int stride_q_qd, const robotModel<T> *d_robotModel, const T gravity, const int NUM_TIMESTEPS) {
         __shared__ T s_M[49];
         __shared__ T s_q_qd[3*7]; T *s_q = s_q_qd; T *s_qd = &s_q_qd[7];
-        __shared__ int s_topology_helpers[7];
         extern __shared__ T s_XITemp[]; T *s_XImats = s_XITemp; T *s_temp = &s_XITemp[504];
         for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
             // load to shared mem
@@ -7934,8 +7862,8 @@ namespace grid {
             }
             __syncthreads();
             // compute
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            crba_inner<T>(s_M, s_q, s_qd, s_XImats, s_topology_helpers, s_temp, gravity);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            crba_inner<T>(s_M, s_q, s_qd, s_XImats, s_temp, gravity);
             __syncthreads();
             // save down to global
             T *d_M_k = &d_M[k*1];
@@ -8032,13 +7960,12 @@ namespace grid {
      * @param s_qd is the vector of joint velocities
      * @param s_qdd is the vector of joint accelerations
      * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-     * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
      * @param s_temp is a pointer to helper shared memory of size  = 3744
      * @param gravity is the gravity constant
      */
     template <typename T>
     __device__
-    void idsva_so_inner(T *s_idsva_so, const T *s_q, const T *s_qd, T *s_qdd, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity) {
+    void idsva_so_inner(T *s_idsva_so, const T *s_q, const T *s_qd, T *s_qdd, T *s_XImats, T *s_temp, const T gravity) {
         // Relevant Tensors in the order they appear
         T *I = s_XImats + XIMAT_SIZE*NUM_JOINTS;
         T *Xup = s_temp + 11*XIMAT_SIZE*NUM_JOINTS;
@@ -8158,7 +8085,7 @@ namespace grid {
             // Transform S
             for(int i = threadIdx.x + threadIdx.y*blockDim.x; i < 6*NUM_JOINTS; i += blockDim.x*blockDim.y){
                 int joint = i / 6;
-                S[i] = Xdown[joint*XIMAT_SIZE + s_topology_helpers[joint]*6 + (i % 6)];
+                S[i] = Xdown[joint*XIMAT_SIZE + 2*6 + (i % 6)];
             }
             __syncthreads();
             
@@ -8753,7 +8680,6 @@ namespace grid {
         void idsva_so_kernel_single_timing(T *d_idsva_so, const T *d_q_qd_u, const int stride_q_qd_u, const robotModel<T> *d_robotModel, const T gravity, const int NUM_TIMESTEPS) {
             __shared__ T s_q_qd_u[21]; T *s_q = s_q_qd_u; T *s_qd = &s_q_qd_u[7]; T *s_qdd = &s_q_qd_u[14];
             __shared__ T s_idsva_so[1372];
-            __shared__ int s_topology_helpers[7];
             __shared__ T s_XImats[504];
             __shared__ T s_temp[3744];
             // load to shared mem
@@ -8763,8 +8689,8 @@ namespace grid {
             __syncthreads();
             // compute with NUM_TIMESTEPS as NUM_REPS for timing
             for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-                load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-                idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
+                load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+                idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
             }
             __syncthreads();
             // save down to global
@@ -8789,7 +8715,6 @@ namespace grid {
         void idsva_so_kernel(T *d_idsva_so, const T *d_q_qd_u, const int stride_q_qd_u, const robotModel<T> *d_robotModel, const T gravity, const int NUM_TIMESTEPS) {
             __shared__ T s_q_qd_u[21]; T *s_q = s_q_qd_u; T *s_qd = &s_q_qd_u[7]; T *s_qdd = &s_q_qd_u[14];
             __shared__ T s_idsva_so[1372];
-            __shared__ int s_topology_helpers[7];
             __shared__ T s_XImats[504];
             __shared__ T s_temp[3744];
             for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
@@ -8800,8 +8725,8 @@ namespace grid {
                 }
                 __syncthreads();
                 // compute
-                load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-                idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
+                load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+                idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
                 __syncthreads();
                 // save down to global
                 T *d_idsva_so_k = &d_idsva_so[k*1372];
@@ -8892,13 +8817,12 @@ namespace grid {
          * @param s_Minv is the inverse mass matrix
          * @param s_df_du is the gradient of the forward dynamics
          * @param s_XImats is the (shared) memory holding the updated XI matricies for the given s_q
-         * @param s_topology_helpers is the (shared) memory destination location for the topology_helpers
          * @param s_temp is the pointer to the shared memory needed of size: 3744
          * @param gravity is the gravity constant
          */
         template <typename T>
         __device__
-        void fdsva_so_inner(T *s_df2, T *s_idsva_so, T *s_Minv, T *s_df_du, T *s_XImats, int *s_topology_helpers, T *s_temp, const T gravity) {
+        void fdsva_so_inner(T *s_df2, T *s_idsva_so, T *s_Minv, T *s_df_du, T *s_XImats, T *s_temp, const T gravity) {
             // Second Derivatives of Inverse Dynamics
             T *d2tau_dqdq = &s_idsva_so[0];
             T *d2tau_dvdv = &s_idsva_so[343];
@@ -8974,16 +8898,15 @@ namespace grid {
             __shared__ T s_Minv[49];
             __shared__ T s_qdd[7];
             __shared__ T s_idsva_so[1372];
-            __shared__ int s_topology_helpers[7];
             __shared__ T s_XImats[504];
             __shared__ T s_temp[3744];
-            load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
+            load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+            direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
             forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_temp, gravity);
             __syncthreads();
             forward_dynamics_gradient_device(s_df_du, s_q, s_qd, s_u, d_robotModel, gravity);
-            idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-            fdsva_so_inner<T>(s_df2, s_idsva_so, s_Minv, s_df_du, s_XImats, s_topology_helpers, s_temp, gravity);
+            idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+            fdsva_so_inner<T>(s_df2, s_idsva_so, s_Minv, s_df_du, s_XImats, s_temp, gravity);
         }
 
         /**
@@ -9005,7 +8928,6 @@ namespace grid {
             __shared__ T s_df_du[98];
             __shared__ T s_idsva_so[1372];
             __shared__ T s_df2[1372];
-            __shared__ int s_topology_helpers[7];
             __shared__ T s_XImats[504];
             __shared__ T s_temp[3744];
             // load to shared mem
@@ -9015,13 +8937,13 @@ namespace grid {
             __syncthreads();
             // compute with NUM_TIMESTEPS as NUM_REPS for timing
             for (int rep = 0; rep < NUM_TIMESTEPS; rep++){
-                load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-                direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
-                forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_topology_helpers, s_temp, gravity);
+                load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+                direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
+                forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_temp, gravity);
                 __syncthreads();
                 forward_dynamics_gradient_device(s_df_du, s_q, s_qd, s_u, d_robotModel, gravity);
-                idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-                fdsva_so_inner<T>(s_df2, s_idsva_so, s_Minv, s_df_du, s_XImats, s_topology_helpers, s_temp, gravity);
+                idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+                fdsva_so_inner<T>(s_df2, s_idsva_so, s_Minv, s_df_du, s_XImats, s_temp, gravity);
             }
             // save down to global
             for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 1372; ind += blockDim.x*blockDim.y){
@@ -9049,7 +8971,6 @@ namespace grid {
             __shared__ T s_df_du[98];
             __shared__ T s_idsva_so[1372];
             __shared__ T s_df2[1372];
-            __shared__ int s_topology_helpers[7];
             __shared__ T s_XImats[504];
             __shared__ T s_temp[3744];
             for(int k = blockIdx.x + blockIdx.y*gridDim.x; k < NUM_TIMESTEPS; k += gridDim.x*gridDim.y){
@@ -9060,13 +8981,13 @@ namespace grid {
                 }
                 __syncthreads();
                 // compute
-                load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
-                direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
-                forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_topology_helpers, s_temp, gravity);
+                load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
+                direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
+                forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_temp, gravity);
                 __syncthreads();
                 forward_dynamics_gradient_device(s_df_du, s_q, s_qd, s_u, d_robotModel, gravity);
-                idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, gravity);
-                fdsva_so_inner<T>(s_df2, s_idsva_so, s_Minv, s_df_du, s_XImats, s_topology_helpers, s_temp, gravity);
+                idsva_so_inner<T>(s_idsva_so, s_q, s_qd, s_qdd, s_XImats, s_temp, gravity);
+                fdsva_so_inner<T>(s_df2, s_idsva_so, s_Minv, s_df_du, s_XImats, s_temp, gravity);
                 __syncthreads();
                 // save down to global
                 T *d_df2_k = &d_df2[k*1372];

@@ -62,9 +62,9 @@ DEFAULT_SOLVER_PARAMS = {
 }
 
 # PICKPLACE_SOLVER_PARAMS = {
-#     'max_sqp_iters': 5,
+#     'max_sqp_iters': 1,
 #     'kkt_tol': 0.0,
-#     'max_pcg_iters': 100,
+#     'max_pcg_iters': 10,
 #     'pcg_tol': 1e-6,
 #     'solve_ratio': 1.0,
 #     'mu': 10.0,
@@ -75,20 +75,20 @@ DEFAULT_SOLVER_PARAMS = {
 #     'q_lim_cost': 0.0,
 #     'vel_lim_cost': 0.0,
 #     'ctrl_lim_cost': 0.0,
-#     'rho': 0.001
+#     'rho': 0.01
 # }
 
 PICKPLACE_SOLVER_PARAMS = {
-    'max_sqp_iters': 5,
+    'max_sqp_iters': 1,
     'kkt_tol': 0.0,
-    'max_pcg_iters': 100,
+    'max_pcg_iters': 10,
     'pcg_tol': 1e-6,
     'solve_ratio': 1.0,
     'mu': 10.0,
-    'q_cost': 50.0,
-    'qd_cost': 1e-4,
-    'u_cost': 1e-9,
-    'N_cost': 100.0,
+    'q_cost': 5.0,
+    'qd_cost': 1e8,
+    'u_cost': 5e-1,
+    'N_cost': 5.0,
     'q_lim_cost': 0.0,
     'vel_lim_cost': 0.0,
     'ctrl_lim_cost': 0.0,
@@ -124,10 +124,14 @@ PENDULUM_DEFAULT_PARAMS = {
 }
 
 # Default pick&place goal sequence (IIWA14 workspace)
+# PICKPLACE_DEFAULT_GOALS = [
+#     np.array([0.5, -0.1865, 0.5]),
+#     np.array([0.5, 0.5, 0.2]),
+#     np.array([0.3, 0.3, 0.8]),
+#     np.array([0.6, -0.5, 0.2]),
+#     np.array([0.0, -0.5, 0.8])
+# ]
+
 PICKPLACE_DEFAULT_GOALS = [
-    np.array([0.5, -0.1865, 0.5]),
-    np.array([0.5, 0.5, 0.2]),
-    np.array([0.3, 0.3, 0.8]),
-    np.array([0.6, -0.5, 0.2]),
-    np.array([0.0, -0.5, 0.8])
+    np.array([0.5, -0.1865, 0.5])
 ]

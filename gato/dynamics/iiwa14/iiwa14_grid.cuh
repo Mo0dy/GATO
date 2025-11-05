@@ -1,5 +1,5 @@
 /**
- * This instance of grid.cuh is optimized for the urdf: KUKAiiwa14
+ * This instance of grid.cuh is optimized for the urdf: iiwa14
  *
  * Notes:
  *   Interface is:
@@ -1287,13 +1287,13 @@ namespace grid {
         // X[2]
         h_XImats[72] = static_cast<T>(0);
         h_XImats[73] = static_cast<T>(0);
-        h_XImats[74] = static_cast<T>(1.00000000000000);
+        h_XImats[74] = static_cast<T>(0);
         h_XImats[75] = static_cast<T>(0);
         h_XImats[76] = static_cast<T>(0);
         h_XImats[77] = static_cast<T>(0);
         h_XImats[78] = static_cast<T>(0);
         h_XImats[79] = static_cast<T>(0);
-        h_XImats[80] = static_cast<T>(0);
+        h_XImats[80] = static_cast<T>(1.00000000000000);
         h_XImats[81] = static_cast<T>(0);
         h_XImats[82] = static_cast<T>(0);
         h_XImats[83] = static_cast<T>(0);
@@ -1308,13 +1308,13 @@ namespace grid {
         h_XImats[92] = static_cast<T>(0);
         h_XImats[93] = static_cast<T>(0);
         h_XImats[94] = static_cast<T>(0);
-        h_XImats[95] = static_cast<T>(1.00000000000000);
+        h_XImats[95] = static_cast<T>(0);
         h_XImats[96] = static_cast<T>(0);
         h_XImats[97] = static_cast<T>(0);
         h_XImats[98] = static_cast<T>(0);
         h_XImats[99] = static_cast<T>(0);
         h_XImats[100] = static_cast<T>(0);
-        h_XImats[101] = static_cast<T>(0);
+        h_XImats[101] = static_cast<T>(1.00000000000000);
         h_XImats[102] = static_cast<T>(0);
         h_XImats[103] = static_cast<T>(0);
         h_XImats[104] = static_cast<T>(0);
@@ -1401,10 +1401,10 @@ namespace grid {
         h_XImats[182] = static_cast<T>(0);
         h_XImats[183] = static_cast<T>(0);
         h_XImats[184] = static_cast<T>(0);
-        h_XImats[185] = static_cast<T>(-0.215499997286605);
+        h_XImats[185] = static_cast<T>(0.215500000000000);
         h_XImats[186] = static_cast<T>(0);
         h_XImats[187] = static_cast<T>(0);
-        h_XImats[188] = static_cast<T>(1.00000000000000);
+        h_XImats[188] = static_cast<T>(-1.00000000000000);
         h_XImats[189] = static_cast<T>(0);
         h_XImats[190] = static_cast<T>(0);
         h_XImats[191] = static_cast<T>(0);
@@ -1425,7 +1425,7 @@ namespace grid {
         h_XImats[206] = static_cast<T>(0);
         h_XImats[207] = static_cast<T>(0);
         h_XImats[208] = static_cast<T>(0);
-        h_XImats[209] = static_cast<T>(1.00000000000000);
+        h_XImats[209] = static_cast<T>(-1.00000000000000);
         h_XImats[210] = static_cast<T>(0);
         h_XImats[211] = static_cast<T>(0);
         h_XImats[212] = static_cast<T>(0);
@@ -1435,16 +1435,16 @@ namespace grid {
         // X[6]
         h_XImats[216] = static_cast<T>(0);
         h_XImats[217] = static_cast<T>(0);
-        h_XImats[218] = static_cast<T>(1.00000000000000);
+        h_XImats[218] = static_cast<T>(0);
         h_XImats[219] = static_cast<T>(0);
         h_XImats[220] = static_cast<T>(0);
         h_XImats[221] = static_cast<T>(0);
         h_XImats[222] = static_cast<T>(0);
         h_XImats[223] = static_cast<T>(0);
-        h_XImats[224] = static_cast<T>(0);
+        h_XImats[224] = static_cast<T>(1.00000000000000);
         h_XImats[225] = static_cast<T>(0);
         h_XImats[226] = static_cast<T>(0);
-        h_XImats[227] = static_cast<T>(0.0607000000000000);
+        h_XImats[227] = static_cast<T>(0);
         h_XImats[228] = static_cast<T>(0);
         h_XImats[229] = static_cast<T>(0);
         h_XImats[230] = static_cast<T>(0);
@@ -1456,13 +1456,13 @@ namespace grid {
         h_XImats[236] = static_cast<T>(0);
         h_XImats[237] = static_cast<T>(0);
         h_XImats[238] = static_cast<T>(0);
-        h_XImats[239] = static_cast<T>(1.00000000000000);
+        h_XImats[239] = static_cast<T>(0);
         h_XImats[240] = static_cast<T>(0);
         h_XImats[241] = static_cast<T>(0);
         h_XImats[242] = static_cast<T>(0);
         h_XImats[243] = static_cast<T>(0);
         h_XImats[244] = static_cast<T>(0);
-        h_XImats[245] = static_cast<T>(0);
+        h_XImats[245] = static_cast<T>(1.00000000000000);
         h_XImats[246] = static_cast<T>(0);
         h_XImats[247] = static_cast<T>(0);
         h_XImats[248] = static_cast<T>(0);
@@ -1470,264 +1470,264 @@ namespace grid {
         h_XImats[250] = static_cast<T>(0);
         h_XImats[251] = static_cast<T>(0);
         // I[0]
-        h_XImats[252] = static_cast<T>(0.00455);
+        h_XImats[252] = static_cast<T>(0.20912799999999998);
         h_XImats[253] = static_cast<T>(0.0);
         h_XImats[254] = static_cast<T>(0.0);
         h_XImats[255] = static_cast<T>(0.0);
-        h_XImats[256] = static_cast<T>(0.0);
-        h_XImats[257] = static_cast<T>(0.0);
+        h_XImats[256] = static_cast<T>(-0.6911999999999999);
+        h_XImats[257] = static_cast<T>(-0.17279999999999998);
         h_XImats[258] = static_cast<T>(0.0);
-        h_XImats[259] = static_cast<T>(0.00454);
-        h_XImats[260] = static_cast<T>(-1e-05);
-        h_XImats[261] = static_cast<T>(0.0);
+        h_XImats[259] = static_cast<T>(0.198944);
+        h_XImats[260] = static_cast<T>(-0.0002640000000000038);
+        h_XImats[261] = static_cast<T>(0.6911999999999999);
         h_XImats[262] = static_cast<T>(0.0);
         h_XImats[263] = static_cast<T>(0.0);
         h_XImats[264] = static_cast<T>(0.0);
-        h_XImats[265] = static_cast<T>(-1e-05);
-        h_XImats[266] = static_cast<T>(0.00029);
-        h_XImats[267] = static_cast<T>(0.0);
+        h_XImats[265] = static_cast<T>(-0.0002640000000000038);
+        h_XImats[266] = static_cast<T>(0.022684000000000003);
+        h_XImats[267] = static_cast<T>(0.17279999999999998);
         h_XImats[268] = static_cast<T>(0.0);
         h_XImats[269] = static_cast<T>(0.0);
         h_XImats[270] = static_cast<T>(0.0);
-        h_XImats[271] = static_cast<T>(0.0);
-        h_XImats[272] = static_cast<T>(0.0);
-        h_XImats[273] = static_cast<T>(3.94781);
+        h_XImats[271] = static_cast<T>(0.6911999999999999);
+        h_XImats[272] = static_cast<T>(0.17279999999999998);
+        h_XImats[273] = static_cast<T>(5.76);
         h_XImats[274] = static_cast<T>(0.0);
         h_XImats[275] = static_cast<T>(0.0);
-        h_XImats[276] = static_cast<T>(0.0);
+        h_XImats[276] = static_cast<T>(-0.6911999999999999);
         h_XImats[277] = static_cast<T>(0.0);
         h_XImats[278] = static_cast<T>(0.0);
         h_XImats[279] = static_cast<T>(0.0);
-        h_XImats[280] = static_cast<T>(3.94781);
+        h_XImats[280] = static_cast<T>(5.76);
         h_XImats[281] = static_cast<T>(0.0);
-        h_XImats[282] = static_cast<T>(0.0);
+        h_XImats[282] = static_cast<T>(-0.17279999999999998);
         h_XImats[283] = static_cast<T>(0.0);
         h_XImats[284] = static_cast<T>(0.0);
         h_XImats[285] = static_cast<T>(0.0);
         h_XImats[286] = static_cast<T>(0.0);
-        h_XImats[287] = static_cast<T>(3.94781);
+        h_XImats[287] = static_cast<T>(5.76);
         // I[1]
-        h_XImats[288] = static_cast<T>(0.02393692375);
-        h_XImats[289] = static_cast<T>(-7.969867499999998e-05);
-        h_XImats[290] = static_cast<T>(-5.6734649999999994e-05);
+        h_XImats[288] = static_cast<T>(0.09710574999999999);
+        h_XImats[289] = static_cast<T>(-1.2394999999999979e-05);
+        h_XImats[290] = static_cast<T>(-9.999999999994822e-09);
         h_XImats[291] = static_cast<T>(0.0);
-        h_XImats[292] = static_cast<T>(-0.1891155);
-        h_XImats[293] = static_cast<T>(0.26566225);
-        h_XImats[294] = static_cast<T>(-7.9698675e-05);
-        h_XImats[295] = static_cast<T>(0.0080432562475);
-        h_XImats[296] = static_cast<T>(-0.0111578145);
-        h_XImats[297] = static_cast<T>(0.1891155);
+        h_XImats[292] = static_cast<T>(-0.2667);
+        h_XImats[293] = static_cast<T>(0.37465);
+        h_XImats[294] = static_cast<T>(-1.2394999999999979e-05);
+        h_XImats[295] = static_cast<T>(0.052801971499999996);
+        h_XImats[296] = static_cast<T>(-3.5300000000001996e-05);
+        h_XImats[297] = static_cast<T>(0.2667);
         h_XImats[298] = static_cast<T>(0.0);
-        h_XImats[299] = static_cast<T>(-0.0013508249999999997);
-        h_XImats[300] = static_cast<T>(-5.6734649999999994e-05);
-        h_XImats[301] = static_cast<T>(-0.011157814499999998);
-        h_XImats[302] = static_cast<T>(0.0160944779975);
-        h_XImats[303] = static_cast<T>(-0.26566225);
-        h_XImats[304] = static_cast<T>(0.0013508249999999997);
+        h_XImats[299] = static_cast<T>(-0.0019049999999999998);
+        h_XImats[300] = static_cast<T>(-9.99999999998127e-09);
+        h_XImats[301] = static_cast<T>(-3.529999999999853e-05);
+        h_XImats[302] = static_cast<T>(0.0552049215);
+        h_XImats[303] = static_cast<T>(-0.37465);
+        h_XImats[304] = static_cast<T>(0.0019049999999999998);
         h_XImats[305] = static_cast<T>(0.0);
         h_XImats[306] = static_cast<T>(0.0);
-        h_XImats[307] = static_cast<T>(0.1891155);
-        h_XImats[308] = static_cast<T>(-0.26566225);
-        h_XImats[309] = static_cast<T>(4.50275);
+        h_XImats[307] = static_cast<T>(0.2667);
+        h_XImats[308] = static_cast<T>(-0.37465);
+        h_XImats[309] = static_cast<T>(6.35);
         h_XImats[310] = static_cast<T>(0.0);
         h_XImats[311] = static_cast<T>(0.0);
-        h_XImats[312] = static_cast<T>(-0.1891155);
+        h_XImats[312] = static_cast<T>(-0.2667);
         h_XImats[313] = static_cast<T>(0.0);
-        h_XImats[314] = static_cast<T>(0.0013508249999999997);
+        h_XImats[314] = static_cast<T>(0.0019049999999999998);
         h_XImats[315] = static_cast<T>(0.0);
-        h_XImats[316] = static_cast<T>(4.50275);
+        h_XImats[316] = static_cast<T>(6.35);
         h_XImats[317] = static_cast<T>(0.0);
-        h_XImats[318] = static_cast<T>(0.26566225);
-        h_XImats[319] = static_cast<T>(-0.0013508249999999997);
+        h_XImats[318] = static_cast<T>(0.37465);
+        h_XImats[319] = static_cast<T>(-0.0019049999999999998);
         h_XImats[320] = static_cast<T>(0.0);
         h_XImats[321] = static_cast<T>(0.0);
         h_XImats[322] = static_cast<T>(0.0);
-        h_XImats[323] = static_cast<T>(4.50275);
+        h_XImats[323] = static_cast<T>(6.35);
         // I[2]
-        h_XImats[324] = static_cast<T>(0.045932560000000004);
-        h_XImats[325] = static_cast<T>(-5e-05);
-        h_XImats[326] = static_cast<T>(7e-05);
+        h_XImats[324] = static_cast<T>(0.1496);
+        h_XImats[325] = static_cast<T>(0.0);
+        h_XImats[326] = static_cast<T>(0.0);
         h_XImats[327] = static_cast<T>(0.0);
-        h_XImats[328] = static_cast<T>(-0.319176);
-        h_XImats[329] = static_cast<T>(0.073656);
-        h_XImats[330] = static_cast<T>(-5e-05);
-        h_XImats[331] = static_cast<T>(0.04368288);
-        h_XImats[332] = static_cast<T>(-0.00950528);
-        h_XImats[333] = static_cast<T>(0.319176);
+        h_XImats[328] = static_cast<T>(-0.455);
+        h_XImats[329] = static_cast<T>(0.105);
+        h_XImats[330] = static_cast<T>(0.0);
+        h_XImats[331] = static_cast<T>(0.14215);
+        h_XImats[332] = static_cast<T>(0.0003499999999999996);
+        h_XImats[333] = static_cast<T>(0.455);
         h_XImats[334] = static_cast<T>(0.0);
         h_XImats[335] = static_cast<T>(0.0);
-        h_XImats[336] = static_cast<T>(7e-05);
-        h_XImats[337] = static_cast<T>(-0.00950528);
-        h_XImats[338] = static_cast<T>(0.00293968);
-        h_XImats[339] = static_cast<T>(-0.073656);
+        h_XImats[336] = static_cast<T>(0.0);
+        h_XImats[337] = static_cast<T>(0.0003499999999999996);
+        h_XImats[338] = static_cast<T>(0.01395);
+        h_XImats[339] = static_cast<T>(-0.105);
         h_XImats[340] = static_cast<T>(0.0);
         h_XImats[341] = static_cast<T>(0.0);
         h_XImats[342] = static_cast<T>(0.0);
-        h_XImats[343] = static_cast<T>(0.319176);
-        h_XImats[344] = static_cast<T>(-0.073656);
-        h_XImats[345] = static_cast<T>(2.4552);
+        h_XImats[343] = static_cast<T>(0.455);
+        h_XImats[344] = static_cast<T>(-0.105);
+        h_XImats[345] = static_cast<T>(3.5);
         h_XImats[346] = static_cast<T>(0.0);
         h_XImats[347] = static_cast<T>(0.0);
-        h_XImats[348] = static_cast<T>(-0.319176);
+        h_XImats[348] = static_cast<T>(-0.455);
         h_XImats[349] = static_cast<T>(0.0);
         h_XImats[350] = static_cast<T>(0.0);
         h_XImats[351] = static_cast<T>(0.0);
-        h_XImats[352] = static_cast<T>(2.4552);
+        h_XImats[352] = static_cast<T>(3.5);
         h_XImats[353] = static_cast<T>(0.0);
-        h_XImats[354] = static_cast<T>(0.073656);
+        h_XImats[354] = static_cast<T>(0.105);
         h_XImats[355] = static_cast<T>(0.0);
         h_XImats[356] = static_cast<T>(0.0);
         h_XImats[357] = static_cast<T>(0.0);
         h_XImats[358] = static_cast<T>(0.0);
-        h_XImats[359] = static_cast<T>(2.4552);
+        h_XImats[359] = static_cast<T>(3.5);
         // I[3]
-        h_XImats[360] = static_cast<T>(0.053182199750000006);
-        h_XImats[361] = static_cast<T>(0.00088);
-        h_XImats[362] = static_cast<T>(-0.00112);
+        h_XImats[360] = static_cast<T>(0.056557500000000004);
+        h_XImats[361] = static_cast<T>(0.0);
+        h_XImats[362] = static_cast<T>(0.0);
         h_XImats[363] = static_cast<T>(0.0);
-        h_XImats[364] = static_cast<T>(-0.0887927);
-        h_XImats[365] = static_cast<T>(0.17497385);
-        h_XImats[366] = static_cast<T>(0.00088);
-        h_XImats[367] = static_cast<T>(0.014458951800000001);
-        h_XImats[368] = static_cast<T>(-0.0070591109);
-        h_XImats[369] = static_cast<T>(0.0887927);
+        h_XImats[364] = static_cast<T>(-0.11900000000000001);
+        h_XImats[365] = static_cast<T>(0.23450000000000001);
+        h_XImats[366] = static_cast<T>(0.0);
+        h_XImats[367] = static_cast<T>(0.024496);
+        h_XImats[368] = static_cast<T>(2.6999999999999247e-05);
+        h_XImats[369] = static_cast<T>(0.11900000000000001);
         h_XImats[370] = static_cast<T>(0.0);
         h_XImats[371] = static_cast<T>(0.0);
-        h_XImats[372] = static_cast<T>(-0.00112);
-        h_XImats[373] = static_cast<T>(-0.0070591109);
-        h_XImats[374] = static_cast<T>(0.06130324795);
-        h_XImats[375] = static_cast<T>(-0.17497385);
+        h_XImats[372] = static_cast<T>(0.0);
+        h_XImats[373] = static_cast<T>(2.6999999999999247e-05);
+        h_XImats[374] = static_cast<T>(0.0374215);
+        h_XImats[375] = static_cast<T>(-0.23450000000000001);
         h_XImats[376] = static_cast<T>(0.0);
         h_XImats[377] = static_cast<T>(0.0);
         h_XImats[378] = static_cast<T>(0.0);
-        h_XImats[379] = static_cast<T>(0.0887927);
-        h_XImats[380] = static_cast<T>(-0.17497385);
-        h_XImats[381] = static_cast<T>(2.61155);
+        h_XImats[379] = static_cast<T>(0.11900000000000001);
+        h_XImats[380] = static_cast<T>(-0.23450000000000001);
+        h_XImats[381] = static_cast<T>(3.5);
         h_XImats[382] = static_cast<T>(0.0);
         h_XImats[383] = static_cast<T>(0.0);
-        h_XImats[384] = static_cast<T>(-0.0887927);
+        h_XImats[384] = static_cast<T>(-0.11900000000000001);
         h_XImats[385] = static_cast<T>(0.0);
         h_XImats[386] = static_cast<T>(0.0);
         h_XImats[387] = static_cast<T>(0.0);
-        h_XImats[388] = static_cast<T>(2.61155);
+        h_XImats[388] = static_cast<T>(3.5);
         h_XImats[389] = static_cast<T>(0.0);
-        h_XImats[390] = static_cast<T>(0.17497385);
+        h_XImats[390] = static_cast<T>(0.23450000000000001);
         h_XImats[391] = static_cast<T>(0.0);
         h_XImats[392] = static_cast<T>(0.0);
         h_XImats[393] = static_cast<T>(0.0);
         h_XImats[394] = static_cast<T>(0.0);
-        h_XImats[395] = static_cast<T>(2.61155);
+        h_XImats[395] = static_cast<T>(3.5);
         // I[4]
-        h_XImats[396] = static_cast<T>(0.02396997);
-        h_XImats[397] = static_cast<T>(-1.7161e-05);
-        h_XImats[398] = static_cast<T>(-1.5916e-05);
+        h_XImats[396] = static_cast<T>(0.0535595);
+        h_XImats[397] = static_cast<T>(-3.500000000000009e-07);
+        h_XImats[398] = static_cast<T>(3.9999999999999956e-07);
         h_XImats[399] = static_cast<T>(0.0);
-        h_XImats[400] = static_cast<T>(-0.25916);
-        h_XImats[401] = static_cast<T>(0.07161000000000001);
-        h_XImats[402] = static_cast<T>(-1.7161e-05);
-        h_XImats[403] = static_cast<T>(0.0225361941);
-        h_XImats[404] = static_cast<T>(-0.00544236);
-        h_XImats[405] = static_cast<T>(0.25916);
+        h_XImats[400] = static_cast<T>(-0.266);
+        h_XImats[401] = static_cast<T>(0.07350000000000001);
+        h_XImats[402] = static_cast<T>(-3.5000000000000173e-07);
+        h_XImats[403] = static_cast<T>(0.049132035000000004);
+        h_XImats[404] = static_cast<T>(0.0);
+        h_XImats[405] = static_cast<T>(0.266);
         h_XImats[406] = static_cast<T>(0.0);
-        h_XImats[407] = static_cast<T>(-0.00034100000000000005);
-        h_XImats[408] = static_cast<T>(-1.5916e-05);
-        h_XImats[409] = static_cast<T>(-0.00544236);
-        h_XImats[410] = static_cast<T>(0.0016238441000000002);
-        h_XImats[411] = static_cast<T>(-0.07161000000000001);
-        h_XImats[412] = static_cast<T>(0.00034100000000000005);
+        h_XImats[407] = static_cast<T>(-0.00035);
+        h_XImats[408] = static_cast<T>(3.9999999999999617e-07);
+        h_XImats[409] = static_cast<T>(0.0);
+        h_XImats[410] = static_cast<T>(0.0075435350000000005);
+        h_XImats[411] = static_cast<T>(-0.07350000000000001);
+        h_XImats[412] = static_cast<T>(0.00035);
         h_XImats[413] = static_cast<T>(0.0);
         h_XImats[414] = static_cast<T>(0.0);
-        h_XImats[415] = static_cast<T>(0.25916);
-        h_XImats[416] = static_cast<T>(-0.07161000000000001);
-        h_XImats[417] = static_cast<T>(3.41);
+        h_XImats[415] = static_cast<T>(0.266);
+        h_XImats[416] = static_cast<T>(-0.07350000000000001);
+        h_XImats[417] = static_cast<T>(3.5);
         h_XImats[418] = static_cast<T>(0.0);
         h_XImats[419] = static_cast<T>(0.0);
-        h_XImats[420] = static_cast<T>(-0.25916);
+        h_XImats[420] = static_cast<T>(-0.266);
         h_XImats[421] = static_cast<T>(0.0);
-        h_XImats[422] = static_cast<T>(0.00034100000000000005);
+        h_XImats[422] = static_cast<T>(0.00035);
         h_XImats[423] = static_cast<T>(0.0);
-        h_XImats[424] = static_cast<T>(3.41);
+        h_XImats[424] = static_cast<T>(3.5);
         h_XImats[425] = static_cast<T>(0.0);
-        h_XImats[426] = static_cast<T>(0.07161000000000001);
-        h_XImats[427] = static_cast<T>(-0.00034100000000000005);
+        h_XImats[426] = static_cast<T>(0.07350000000000001);
+        h_XImats[427] = static_cast<T>(-0.00035);
         h_XImats[428] = static_cast<T>(0.0);
         h_XImats[429] = static_cast<T>(0.0);
         h_XImats[430] = static_cast<T>(0.0);
-        h_XImats[431] = static_cast<T>(3.41);
+        h_XImats[431] = static_cast<T>(3.5);
         // I[5]
-        h_XImats[432] = static_cast<T>(0.000501761734);
-        h_XImats[433] = static_cast<T>(-5e-05);
-        h_XImats[434] = static_cast<T>(-3e-05);
+        h_XImats[432] = static_cast<T>(0.004900936);
+        h_XImats[433] = static_cast<T>(0.0);
+        h_XImats[434] = static_cast<T>(0.0);
         h_XImats[435] = static_cast<T>(0.0);
-        h_XImats[436] = static_cast<T>(-0.00135518);
-        h_XImats[437] = static_cast<T>(0.0020327699999999997);
-        h_XImats[438] = static_cast<T>(-5e-05);
-        h_XImats[439] = static_cast<T>(0.002810542072);
-        h_XImats[440] = static_cast<T>(-4.0813108000000006e-05);
-        h_XImats[441] = static_cast<T>(0.00135518);
+        h_XImats[436] = static_cast<T>(-0.00072);
+        h_XImats[437] = static_cast<T>(0.00108);
+        h_XImats[438] = static_cast<T>(0.0);
+        h_XImats[439] = static_cast<T>(0.004700288);
+        h_XImats[440] = static_cast<T>(-4.32e-07);
+        h_XImats[441] = static_cast<T>(0.00072);
         h_XImats[442] = static_cast<T>(0.0);
         h_XImats[443] = static_cast<T>(0.0);
-        h_XImats[444] = static_cast<T>(-3e-05);
-        h_XImats[445] = static_cast<T>(-4.0813108000000006e-05);
-        h_XImats[446] = static_cast<T>(0.002321219662);
-        h_XImats[447] = static_cast<T>(-0.0020327699999999997);
+        h_XImats[444] = static_cast<T>(0.0);
+        h_XImats[445] = static_cast<T>(-4.32e-07);
+        h_XImats[446] = static_cast<T>(0.0036006479999999997);
+        h_XImats[447] = static_cast<T>(-0.00108);
         h_XImats[448] = static_cast<T>(0.0);
         h_XImats[449] = static_cast<T>(0.0);
         h_XImats[450] = static_cast<T>(0.0);
-        h_XImats[451] = static_cast<T>(0.00135518);
-        h_XImats[452] = static_cast<T>(-0.0020327699999999997);
-        h_XImats[453] = static_cast<T>(3.38795);
+        h_XImats[451] = static_cast<T>(0.00072);
+        h_XImats[452] = static_cast<T>(-0.00108);
+        h_XImats[453] = static_cast<T>(1.8);
         h_XImats[454] = static_cast<T>(0.0);
         h_XImats[455] = static_cast<T>(0.0);
-        h_XImats[456] = static_cast<T>(-0.00135518);
+        h_XImats[456] = static_cast<T>(-0.00072);
         h_XImats[457] = static_cast<T>(0.0);
         h_XImats[458] = static_cast<T>(0.0);
         h_XImats[459] = static_cast<T>(0.0);
-        h_XImats[460] = static_cast<T>(3.38795);
+        h_XImats[460] = static_cast<T>(1.8);
         h_XImats[461] = static_cast<T>(0.0);
-        h_XImats[462] = static_cast<T>(0.0020327699999999997);
+        h_XImats[462] = static_cast<T>(0.00108);
         h_XImats[463] = static_cast<T>(0.0);
         h_XImats[464] = static_cast<T>(0.0);
         h_XImats[465] = static_cast<T>(0.0);
         h_XImats[466] = static_cast<T>(0.0);
-        h_XImats[467] = static_cast<T>(3.38795);
+        h_XImats[467] = static_cast<T>(1.8);
         // I[6]
-        h_XImats[468] = static_cast<T>(0.008218328);
-        h_XImats[469] = static_cast<T>(0.00022);
-        h_XImats[470] = static_cast<T>(-0.00029);
+        h_XImats[468] = static_cast<T>(0.00598);
+        h_XImats[469] = static_cast<T>(0.0);
+        h_XImats[470] = static_cast<T>(0.0);
         h_XImats[471] = static_cast<T>(0.0);
-        h_XImats[472] = static_cast<T>(-0.0093664);
+        h_XImats[472] = static_cast<T>(-0.024);
         h_XImats[473] = static_cast<T>(0.0);
-        h_XImats[474] = static_cast<T>(0.00022);
-        h_XImats[475] = static_cast<T>(0.011098328);
-        h_XImats[476] = static_cast<T>(-0.00029);
-        h_XImats[477] = static_cast<T>(0.0093664);
+        h_XImats[474] = static_cast<T>(0.0);
+        h_XImats[475] = static_cast<T>(0.00598);
+        h_XImats[476] = static_cast<T>(0.0);
+        h_XImats[477] = static_cast<T>(0.024);
         h_XImats[478] = static_cast<T>(0.0);
         h_XImats[479] = static_cast<T>(0.0);
-        h_XImats[480] = static_cast<T>(-0.00029);
-        h_XImats[481] = static_cast<T>(-0.00029);
-        h_XImats[482] = static_cast<T>(0.0029754);
+        h_XImats[480] = static_cast<T>(0.0);
+        h_XImats[481] = static_cast<T>(0.0);
+        h_XImats[482] = static_cast<T>(0.005);
         h_XImats[483] = static_cast<T>(0.0);
         h_XImats[484] = static_cast<T>(0.0);
         h_XImats[485] = static_cast<T>(0.0);
         h_XImats[486] = static_cast<T>(0.0);
-        h_XImats[487] = static_cast<T>(0.0093664);
+        h_XImats[487] = static_cast<T>(0.024);
         h_XImats[488] = static_cast<T>(0.0);
-        h_XImats[489] = static_cast<T>(0.41132);
+        h_XImats[489] = static_cast<T>(1.2);
         h_XImats[490] = static_cast<T>(0.0);
         h_XImats[491] = static_cast<T>(0.0);
-        h_XImats[492] = static_cast<T>(-0.0093664);
+        h_XImats[492] = static_cast<T>(-0.024);
         h_XImats[493] = static_cast<T>(0.0);
         h_XImats[494] = static_cast<T>(0.0);
         h_XImats[495] = static_cast<T>(0.0);
-        h_XImats[496] = static_cast<T>(0.41132);
+        h_XImats[496] = static_cast<T>(1.2);
         h_XImats[497] = static_cast<T>(0.0);
         h_XImats[498] = static_cast<T>(0.0);
         h_XImats[499] = static_cast<T>(0.0);
         h_XImats[500] = static_cast<T>(0.0);
         h_XImats[501] = static_cast<T>(0.0);
         h_XImats[502] = static_cast<T>(0.0);
-        h_XImats[503] = static_cast<T>(0.41132);
+        h_XImats[503] = static_cast<T>(1.2);
         // Xhom[0]
         h_XImats[504] = static_cast<T>(0);
         h_XImats[505] = static_cast<T>(0);
@@ -1771,12 +1771,12 @@ namespace grid {
         h_XImats[541] = static_cast<T>(0);
         h_XImats[542] = static_cast<T>(0);
         h_XImats[543] = static_cast<T>(0);
-        h_XImats[544] = static_cast<T>(1.00000000000000);
-        h_XImats[545] = static_cast<T>(0);
+        h_XImats[544] = static_cast<T>(0);
+        h_XImats[545] = static_cast<T>(1.00000000000000);
         h_XImats[546] = static_cast<T>(0);
         h_XImats[547] = static_cast<T>(0);
-        h_XImats[548] = static_cast<T>(0.204500000000000);
-        h_XImats[549] = static_cast<T>(0);
+        h_XImats[548] = static_cast<T>(0);
+        h_XImats[549] = static_cast<T>(0.204500000000000);
         h_XImats[550] = static_cast<T>(0);
         h_XImats[551] = static_cast<T>(1.00000000000000);
         // Xhom[3]
@@ -1823,11 +1823,11 @@ namespace grid {
         h_XImats[590] = static_cast<T>(0);
         h_XImats[591] = static_cast<T>(0);
         h_XImats[592] = static_cast<T>(0);
-        h_XImats[593] = static_cast<T>(1.00000000000000);
+        h_XImats[593] = static_cast<T>(-1.00000000000000);
         h_XImats[594] = static_cast<T>(0);
         h_XImats[595] = static_cast<T>(0);
         h_XImats[596] = static_cast<T>(0);
-        h_XImats[597] = static_cast<T>(-0.0607000000000000);
+        h_XImats[597] = static_cast<T>(0);
         h_XImats[598] = static_cast<T>(0.215500000000000);
         h_XImats[599] = static_cast<T>(1.00000000000000);
         // Xhom[6]
@@ -1839,13 +1839,13 @@ namespace grid {
         h_XImats[605] = static_cast<T>(0);
         h_XImats[606] = static_cast<T>(0);
         h_XImats[607] = static_cast<T>(0);
-        h_XImats[608] = static_cast<T>(1.00000000000000);
-        h_XImats[609] = static_cast<T>(0);
+        h_XImats[608] = static_cast<T>(0);
+        h_XImats[609] = static_cast<T>(1.00000000000000);
         h_XImats[610] = static_cast<T>(0);
         h_XImats[611] = static_cast<T>(0);
-        h_XImats[612] = static_cast<T>(0.0810000000000000);
-        h_XImats[613] = static_cast<T>(0);
-        h_XImats[614] = static_cast<T>(0.0607000000000000);
+        h_XImats[612] = static_cast<T>(0);
+        h_XImats[613] = static_cast<T>(0.0810000000000000);
+        h_XImats[614] = static_cast<T>(0);
         h_XImats[615] = static_cast<T>(1.00000000000000);
         // dXhom[0]
         h_XImats[616] = static_cast<T>(0);
@@ -2229,17 +2229,17 @@ namespace grid {
             s_XImats[9] = static_cast<T>(0.1575*s_temp[7]);
             s_XImats[10] = static_cast<T>(-0.1575*s_temp[0]);
             // X[1]
-            s_XImats[36] = static_cast<T>(s_temp[1]);
-            s_XImats[37] = static_cast<T>(s_temp[8]);
-            s_XImats[45] = static_cast<T>(0.2025*s_temp[1]);
-            s_XImats[46] = static_cast<T>(0.2025*s_temp[8]);
-            s_XImats[48] = static_cast<T>(s_temp[8]);
-            s_XImats[49] = static_cast<T>(-s_temp[1]);
+            s_XImats[36] = static_cast<T>(-s_temp[8]);
+            s_XImats[37] = static_cast<T>(s_temp[1]);
+            s_XImats[45] = static_cast<T>(-0.2025*s_temp[8]);
+            s_XImats[46] = static_cast<T>(0.2025*s_temp[1]);
+            s_XImats[48] = static_cast<T>(s_temp[1]);
+            s_XImats[49] = static_cast<T>(s_temp[8]);
             // X[2]
-            s_XImats[78] = static_cast<T>(s_temp[9]);
-            s_XImats[79] = static_cast<T>(-s_temp[2]);
-            s_XImats[81] = static_cast<T>(-0.2045*s_temp[2]);
-            s_XImats[82] = static_cast<T>(-0.2045*s_temp[9]);
+            s_XImats[72] = static_cast<T>(-s_temp[9]);
+            s_XImats[73] = static_cast<T>(s_temp[2]);
+            s_XImats[75] = static_cast<T>(0.2045*s_temp[2]);
+            s_XImats[76] = static_cast<T>(0.2045*s_temp[9]);
             s_XImats[84] = static_cast<T>(s_temp[2]);
             s_XImats[85] = static_cast<T>(s_temp[9]);
             s_XImats[87] = static_cast<T>(0.2045*s_temp[9]);
@@ -2252,32 +2252,26 @@ namespace grid {
             s_XImats[120] = static_cast<T>(s_temp[3]);
             s_XImats[121] = static_cast<T>(s_temp[10]);
             // X[4]
-            s_XImats[144] = static_cast<T>(s_temp[11]);
-            s_XImats[145] = static_cast<T>(-s_temp[4]);
-            s_XImats[147] = static_cast<T>(-0.1845*s_temp[4]);
-            s_XImats[148] = static_cast<T>(-0.1845*s_temp[11]);
-            s_XImats[156] = static_cast<T>(-s_temp[4]);
-            s_XImats[157] = static_cast<T>(-s_temp[11]);
-            s_XImats[159] = static_cast<T>(-0.1845*s_temp[11]);
-            s_XImats[160] = static_cast<T>(0.1845*s_temp[4]);
+            s_XImats[144] = static_cast<T>(-s_temp[11]);
+            s_XImats[145] = static_cast<T>(s_temp[4]);
+            s_XImats[147] = static_cast<T>(0.1845*s_temp[4]);
+            s_XImats[148] = static_cast<T>(0.1845*s_temp[11]);
+            s_XImats[156] = static_cast<T>(s_temp[4]);
+            s_XImats[157] = static_cast<T>(s_temp[11]);
+            s_XImats[159] = static_cast<T>(0.1845*s_temp[11]);
+            s_XImats[160] = static_cast<T>(-0.1845*s_temp[4]);
             // X[5]
-            s_XImats[180] = static_cast<T>(s_temp[5]);
-            s_XImats[181] = static_cast<T>(s_temp[12]);
-            s_XImats[183] = static_cast<T>(-0.0607000096320555*s_temp[12]);
-            s_XImats[184] = static_cast<T>(0.0607000096320555*s_temp[5]);
-            s_XImats[189] = static_cast<T>(0.2155*s_temp[5]);
-            s_XImats[190] = static_cast<T>(0.2155*s_temp[12]);
-            s_XImats[192] = static_cast<T>(s_temp[12]);
-            s_XImats[193] = static_cast<T>(-s_temp[5]);
-            s_XImats[195] = static_cast<T>(0.0607*s_temp[5]);
-            s_XImats[196] = static_cast<T>(0.0607*s_temp[12]);
+            s_XImats[180] = static_cast<T>(s_temp[12]);
+            s_XImats[181] = static_cast<T>(-s_temp[5]);
+            s_XImats[189] = static_cast<T>(0.2155*s_temp[12]);
+            s_XImats[190] = static_cast<T>(-0.2155*s_temp[5]);
+            s_XImats[192] = static_cast<T>(s_temp[5]);
+            s_XImats[193] = static_cast<T>(s_temp[12]);
             // X[6]
-            s_XImats[219] = static_cast<T>(-0.0607*s_temp[13]);
-            s_XImats[220] = static_cast<T>(0.0607*s_temp[6]);
-            s_XImats[222] = static_cast<T>(s_temp[13]);
-            s_XImats[223] = static_cast<T>(-s_temp[6]);
-            s_XImats[225] = static_cast<T>(-0.081*s_temp[6]);
-            s_XImats[226] = static_cast<T>(-0.081*s_temp[13]);
+            s_XImats[216] = static_cast<T>(-s_temp[13]);
+            s_XImats[217] = static_cast<T>(s_temp[6]);
+            s_XImats[219] = static_cast<T>(0.081*s_temp[6]);
+            s_XImats[220] = static_cast<T>(0.081*s_temp[13]);
             s_XImats[228] = static_cast<T>(s_temp[6]);
             s_XImats[229] = static_cast<T>(s_temp[13]);
             s_XImats[231] = static_cast<T>(0.081*s_temp[13]);
@@ -2318,14 +2312,14 @@ namespace grid {
             s_XmatsHom[4] = static_cast<T>(-s_temp[0]);
             s_XmatsHom[5] = static_cast<T>(s_temp[7]);
             // X_hom[1]
-            s_XmatsHom[16] = static_cast<T>(s_temp[1]);
-            s_XmatsHom[18] = static_cast<T>(s_temp[8]);
-            s_XmatsHom[20] = static_cast<T>(s_temp[8]);
-            s_XmatsHom[22] = static_cast<T>(-s_temp[1]);
+            s_XmatsHom[16] = static_cast<T>(-s_temp[8]);
+            s_XmatsHom[18] = static_cast<T>(s_temp[1]);
+            s_XmatsHom[20] = static_cast<T>(s_temp[1]);
+            s_XmatsHom[22] = static_cast<T>(s_temp[8]);
             // X_hom[2]
-            s_XmatsHom[33] = static_cast<T>(s_temp[9]);
+            s_XmatsHom[32] = static_cast<T>(-s_temp[9]);
             s_XmatsHom[34] = static_cast<T>(s_temp[2]);
-            s_XmatsHom[37] = static_cast<T>(-s_temp[2]);
+            s_XmatsHom[36] = static_cast<T>(s_temp[2]);
             s_XmatsHom[38] = static_cast<T>(s_temp[9]);
             // X_hom[3]
             s_XmatsHom[48] = static_cast<T>(s_temp[10]);
@@ -2333,19 +2327,19 @@ namespace grid {
             s_XmatsHom[52] = static_cast<T>(-s_temp[3]);
             s_XmatsHom[54] = static_cast<T>(s_temp[10]);
             // X_hom[4]
-            s_XmatsHom[64] = static_cast<T>(s_temp[11]);
-            s_XmatsHom[66] = static_cast<T>(-s_temp[4]);
-            s_XmatsHom[68] = static_cast<T>(-s_temp[4]);
-            s_XmatsHom[70] = static_cast<T>(-s_temp[11]);
+            s_XmatsHom[64] = static_cast<T>(-s_temp[11]);
+            s_XmatsHom[66] = static_cast<T>(s_temp[4]);
+            s_XmatsHom[68] = static_cast<T>(s_temp[4]);
+            s_XmatsHom[70] = static_cast<T>(s_temp[11]);
             // X_hom[5]
-            s_XmatsHom[80] = static_cast<T>(s_temp[5]);
-            s_XmatsHom[82] = static_cast<T>(s_temp[12]);
-            s_XmatsHom[84] = static_cast<T>(s_temp[12]);
-            s_XmatsHom[86] = static_cast<T>(-s_temp[5]);
+            s_XmatsHom[80] = static_cast<T>(s_temp[12]);
+            s_XmatsHom[82] = static_cast<T>(s_temp[5]);
+            s_XmatsHom[84] = static_cast<T>(-s_temp[5]);
+            s_XmatsHom[86] = static_cast<T>(s_temp[12]);
             // X_hom[6]
-            s_XmatsHom[97] = static_cast<T>(s_temp[13]);
+            s_XmatsHom[96] = static_cast<T>(-s_temp[13]);
             s_XmatsHom[98] = static_cast<T>(s_temp[6]);
-            s_XmatsHom[101] = static_cast<T>(-s_temp[6]);
+            s_XmatsHom[100] = static_cast<T>(s_temp[6]);
             s_XmatsHom[102] = static_cast<T>(s_temp[13]);
         }
         __syncthreads();
@@ -2379,14 +2373,14 @@ namespace grid {
             s_XmatsHom[4] = static_cast<T>(-s_temp[0]);
             s_XmatsHom[5] = static_cast<T>(s_temp[7]);
             // X_hom[1]
-            s_XmatsHom[16] = static_cast<T>(s_temp[1]);
-            s_XmatsHom[18] = static_cast<T>(s_temp[8]);
-            s_XmatsHom[20] = static_cast<T>(s_temp[8]);
-            s_XmatsHom[22] = static_cast<T>(-s_temp[1]);
+            s_XmatsHom[16] = static_cast<T>(-s_temp[8]);
+            s_XmatsHom[18] = static_cast<T>(s_temp[1]);
+            s_XmatsHom[20] = static_cast<T>(s_temp[1]);
+            s_XmatsHom[22] = static_cast<T>(s_temp[8]);
             // X_hom[2]
-            s_XmatsHom[33] = static_cast<T>(s_temp[9]);
+            s_XmatsHom[32] = static_cast<T>(-s_temp[9]);
             s_XmatsHom[34] = static_cast<T>(s_temp[2]);
-            s_XmatsHom[37] = static_cast<T>(-s_temp[2]);
+            s_XmatsHom[36] = static_cast<T>(s_temp[2]);
             s_XmatsHom[38] = static_cast<T>(s_temp[9]);
             // X_hom[3]
             s_XmatsHom[48] = static_cast<T>(s_temp[10]);
@@ -2394,19 +2388,19 @@ namespace grid {
             s_XmatsHom[52] = static_cast<T>(-s_temp[3]);
             s_XmatsHom[54] = static_cast<T>(s_temp[10]);
             // X_hom[4]
-            s_XmatsHom[64] = static_cast<T>(s_temp[11]);
-            s_XmatsHom[66] = static_cast<T>(-s_temp[4]);
-            s_XmatsHom[68] = static_cast<T>(-s_temp[4]);
-            s_XmatsHom[70] = static_cast<T>(-s_temp[11]);
+            s_XmatsHom[64] = static_cast<T>(-s_temp[11]);
+            s_XmatsHom[66] = static_cast<T>(s_temp[4]);
+            s_XmatsHom[68] = static_cast<T>(s_temp[4]);
+            s_XmatsHom[70] = static_cast<T>(s_temp[11]);
             // X_hom[5]
-            s_XmatsHom[80] = static_cast<T>(s_temp[5]);
-            s_XmatsHom[82] = static_cast<T>(s_temp[12]);
-            s_XmatsHom[84] = static_cast<T>(s_temp[12]);
-            s_XmatsHom[86] = static_cast<T>(-s_temp[5]);
+            s_XmatsHom[80] = static_cast<T>(s_temp[12]);
+            s_XmatsHom[82] = static_cast<T>(s_temp[5]);
+            s_XmatsHom[84] = static_cast<T>(-s_temp[5]);
+            s_XmatsHom[86] = static_cast<T>(s_temp[12]);
             // X_hom[6]
-            s_XmatsHom[97] = static_cast<T>(s_temp[13]);
+            s_XmatsHom[96] = static_cast<T>(-s_temp[13]);
             s_XmatsHom[98] = static_cast<T>(s_temp[6]);
-            s_XmatsHom[101] = static_cast<T>(-s_temp[6]);
+            s_XmatsHom[100] = static_cast<T>(s_temp[6]);
             s_XmatsHom[102] = static_cast<T>(s_temp[13]);
             // dX_hom[0]
             s_dXmatsHom[0] = static_cast<T>(-s_temp[0]);
@@ -2414,14 +2408,14 @@ namespace grid {
             s_dXmatsHom[4] = static_cast<T>(-s_temp[7]);
             s_dXmatsHom[5] = static_cast<T>(-s_temp[0]);
             // dX_hom[1]
-            s_dXmatsHom[16] = static_cast<T>(s_temp[8]);
-            s_dXmatsHom[18] = static_cast<T>(-s_temp[1]);
-            s_dXmatsHom[20] = static_cast<T>(-s_temp[1]);
-            s_dXmatsHom[22] = static_cast<T>(-s_temp[8]);
+            s_dXmatsHom[16] = static_cast<T>(s_temp[1]);
+            s_dXmatsHom[18] = static_cast<T>(s_temp[8]);
+            s_dXmatsHom[20] = static_cast<T>(s_temp[8]);
+            s_dXmatsHom[22] = static_cast<T>(-s_temp[1]);
             // dX_hom[2]
-            s_dXmatsHom[33] = static_cast<T>(-s_temp[2]);
+            s_dXmatsHom[32] = static_cast<T>(s_temp[2]);
             s_dXmatsHom[34] = static_cast<T>(s_temp[9]);
-            s_dXmatsHom[37] = static_cast<T>(-s_temp[9]);
+            s_dXmatsHom[36] = static_cast<T>(s_temp[9]);
             s_dXmatsHom[38] = static_cast<T>(-s_temp[2]);
             // dX_hom[3]
             s_dXmatsHom[48] = static_cast<T>(-s_temp[3]);
@@ -2429,19 +2423,19 @@ namespace grid {
             s_dXmatsHom[52] = static_cast<T>(-s_temp[10]);
             s_dXmatsHom[54] = static_cast<T>(-s_temp[3]);
             // dX_hom[4]
-            s_dXmatsHom[64] = static_cast<T>(-s_temp[4]);
-            s_dXmatsHom[66] = static_cast<T>(-s_temp[11]);
-            s_dXmatsHom[68] = static_cast<T>(-s_temp[11]);
-            s_dXmatsHom[70] = static_cast<T>(s_temp[4]);
+            s_dXmatsHom[64] = static_cast<T>(s_temp[4]);
+            s_dXmatsHom[66] = static_cast<T>(s_temp[11]);
+            s_dXmatsHom[68] = static_cast<T>(s_temp[11]);
+            s_dXmatsHom[70] = static_cast<T>(-s_temp[4]);
             // dX_hom[5]
-            s_dXmatsHom[80] = static_cast<T>(s_temp[12]);
-            s_dXmatsHom[82] = static_cast<T>(-s_temp[5]);
-            s_dXmatsHom[84] = static_cast<T>(-s_temp[5]);
-            s_dXmatsHom[86] = static_cast<T>(-s_temp[12]);
+            s_dXmatsHom[80] = static_cast<T>(-s_temp[5]);
+            s_dXmatsHom[82] = static_cast<T>(s_temp[12]);
+            s_dXmatsHom[84] = static_cast<T>(-s_temp[12]);
+            s_dXmatsHom[86] = static_cast<T>(-s_temp[5]);
             // dX_hom[6]
-            s_dXmatsHom[97] = static_cast<T>(-s_temp[6]);
+            s_dXmatsHom[96] = static_cast<T>(s_temp[6]);
             s_dXmatsHom[98] = static_cast<T>(s_temp[13]);
-            s_dXmatsHom[101] = static_cast<T>(-s_temp[13]);
+            s_dXmatsHom[100] = static_cast<T>(s_temp[13]);
             s_dXmatsHom[102] = static_cast<T>(-s_temp[6]);
         }
         __syncthreads();
@@ -2477,14 +2471,14 @@ namespace grid {
             s_XmatsHom[4] = static_cast<T>(-s_temp[0]);
             s_XmatsHom[5] = static_cast<T>(s_temp[7]);
             // X_hom[1]
-            s_XmatsHom[16] = static_cast<T>(s_temp[1]);
-            s_XmatsHom[18] = static_cast<T>(s_temp[8]);
-            s_XmatsHom[20] = static_cast<T>(s_temp[8]);
-            s_XmatsHom[22] = static_cast<T>(-s_temp[1]);
+            s_XmatsHom[16] = static_cast<T>(-s_temp[8]);
+            s_XmatsHom[18] = static_cast<T>(s_temp[1]);
+            s_XmatsHom[20] = static_cast<T>(s_temp[1]);
+            s_XmatsHom[22] = static_cast<T>(s_temp[8]);
             // X_hom[2]
-            s_XmatsHom[33] = static_cast<T>(s_temp[9]);
+            s_XmatsHom[32] = static_cast<T>(-s_temp[9]);
             s_XmatsHom[34] = static_cast<T>(s_temp[2]);
-            s_XmatsHom[37] = static_cast<T>(-s_temp[2]);
+            s_XmatsHom[36] = static_cast<T>(s_temp[2]);
             s_XmatsHom[38] = static_cast<T>(s_temp[9]);
             // X_hom[3]
             s_XmatsHom[48] = static_cast<T>(s_temp[10]);
@@ -2492,19 +2486,19 @@ namespace grid {
             s_XmatsHom[52] = static_cast<T>(-s_temp[3]);
             s_XmatsHom[54] = static_cast<T>(s_temp[10]);
             // X_hom[4]
-            s_XmatsHom[64] = static_cast<T>(s_temp[11]);
-            s_XmatsHom[66] = static_cast<T>(-s_temp[4]);
-            s_XmatsHom[68] = static_cast<T>(-s_temp[4]);
-            s_XmatsHom[70] = static_cast<T>(-s_temp[11]);
+            s_XmatsHom[64] = static_cast<T>(-s_temp[11]);
+            s_XmatsHom[66] = static_cast<T>(s_temp[4]);
+            s_XmatsHom[68] = static_cast<T>(s_temp[4]);
+            s_XmatsHom[70] = static_cast<T>(s_temp[11]);
             // X_hom[5]
-            s_XmatsHom[80] = static_cast<T>(s_temp[5]);
-            s_XmatsHom[82] = static_cast<T>(s_temp[12]);
-            s_XmatsHom[84] = static_cast<T>(s_temp[12]);
-            s_XmatsHom[86] = static_cast<T>(-s_temp[5]);
+            s_XmatsHom[80] = static_cast<T>(s_temp[12]);
+            s_XmatsHom[82] = static_cast<T>(s_temp[5]);
+            s_XmatsHom[84] = static_cast<T>(-s_temp[5]);
+            s_XmatsHom[86] = static_cast<T>(s_temp[12]);
             // X_hom[6]
-            s_XmatsHom[97] = static_cast<T>(s_temp[13]);
+            s_XmatsHom[96] = static_cast<T>(-s_temp[13]);
             s_XmatsHom[98] = static_cast<T>(s_temp[6]);
-            s_XmatsHom[101] = static_cast<T>(-s_temp[6]);
+            s_XmatsHom[100] = static_cast<T>(s_temp[6]);
             s_XmatsHom[102] = static_cast<T>(s_temp[13]);
             // dX_hom[0]
             s_dXmatsHom[0] = static_cast<T>(-s_temp[0]);
@@ -2512,14 +2506,14 @@ namespace grid {
             s_dXmatsHom[4] = static_cast<T>(-s_temp[7]);
             s_dXmatsHom[5] = static_cast<T>(-s_temp[0]);
             // dX_hom[1]
-            s_dXmatsHom[16] = static_cast<T>(s_temp[8]);
-            s_dXmatsHom[18] = static_cast<T>(-s_temp[1]);
-            s_dXmatsHom[20] = static_cast<T>(-s_temp[1]);
-            s_dXmatsHom[22] = static_cast<T>(-s_temp[8]);
+            s_dXmatsHom[16] = static_cast<T>(s_temp[1]);
+            s_dXmatsHom[18] = static_cast<T>(s_temp[8]);
+            s_dXmatsHom[20] = static_cast<T>(s_temp[8]);
+            s_dXmatsHom[22] = static_cast<T>(-s_temp[1]);
             // dX_hom[2]
-            s_dXmatsHom[33] = static_cast<T>(-s_temp[2]);
+            s_dXmatsHom[32] = static_cast<T>(s_temp[2]);
             s_dXmatsHom[34] = static_cast<T>(s_temp[9]);
-            s_dXmatsHom[37] = static_cast<T>(-s_temp[9]);
+            s_dXmatsHom[36] = static_cast<T>(s_temp[9]);
             s_dXmatsHom[38] = static_cast<T>(-s_temp[2]);
             // dX_hom[3]
             s_dXmatsHom[48] = static_cast<T>(-s_temp[3]);
@@ -2527,19 +2521,19 @@ namespace grid {
             s_dXmatsHom[52] = static_cast<T>(-s_temp[10]);
             s_dXmatsHom[54] = static_cast<T>(-s_temp[3]);
             // dX_hom[4]
-            s_dXmatsHom[64] = static_cast<T>(-s_temp[4]);
-            s_dXmatsHom[66] = static_cast<T>(-s_temp[11]);
-            s_dXmatsHom[68] = static_cast<T>(-s_temp[11]);
-            s_dXmatsHom[70] = static_cast<T>(s_temp[4]);
+            s_dXmatsHom[64] = static_cast<T>(s_temp[4]);
+            s_dXmatsHom[66] = static_cast<T>(s_temp[11]);
+            s_dXmatsHom[68] = static_cast<T>(s_temp[11]);
+            s_dXmatsHom[70] = static_cast<T>(-s_temp[4]);
             // dX_hom[5]
-            s_dXmatsHom[80] = static_cast<T>(s_temp[12]);
-            s_dXmatsHom[82] = static_cast<T>(-s_temp[5]);
-            s_dXmatsHom[84] = static_cast<T>(-s_temp[5]);
-            s_dXmatsHom[86] = static_cast<T>(-s_temp[12]);
+            s_dXmatsHom[80] = static_cast<T>(-s_temp[5]);
+            s_dXmatsHom[82] = static_cast<T>(s_temp[12]);
+            s_dXmatsHom[84] = static_cast<T>(-s_temp[12]);
+            s_dXmatsHom[86] = static_cast<T>(-s_temp[5]);
             // dX_hom[6]
-            s_dXmatsHom[97] = static_cast<T>(-s_temp[6]);
+            s_dXmatsHom[96] = static_cast<T>(s_temp[6]);
             s_dXmatsHom[98] = static_cast<T>(s_temp[13]);
-            s_dXmatsHom[101] = static_cast<T>(-s_temp[13]);
+            s_dXmatsHom[100] = static_cast<T>(s_temp[13]);
             s_dXmatsHom[102] = static_cast<T>(-s_temp[6]);
             // d2X_hom[0]
             s_d2XmatsHom[0] = static_cast<T>(-s_temp[7]);
@@ -2547,14 +2541,14 @@ namespace grid {
             s_d2XmatsHom[4] = static_cast<T>(s_temp[0]);
             s_d2XmatsHom[5] = static_cast<T>(-s_temp[7]);
             // d2X_hom[1]
-            s_d2XmatsHom[16] = static_cast<T>(-s_temp[1]);
-            s_d2XmatsHom[18] = static_cast<T>(-s_temp[8]);
-            s_d2XmatsHom[20] = static_cast<T>(-s_temp[8]);
-            s_d2XmatsHom[22] = static_cast<T>(s_temp[1]);
+            s_d2XmatsHom[16] = static_cast<T>(s_temp[8]);
+            s_d2XmatsHom[18] = static_cast<T>(-s_temp[1]);
+            s_d2XmatsHom[20] = static_cast<T>(-s_temp[1]);
+            s_d2XmatsHom[22] = static_cast<T>(-s_temp[8]);
             // d2X_hom[2]
-            s_d2XmatsHom[33] = static_cast<T>(-s_temp[9]);
+            s_d2XmatsHom[32] = static_cast<T>(s_temp[9]);
             s_d2XmatsHom[34] = static_cast<T>(-s_temp[2]);
-            s_d2XmatsHom[37] = static_cast<T>(s_temp[2]);
+            s_d2XmatsHom[36] = static_cast<T>(-s_temp[2]);
             s_d2XmatsHom[38] = static_cast<T>(-s_temp[9]);
             // d2X_hom[3]
             s_d2XmatsHom[48] = static_cast<T>(-s_temp[10]);
@@ -2562,19 +2556,19 @@ namespace grid {
             s_d2XmatsHom[52] = static_cast<T>(s_temp[3]);
             s_d2XmatsHom[54] = static_cast<T>(-s_temp[10]);
             // d2X_hom[4]
-            s_d2XmatsHom[64] = static_cast<T>(-s_temp[11]);
-            s_d2XmatsHom[66] = static_cast<T>(s_temp[4]);
-            s_d2XmatsHom[68] = static_cast<T>(s_temp[4]);
-            s_d2XmatsHom[70] = static_cast<T>(s_temp[11]);
+            s_d2XmatsHom[64] = static_cast<T>(s_temp[11]);
+            s_d2XmatsHom[66] = static_cast<T>(-s_temp[4]);
+            s_d2XmatsHom[68] = static_cast<T>(-s_temp[4]);
+            s_d2XmatsHom[70] = static_cast<T>(-s_temp[11]);
             // d2X_hom[5]
-            s_d2XmatsHom[80] = static_cast<T>(-s_temp[5]);
-            s_d2XmatsHom[82] = static_cast<T>(-s_temp[12]);
-            s_d2XmatsHom[84] = static_cast<T>(-s_temp[12]);
-            s_d2XmatsHom[86] = static_cast<T>(s_temp[5]);
+            s_d2XmatsHom[80] = static_cast<T>(-s_temp[12]);
+            s_d2XmatsHom[82] = static_cast<T>(-s_temp[5]);
+            s_d2XmatsHom[84] = static_cast<T>(s_temp[5]);
+            s_d2XmatsHom[86] = static_cast<T>(-s_temp[12]);
             // d2X_hom[6]
-            s_d2XmatsHom[97] = static_cast<T>(-s_temp[13]);
+            s_d2XmatsHom[96] = static_cast<T>(s_temp[13]);
             s_d2XmatsHom[98] = static_cast<T>(-s_temp[6]);
-            s_d2XmatsHom[101] = static_cast<T>(s_temp[6]);
+            s_d2XmatsHom[100] = static_cast<T>(-s_temp[6]);
             s_d2XmatsHom[102] = static_cast<T>(-s_temp[13]);
         }
         __syncthreads();
@@ -3502,8 +3496,8 @@ namespace grid {
         // Forward Pass
         //
         // s_v, s_a where parent is base
-        //     joints are: A1
-        //     links are: L1
+        //     joints are: iiwa_joint_1
+        //     links are: iiwa_link_1
         // s_v[k] = S[k]*qd[k] and s_a[k] = X[k]*gravityS[k]*qdd[k]
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             int jid6 = 6*0;
@@ -3513,8 +3507,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3530,8 +3524,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3547,8 +3541,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3564,8 +3558,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3581,8 +3575,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3598,8 +3592,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3637,8 +3631,8 @@ namespace grid {
         // Backward Pass
         //
         // s_f update where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3648,8 +3642,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3659,8 +3653,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3670,8 +3664,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3681,8 +3675,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3692,8 +3686,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3734,8 +3728,8 @@ namespace grid {
         // Forward Pass
         //
         // s_v, s_a where parent is base
-        //     joints are: A1
-        //     links are: L1
+        //     joints are: iiwa_joint_1
+        //     links are: iiwa_link_1
         // s_v[k] = S[k]*qd[k] and s_a[k] = X[k]*gravity
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             int jid6 = 6*0;
@@ -3745,8 +3739,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3762,8 +3756,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3779,8 +3773,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3796,8 +3790,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3813,8 +3807,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3830,8 +3824,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3869,8 +3863,8 @@ namespace grid {
         // Backward Pass
         //
         // s_f update where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3880,8 +3874,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3891,8 +3885,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3902,8 +3896,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3913,8 +3907,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3924,8 +3918,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -3966,8 +3960,8 @@ namespace grid {
         // Forward Pass
         //
         // s_v, s_a where parent is base
-        //     joints are: A1
-        //     links are: L1
+        //     joints are: iiwa_joint_1
+        //     links are: iiwa_link_1
         // s_v[k] = S[k]*qd[k] and s_a[k] = X[k]*gravityS[k]*qdd[k]
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             int jid6 = 6*0;
@@ -3977,8 +3971,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -3994,8 +3988,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4011,8 +4005,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4028,8 +4022,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4045,8 +4039,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4062,8 +4056,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + S[k]*qdd[k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4101,8 +4095,8 @@ namespace grid {
         // Backward Pass
         //
         // s_f update where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4112,8 +4106,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4123,8 +4117,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4134,8 +4128,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4145,8 +4139,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4156,8 +4150,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4191,8 +4185,8 @@ namespace grid {
         // Forward Pass
         //
         // s_v, s_a where parent is base
-        //     joints are: A1
-        //     links are: L1
+        //     joints are: iiwa_joint_1
+        //     links are: iiwa_link_1
         // s_v[k] = S[k]*qd[k] and s_a[k] = X[k]*gravity
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             int jid6 = 6*0;
@@ -4202,8 +4196,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4219,8 +4213,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4236,8 +4230,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4253,8 +4247,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4270,8 +4264,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4287,8 +4281,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v and s_a where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k] and s_a[k] = X[k]*a[parent_k] + mxS[k](v[k])*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int comp = ind / 6; int comp_mod = comp % 1; int vFlag = comp == comp_mod;
@@ -4326,8 +4320,8 @@ namespace grid {
         // Backward Pass
         //
         // s_f update where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4337,8 +4331,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4348,8 +4342,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4359,8 +4353,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4370,8 +4364,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4381,8 +4375,8 @@ namespace grid {
         }
         __syncthreads();
         // s_f update where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // s_f[parent_k] += X[k]^T*f[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -4755,8 +4749,8 @@ namespace grid {
         // Backward Pass
         //
         // backward pass updates where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             s_temp[546 + 36 + row] = s_temp[294 + 6*36 + 6*2 + row];
@@ -4799,8 +4793,8 @@ namespace grid {
         }
         __syncthreads();
         // backward pass updates where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             s_temp[546 + 30 + row] = s_temp[294 + 6*30 + 6*2 + row];
@@ -4844,8 +4838,8 @@ namespace grid {
         }
         __syncthreads();
         // backward pass updates where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             s_temp[546 + 24 + row] = s_temp[294 + 6*24 + 6*2 + row];
@@ -4889,8 +4883,8 @@ namespace grid {
         }
         __syncthreads();
         // backward pass updates where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             s_temp[546 + 18 + row] = s_temp[294 + 6*18 + 6*2 + row];
@@ -4934,8 +4928,8 @@ namespace grid {
         }
         __syncthreads();
         // backward pass updates where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             s_temp[546 + 12 + row] = s_temp[294 + 6*12 + 6*2 + row];
@@ -4979,8 +4973,8 @@ namespace grid {
         }
         __syncthreads();
         // backward pass updates where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             s_temp[546 + 6 + row] = s_temp[294 + 6*6 + 6*2 + row];
@@ -5024,8 +5018,8 @@ namespace grid {
         }
         __syncthreads();
         // backward pass updates where bfs_level is 0
-        //     joints are: A1
-        //     links are: L1
+        //     joints are: iiwa_joint_1
+        //     links are: iiwa_link_1
         // U = IA*S, D = S^T*U, DInv = 1/D, Minv[i,i] = Dinv
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             s_temp[546 + 0 + row] = s_temp[294 + 6*0 + 6*2 + row];
@@ -5594,8 +5588,8 @@ namespace grid {
         // We start with dv/du noting that we only have values
         //    for ancestors and for the current index else 0
         // dv/du where bfs_level is 0
-        //     joints are: A1
-        //     links are: L1
+        //     joints are: iiwa_joint_1
+        //     links are: iiwa_link_1
         // when parent is base dv_dq = 0, dv_dqd = S
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int dq_flag = (ind / 6) == 0;
@@ -5604,8 +5598,8 @@ namespace grid {
         }
         __syncthreads();
         // dv/du where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // dv/du = Xmat*dv_parent/du + {Mx(Xv) or S for col ind}
         // first compute dv/du = Xmat*dv_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
@@ -5620,8 +5614,8 @@ namespace grid {
         }
         __syncthreads();
         // dv/du where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // dv/du = Xmat*dv_parent/du + {Mx(Xv) or S for col ind}
         // first compute dv/du = Xmat*dv_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 24; ind += blockDim.x*blockDim.y){
@@ -5638,8 +5632,8 @@ namespace grid {
         }
         __syncthreads();
         // dv/du where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // dv/du = Xmat*dv_parent/du + {Mx(Xv) or S for col ind}
         // first compute dv/du = Xmat*dv_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 36; ind += blockDim.x*blockDim.y){
@@ -5656,8 +5650,8 @@ namespace grid {
         }
         __syncthreads();
         // dv/du where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // dv/du = Xmat*dv_parent/du + {Mx(Xv) or S for col ind}
         // first compute dv/du = Xmat*dv_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 48; ind += blockDim.x*blockDim.y){
@@ -5674,8 +5668,8 @@ namespace grid {
         }
         __syncthreads();
         // dv/du where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // dv/du = Xmat*dv_parent/du + {Mx(Xv) or S for col ind}
         // first compute dv/du = Xmat*dv_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 60; ind += blockDim.x*blockDim.y){
@@ -5692,8 +5686,8 @@ namespace grid {
         }
         __syncthreads();
         // dv/du where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // dv/du = Xmat*dv_parent/du + {Mx(Xv) or S for col ind}
         // first compute dv/du = Xmat*dv_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 72; ind += blockDim.x*blockDim.y){
@@ -5728,8 +5722,8 @@ namespace grid {
         // Finish da/du with parent updates noting that we only have values
         //    for ancestors and for the current index and nothing for bfs 0
         // da/du where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // da/du += Xmat*da_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 12; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 1;
@@ -5740,8 +5734,8 @@ namespace grid {
         }
         __syncthreads();
         // da/du where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // da/du += Xmat*da_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 24; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 2;
@@ -5752,8 +5746,8 @@ namespace grid {
         }
         __syncthreads();
         // da/du where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // da/du += Xmat*da_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 36; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 3;
@@ -5764,8 +5758,8 @@ namespace grid {
         }
         __syncthreads();
         // da/du where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // da/du += Xmat*da_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 48; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 4;
@@ -5776,8 +5770,8 @@ namespace grid {
         }
         __syncthreads();
         // da/du where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // da/du += Xmat*da_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 60; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 5;
@@ -5788,8 +5782,8 @@ namespace grid {
         }
         __syncthreads();
         // da/du where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // da/du += Xmat*da_parent/du
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 72; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 6;
@@ -5850,8 +5844,8 @@ namespace grid {
         // BACKWARD Pass
         //
         // df/du update where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // df_lambda/du += X^T * df/du + {Xmx(f), 0}
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 84; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 7;
@@ -5865,8 +5859,8 @@ namespace grid {
         }
         __syncthreads();
         // df/du update where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // df_lambda/du += X^T * df/du + {Xmx(f), 0}
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 84; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 7;
@@ -5880,8 +5874,8 @@ namespace grid {
         }
         __syncthreads();
         // df/du update where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // df_lambda/du += X^T * df/du + {Xmx(f), 0}
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 84; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 7;
@@ -5895,8 +5889,8 @@ namespace grid {
         }
         __syncthreads();
         // df/du update where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // df_lambda/du += X^T * df/du + {Xmx(f), 0}
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 84; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 7;
@@ -5910,8 +5904,8 @@ namespace grid {
         }
         __syncthreads();
         // df/du update where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // df_lambda/du += X^T * df/du + {Xmx(f), 0}
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 84; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 7;
@@ -5925,8 +5919,8 @@ namespace grid {
         }
         __syncthreads();
         // df/du update where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // df_lambda/du += X^T * df/du + {Xmx(f), 0}
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 84; ind += blockDim.x*blockDim.y){
             int row = ind % 6; int col = ind / 6; int col_du = col % 7;
@@ -6676,8 +6670,8 @@ namespace grid {
         // Forward Pass
         //
         // s_v where parent is base
-        //     joints are: A1
-        //     links are: L1
+        //     joints are: iiwa_joint_1
+        //     links are: iiwa_link_1
         // s_v[k] = S[k]*qd[k]
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             int jid = 0;
@@ -6687,8 +6681,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -6699,8 +6693,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -6711,8 +6705,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -6723,8 +6717,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -6735,8 +6729,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -6747,8 +6741,8 @@ namespace grid {
         }
         __syncthreads();
         // s_v where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // s_v[k] = X[k]*v[parent_k] + S[k]*qd[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -6792,8 +6786,8 @@ namespace grid {
         // Backward Pass
         //
         // Backward pass where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // U[k] = IA[k]*S[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -6856,8 +6850,8 @@ namespace grid {
         }
         __syncthreads();
         // Backward pass where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // U[k] = IA[k]*S[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -6920,8 +6914,8 @@ namespace grid {
         }
         __syncthreads();
         // Backward pass where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // U[k] = IA[k]*S[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -6984,8 +6978,8 @@ namespace grid {
         }
         __syncthreads();
         // Backward pass where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // U[k] = IA[k]*S[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7048,8 +7042,8 @@ namespace grid {
         }
         __syncthreads();
         // Backward pass where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // U[k] = IA[k]*S[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7112,8 +7106,8 @@ namespace grid {
         }
         __syncthreads();
         // Backward pass where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // U[k] = IA[k]*S[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7176,8 +7170,8 @@ namespace grid {
         }
         __syncthreads();
         // Backward pass where bfs_level is 0
-        //     joints are: A1
-        //     links are: L1
+        //     joints are: iiwa_joint_1
+        //     links are: iiwa_link_1
         // U[k] = IA[k]*S[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7216,8 +7210,8 @@ namespace grid {
         // Second Forward Pass
         //
         // s_a, qdd where parent is base
-        //     joints are: A1
-        //     links are: L1
+        //     joints are: iiwa_joint_1
+        //     links are: iiwa_link_1
         // a[k] = X[k]*gravity_vec + c[k]
         for(int row = threadIdx.x + threadIdx.y*blockDim.x; row < 6; row += blockDim.x*blockDim.y){
             int jid = 0;
@@ -7244,8 +7238,8 @@ namespace grid {
         }
         __syncthreads();
         // s_a, s_qdd where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         // a[k] = X[k]*a[parent] + c[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7272,8 +7266,8 @@ namespace grid {
         }
         __syncthreads();
         // s_a, s_qdd where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         // a[k] = X[k]*a[parent] + c[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7300,8 +7294,8 @@ namespace grid {
         }
         __syncthreads();
         // s_a, s_qdd where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         // a[k] = X[k]*a[parent] + c[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7328,8 +7322,8 @@ namespace grid {
         }
         __syncthreads();
         // s_a, s_qdd where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         // a[k] = X[k]*a[parent] + c[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7356,8 +7350,8 @@ namespace grid {
         }
         __syncthreads();
         // s_a, s_qdd where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         // a[k] = X[k]*a[parent] + c[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7384,8 +7378,8 @@ namespace grid {
         }
         __syncthreads();
         // s_a, s_qdd where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         // a[k] = X[k]*a[parent] + c[k]
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 6; ind += blockDim.x*blockDim.y){
             int row = ind % 6;
@@ -7601,8 +7595,8 @@ namespace grid {
         // each bfs level runs in parallel
         //
         // pass updates where bfs_level is 6
-        //     joints are: A7
-        //     links are: L7
+        //     joints are: iiwa_joint_7
+        //     links are: iiwa_link_7
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 36; ind += blockDim.x*blockDim.y){
             int jid = 6 ;
             int row = ind % 6; int col = (ind / 6) % 6; int jid6 = jid * 6;
@@ -7618,8 +7612,8 @@ namespace grid {
         }
         __syncthreads();
         // pass updates where bfs_level is 5
-        //     joints are: A6
-        //     links are: L6
+        //     joints are: iiwa_joint_6
+        //     links are: iiwa_link_6
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 36; ind += blockDim.x*blockDim.y){
             int jid = 5 ;
             int row = ind % 6; int col = (ind / 6) % 6; int jid6 = jid * 6;
@@ -7635,8 +7629,8 @@ namespace grid {
         }
         __syncthreads();
         // pass updates where bfs_level is 4
-        //     joints are: A5
-        //     links are: L5
+        //     joints are: iiwa_joint_5
+        //     links are: iiwa_link_5
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 36; ind += blockDim.x*blockDim.y){
             int jid = 4 ;
             int row = ind % 6; int col = (ind / 6) % 6; int jid6 = jid * 6;
@@ -7652,8 +7646,8 @@ namespace grid {
         }
         __syncthreads();
         // pass updates where bfs_level is 3
-        //     joints are: A4
-        //     links are: L4
+        //     joints are: iiwa_joint_4
+        //     links are: iiwa_link_4
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 36; ind += blockDim.x*blockDim.y){
             int jid = 3 ;
             int row = ind % 6; int col = (ind / 6) % 6; int jid6 = jid * 6;
@@ -7669,8 +7663,8 @@ namespace grid {
         }
         __syncthreads();
         // pass updates where bfs_level is 2
-        //     joints are: A3
-        //     links are: L3
+        //     joints are: iiwa_joint_3
+        //     links are: iiwa_link_3
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 36; ind += blockDim.x*blockDim.y){
             int jid = 2 ;
             int row = ind % 6; int col = (ind / 6) % 6; int jid6 = jid * 6;
@@ -7686,8 +7680,8 @@ namespace grid {
         }
         __syncthreads();
         // pass updates where bfs_level is 1
-        //     joints are: A2
-        //     links are: L2
+        //     joints are: iiwa_joint_2
+        //     links are: iiwa_link_2
         for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 36; ind += blockDim.x*blockDim.y){
             int jid = 1 ;
             int row = ind % 6; int col = (ind / 6) % 6; int jid6 = jid * 6;

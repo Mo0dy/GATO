@@ -17,9 +17,12 @@
     convexhull="true" />
   </mujoco>
 
-
-
-
+  <!--joint between WORLD and BASE-->
+  <joint name="base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
   <joint name="joint1" type="revolute">
     <parent link="base_link" />
     <child link="link1" />
@@ -74,6 +77,9 @@
     <child link="flange" />
     <origin rpy="0.0 0.0 -3.141592653589793" xyz="0.0 0.0 0.124" />
   </joint>
+
+  <!-- Fix to world just for testing -->
+  <link name="world"/>
 
   <link name="base_link">
     <inertial>

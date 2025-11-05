@@ -22,18 +22,18 @@ from bsqp.config import (
     PICKPLACE_SOLVER_PARAMS
 )
 
-# def ee_pos(model, q):
-#     data = model.createData()
-#     pin.forwardKinematics(model, data, q)
-#     return data.oMi[model.njoints - 1].translation
-
 def ee_pos(model, q):
-    """Get end-effector position using RobotWrapper."""
     data = model.createData()
     pin.forwardKinematics(model, data, q)
-    jid_ee_pin = model.getFrameId("EE")  # End-effector Reference Frame
-    jid_eep_pin = model.frames[jid_ee_pin].parentJoint
-    return data.oMi[jid_eep_pin].translation
+    return data.oMi[model.njoints - 1].translation
+
+# def ee_pos(model, q):
+#     """Get end-effector position using RobotWrapper."""
+#     data = model.createData()
+#     pin.forwardKinematics(model, data, q)
+#     jid_ee_pin = model.getFrameId("EE")  # End-effector Reference Frame
+#     jid_eep_pin = model.frames[jid_ee_pin].parentJoint
+#     return data.oMi[jid_eep_pin].translation
 
 def rk4(model, q, dq, u, dt, fext=None):
     """

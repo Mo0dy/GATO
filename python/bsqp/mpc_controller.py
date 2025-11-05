@@ -664,6 +664,8 @@ class MPC_GATO:
         self.update_force_batch(q[:self.nq_robot] if self.has_pendulum else q)
         XU_batch, _ = self.solver.solve(x_curr_batch, ee_g_batch, XU_batch)
         XU_best = XU_batch[0, :]
+
+        XU_best[self.nx:self.nx+self.nu] += np.ones(self.nu)*1e-3 # Avoid zero control
         
         print(f"\nRunning MPC: N={self.N}, batch={self.batch_size}, {len(goals)} goals")
         if self.has_pendulum:
@@ -678,7 +680,7 @@ class MPC_GATO:
             
             # Store state for force estimation
             x_last = x_curr
-            u_last = XU_best[self.nx:self.nx+self.nu]
+            u_last = XU_best[self.nx:self.nx+self.nu] 
             
             # Simulate forward with current control
             timestep = solve_time
@@ -725,6 +727,11 @@ class MPC_GATO:
             q_robot = q[:self.nq_robot] if self.has_pendulum else q
             dq_robot = dq[:self.nv_robot] if self.has_pendulum else dq
             x_curr = np.concatenate([q_robot, dq_robot])
+
+            # Print flag if nan encountered
+            if np.any(np.isnan(x_curr)):
+                print("NaN encountered in state, stopping simulation.")
+                break
             
             # Check goal reached or timeout
             ee_pos = self.solver.ee_pos(q_robot)

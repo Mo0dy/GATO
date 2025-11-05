@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include "flexiv_rizon4s_grid.cuh"
-// #include "flexiv_rizon4s_fext.cuh"
+#include "flexiv_rizon4s_fext.cuh"
 #include "settings.h"
 #include "utils/linalg.cuh"
 // #include <random>
@@ -157,26 +157,26 @@ namespace plant {
         template<typename T>
         __device__ void forwardDynamics(T* s_qdd, T* s_q, T* s_qd, T* s_u, T* s_XITemp, void* d_dynMem_const)
         {
-                __shared__ int s_topology_helpers[7];
+
                 T* s_XImats = s_XITemp;
                 T* s_temp = &s_XITemp[1008];
-                grid::load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, (grid::robotModel<T>*)d_dynMem_const, s_temp);
+                grid::load_update_XImats_helpers<T>(s_XImats, s_q, (grid::robotModel<T>*)d_dynMem_const, s_temp);
                 __syncthreads();
 
-                grid::forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_topology_helpers, s_temp, gato::plant::GRAVITY<T>(), nullptr);
+                grid::forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_temp, gato::plant::GRAVITY<T>());
         }
 
         // Add external wrench
         template<typename T>
         __device__ void forwardDynamics(T* s_qdd, T* s_q, T* s_qd, T* s_u, T* s_XITemp, void* d_dynMem_const, T* d_f_ext)
         {
-                __shared__ int s_topology_helpers[7];
+
                 T* s_XImats = s_XITemp;
                 T* s_temp = &s_XITemp[1008];
-                grid::load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, (grid::robotModel<T>*)d_dynMem_const, s_temp);
+                grid::load_update_XImats_helpers<T>(s_XImats, s_q, (grid::robotModel<T>*)d_dynMem_const, s_temp);
                 __syncthreads();
 
-                grid::forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_topology_helpers, s_temp, gato::plant::GRAVITY<T>(), d_f_ext);
+                grid::forward_dynamics_inner<T>(s_qdd, s_q, s_qd, s_u, s_XImats, s_temp, gato::plant::GRAVITY<T>(), d_f_ext);
         }
 
         __host__ __device__ constexpr unsigned forwardDynamics_TempMemSize_Shared()
@@ -187,7 +187,6 @@ namespace plant {
         template<typename T, bool INCLUDE_DU = true>
         __device__ void forwardDynamicsAndGradient(T* s_df_du, T* s_qdd, const T* s_q, const T* s_qd, const T* s_u, T* s_temp_in, void* d_dynMem_const)
         {
-                __shared__ int s_topology_helpers[7];
                 T*                   s_XITemp = s_temp_in;
                 grid::robotModel<T>* d_robotModel = (grid::robotModel<T>*)d_dynMem_const;
 
@@ -196,14 +195,14 @@ namespace plant {
                 T* s_dc_du = &s_vaf[126];
                 T* s_Minv = &s_dc_du[98];
                 T* s_temp = &s_Minv[49];
-                grid::load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
+                grid::load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
                 // TODO: there is a slightly faster way as s_v does not change -- thus no recompute needed
-                grid::direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
+                grid::direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
                 T* s_c = s_temp;
-                grid::inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, &s_temp[6], GRAVITY<T>(), nullptr);
+                grid::inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, &s_temp[6], GRAVITY<T>());
                 grid::forward_dynamics_finish<T>(s_qdd, s_u, s_c, s_Minv);
-                grid::inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, GRAVITY<T>(), nullptr);
-                grid::inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, GRAVITY<T>());
+                grid::inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, GRAVITY<T>());
+                grid::inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, GRAVITY<T>());
 
                 for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
                         int row = ind % 7; 
@@ -230,7 +229,6 @@ namespace plant {
         template<typename T, bool INCLUDE_DU = true>
         __device__ void forwardDynamicsAndGradient(T* s_df_du, T* s_qdd, const T* s_q, const T* s_qd, const T* s_u, T* s_temp_in, void* d_dynMem_const, T* d_f_ext)
         {
-                __shared__ int s_topology_helpers[7];
                 T*                   s_XITemp = s_temp_in;
                 grid::robotModel<T>* d_robotModel = (grid::robotModel<T>*)d_dynMem_const;
 
@@ -239,14 +237,14 @@ namespace plant {
                 T* s_dc_du = &s_vaf[126];
                 T* s_Minv = &s_dc_du[98];
                 T* s_temp = &s_Minv[49];
-                grid::load_update_XImats_helpers<T>(s_XImats, s_q, s_topology_helpers, d_robotModel, s_temp);
+                grid::load_update_XImats_helpers<T>(s_XImats, s_q, d_robotModel, s_temp);
                 // TODO: there is a slightly faster way as s_v does not change -- thus no recompute needed
-                grid::direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_topology_helpers, s_temp);
+                grid::direct_minv_inner<T>(s_Minv, s_q, s_XImats, s_temp);
                 T* s_c = s_temp;
-                grid::inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, s_topology_helpers, &s_temp[6], GRAVITY<T>(), d_f_ext);
+                grid::inverse_dynamics_inner<T>(s_c, s_vaf, s_q, s_qd, s_XImats, &s_temp[6], GRAVITY<T>(), d_f_ext);
                 grid::forward_dynamics_finish<T>(s_qdd, s_u, s_c, s_Minv);
-                grid::inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_topology_helpers, s_temp, GRAVITY<T>(), d_f_ext);
-                grid::inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_topology_helpers, s_temp, GRAVITY<T>());
+                grid::inverse_dynamics_inner_vaf<T>(s_vaf, s_q, s_qd, s_qdd, s_XImats, s_temp, GRAVITY<T>(), d_f_ext);
+                grid::inverse_dynamics_gradient_inner<T>(s_dc_du, s_q, s_qd, s_vaf, s_XImats, s_temp, GRAVITY<T>());
 
                 for(int ind = threadIdx.x + threadIdx.y*blockDim.x; ind < 98; ind += blockDim.x*blockDim.y){
                         int row = ind % 7; 
@@ -297,7 +295,7 @@ namespace plant {
                 T* s_eePos_cost = s_cost_vec + threadsNeeded + 3;
                 T* s_scratch = s_eePos_cost + 6;
 
-                grid::end_effector_pose_device<T>(s_eePos_cost, s_xu, d_robotModel);
+                grid::end_effector_pose_device<T>(s_eePos_cost, s_xu, s_scratch, d_robotModel);
 
                 for (int i = threadIdx.x; i < threadsNeeded; i += blockDim.x) {
                         if (i < state_size / 2) {
@@ -362,8 +360,8 @@ namespace plant {
 
                 const uint32_t threads_needed = grid::NX + grid::NU * computeR;
 
-                grid::end_effector_pose_device<T>(s_eePos, s_xu, (grid::robotModel<T>*)d_robotModel);
-                grid::end_effector_pose_gradient_device<T>(s_eePos_grad, s_xu, (grid::robotModel<T>*)d_robotModel);
+                grid::end_effector_pose_device<T>(s_eePos, s_xu, s_scratch, (grid::robotModel<T>*)d_robotModel);
+                grid::end_effector_pose_gradient_device<T>(s_eePos_grad, s_xu, s_scratch, (grid::robotModel<T>*)d_robotModel);
 
                 // Gradient (qk, rk)
                 for (int i = threadIdx.x; i < threads_needed; i += blockDim.x) {
