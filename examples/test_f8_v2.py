@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d import Axes3D
 sys.path.append('./python/bsqp')
 sys.path.append('./python')
 
-from bsqp.mpc_controller_m import MPC_GATO
+from bsqp.mpc_controller_m3 import MPC_GATO
 from bsqp.common import figure8, rk4
 from bsqp.config import (
     EXPERIMENT_BATCH_SIZES,
@@ -92,10 +92,18 @@ for batch_size in config['batch_sizes']:
         constant_f_ext=config['f_ext'],
         track_full_stats=True
     )
+    
+    # _, stats = mpc.run_mpc_fig8(
+    #     x_start=x_start,
+    #     fig8_traj=fig8_traj,
+    #     sim_dt=config['sim_dt'],
+    #     sim_time=config['sim_time']
+    # )
+    
     # Initialize MPC
     stats, x_curr, ee_g = mpc.init_mpc_fig8(x_start, fig8_traj)
     
-    # Warm start
+    # # Warm start
     XU_best, XU_batch, ee_g_batch = mpc.warm_start_mpc_fig8(x_curr, ee_g)
     
     # Initialize simulation state
@@ -104,11 +112,24 @@ for batch_size in config['batch_sizes']:
     q = x_start[:mpc.nq]
     dq = x_start[mpc.nq:mpc.nx]
     
-    # Main control loop
-    mpc_flag = True
-    solve_time = mpc.dt
+    # # Main control loop
+    # _, stats = mpc.run_mpc_fig8(
+    #     x_curr,
+    #     ee_g,
+    #     ee_g_batch,
+    #     XU_best,
+    #     XU_batch,
+    #     fig8_traj,
+    #     stats,
+    #     sim_dt=config['sim_dt'],
+    #     sim_time=config['sim_time']
+    # )
     
-    while mpc_flag and total_sim_time < config['sim_time']:
+    # mpc_flag = True
+    solve_time = mpc.dt
+    sim_dt = config['sim_dt']
+    
+    while total_sim_time < config['sim_time']:
         # Store state for force estimation
         x_last = x_curr
         u_last = XU_best[mpc.nx:mpc.nx + mpc.nu]
@@ -138,24 +159,68 @@ for batch_size in config['batch_sizes']:
                 total_sim_time += config['sim_dt']
         
         x_curr = np.concatenate([q, dq])
-        
-        # Run single MPC step
-        XU_best, mpc_flag = mpc.srun_mpc_fig8(
-            x_last,
-            u_last,
-            x_curr,
-            XU_batch,
-            ee_g_batch,
-            total_sim_time,
-            fig8_traj,
-            stats
-        )
-        
-        if not mpc_flag:
+
+        # Check if trajectory is complete
+        eepos_offset = int(total_sim_time / mpc.dt)
+        if eepos_offset >= len(fig8_traj)/6 - 6*mpc.N:
+            print("Trajectory complete.")
             break
+                
+        # Prepare next optimization
+        x_curr_batch = np.tile(x_curr, (mpc.batch_size, 1))
+        ee_g = fig8_traj[6*eepos_offset:6*(eepos_offset+mpc.N)]
+        ee_g_batch[:, :] = ee_g
+        XU_batch[:, :mpc.nx] = x_curr
+            
+        # Update forces and solve
+        mpc.update_force_batch(q)
+        mpc.solver.reset_rho()
+
+        # Run single MPC step
+        # XU_best, mpc_flag = mpc.srun_mpc_fig8(
+        #     x_last,
+        #     u_last,
+        #     x_curr,
+        #     XU_batch,
+        #     ee_g_batch,
+        #     total_sim_time,
+        #     fig8_traj,
+        #     stats
+        # )
+        XU_batch_new, solve_time, gpu_solve_time = mpc.run_mpc_fig8(
+            x_curr_batch,
+            ee_g_batch,
+            XU_batch)
         
-        solve_time = mpc.dt  # Could track actual solve time if needed
-    
+        # Select best trajectory
+        best_id = mpc.evaluate_best_trajectory(
+            x_last, 
+            u_last, 
+            x_curr, 
+            max(sim_dt, round(mpc.dt / sim_dt) * sim_dt))
+        XU_best = XU_batch_new[best_id, :]
+        XU_batch[:, :] = XU_best
+
+        # Collect essential statistics
+        ee_pos = mpc.solver.ee_pos(q)
+        goal_dist = np.linalg.norm(ee_pos[:3] - ee_g[6:9])
+        
+        stats['timestamps'].append(total_sim_time)
+        stats['solve_times'].append(gpu_solve_time/1000.0)  # Convert to ms
+        stats['goal_distances'].append(goal_dist)
+        stats['ee_actual'].append(ee_pos.copy())
+        stats['joint_positions'].append(q.copy())
+        stats['joint_velocities'].append(dq.copy())
+
+        if mpc.track_full_stats:
+            solver_stats = mpc.solver.get_stats()
+            # Get first element from batch for sqp_iters
+            sqp_iters = solver_stats['sqp_iters']
+            if isinstance(sqp_iters, np.ndarray):
+                stats['sqp_iters'].append(int(sqp_iters[0]))
+            else:
+                stats['sqp_iters'].append(int(sqp_iters))
+     
     # Convert to numpy arrays
     for key in stats:
         if stats[key]:

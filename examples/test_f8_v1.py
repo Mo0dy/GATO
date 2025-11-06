@@ -113,6 +113,8 @@ for batch_size in config['batch_sizes']:
                          XU_best=ws_XU_best,
                          ee_g=ee_g,
                          ee_g_batch=ee_g_batch,
+                         solve_time=mpc.dt,
+                         accumulated_time=0.0,
                          total_sim_time=0.0,
                          current_goal_idx=0,
                          goal_start_time=0.0

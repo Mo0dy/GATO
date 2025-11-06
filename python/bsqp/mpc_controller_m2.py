@@ -23,6 +23,8 @@ class MPCState:
     XU_batch: np.ndarray
     ee_g: np.ndarray
     ee_g_batch: np.ndarray
+    solve_time: float
+    accumulated_time: float
     total_sim_time: float
     current_goal_idx: int
     goal_start_time: float
@@ -312,7 +314,7 @@ class MPC_GATO:
         
         """
         # Simulate forward with current control
-        timestep = self.dt
+        timestep = state.solve_time
         nsteps = int(timestep/sim_dt)
 
         q = state.x_curr[:self.nq]
@@ -327,9 +329,9 @@ class MPC_GATO:
 
         # Handle residual time
         if timestep % sim_dt > 1e-5:
-            accumulated_time += timestep % sim_dt
-            if accumulated_time >= sim_dt:
-                accumulated_time = 0.0
+            state.accumulated_time += timestep % sim_dt
+            if state.accumulated_time >= sim_dt:
+                state.accumulated_time = 0.0
                 offset = int(nsteps/(self.dt/sim_dt))
                 u_idx = self.nx + (self.nx+self.nu)*min(offset, self.N-1)
                 u = state.XU_best[u_idx:u_idx+self.nu]
@@ -354,10 +356,12 @@ class MPC_GATO:
         self.update_force_batch(q)
         self.solver.reset_rho()
 
+        start = time.time()
         XU_batch_new, gpu_solve_time = self.solver.solve(
             x_curr_batch, 
             state.ee_g_batch, 
             state.XU_batch)
+        state.solve_time = time.time() - start
 
         # Select best trajectory
         best_id = self.evaluate_best_trajectory(

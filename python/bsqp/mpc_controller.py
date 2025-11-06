@@ -565,7 +565,11 @@ class MPC_GATO:
         solve_time = time.time() - start
         
         # Select best trajectory
-        best_id = self.evaluate_best_trajectory(x_last, u_last, x_curr, max(sim_dt, round(timestep / sim_dt) * sim_dt))
+        best_id = self.evaluate_best_trajectory(
+            x_last, 
+            u_last, 
+            x_curr, 
+            max(sim_dt, round(timestep / sim_dt) * sim_dt))
         XU_best = XU_batch_new[best_id, :]
         XU_batch[:, :] = XU_best
 
