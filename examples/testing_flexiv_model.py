@@ -14,13 +14,13 @@ from pinocchio.robot_wrapper import RobotWrapper
 sys.path.append('./python/bsqp')
 sys.path.append('./python')
 
-from bsqp.mpc_controller import MPC_GATO
-from bsqp.config import (
-    PICKPLACE_DEFAULT_GOALS, 
-    PENDULUM_DEFAULT_PARAMS, 
-    FLEXIV_RIZON_4S_START_CONFIGS, 
-    PICKPLACE_SOLVER_PARAMS
-)
+# from bsqp.mpc_controller import MPC_GATO
+# from bsqp.config import (
+#     PICKPLACE_DEFAULT_GOALS, 
+#     PENDULUM_DEFAULT_PARAMS, 
+#     FLEXIV_RIZON_4S_START_CONFIGS, 
+#     PICKPLACE_SOLVER_PARAMS
+# )
 
 # def ee_pos(model, q):
 #     data = model.createData()
@@ -94,7 +94,7 @@ np.set_printoptions(linewidth=200)
 np.random.seed(42)
 
 #  Robot model
-urdf_path = "flexiv_description/flexiv_rizon4s_kinematics_zaxis.urdf"
+urdf_path = "flexiv_description/flexiv_rizon4s_kinematics.urdf"
 model_dir = "flexiv_description/"
 robot = RobotWrapper.BuildFromURDF(urdf_path, model_dir)
 
@@ -103,23 +103,11 @@ N = 16
 dt = 0.1
 sim_dt = 0.001
 
-# Goals (can use default or customize)
-goals = PICKPLACE_DEFAULT_GOALS
-total_time = len(goals) * 5.0
-
-# Starting configuration
-x_start = np.hstack((FLEXIV_RIZON_4S_START_CONFIGS['home'], np.zeros(7)))
-
-# Pendulum configuration
-pendulum_config = PENDULUM_DEFAULT_PARAMS.copy()
-print(f"Robot: Flexiv Rizon 4s (7-DOF)")
-print(f"Goals: {len(goals)}")
-print(f"MPC: N={N}, dt={dt}s")
-print(f"Pendulum: mass={pendulum_config['mass']}kg, length={pendulum_config['length']}m")
-
 nq = robot.nq
 nv = robot.nv
 # 
+q0 = [0.0, -0.698, 0.000, 1.571, -0.000, 0.698, -0.000]
+x_start = np.hstack((q0, np.zeros(nv)))
 q = x_start[:nq]
 dq = x_start[nq:]
 # 
