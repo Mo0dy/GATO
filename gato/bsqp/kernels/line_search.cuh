@@ -98,12 +98,12 @@ __global__ void lineSearchAndUpdateBatchedKernel(T* d_xu_traj_batch, T* d_dz_bat
 }
 
 template<typename T, uint32_t BatchSize, uint32_t NumAlphas>
-__host__ void lineSearchAndUpdateBatched(T* d_xu_traj_batch, T* d_dz_batch, T* d_merit_batch, T* d_merit_initial_batch, T* d_step_size_batch, T* d_rho_penalty_batch, T* d_drho_batch, int adapt_rho)
+__host__ void lineSearchAndUpdateBatched(T* d_xu_traj_batch, T* d_dz_batch, T* d_merit_batch, T* d_merit_initial_batch, T* d_step_size_batch, T* d_rho_penalty_batch, T* d_drho_batch, int adapt_rho, cudaStream_t stream)
 {
         dim3   grid(BatchSize);
         dim3   thread_block(LINE_SEARCH_THREADS);
         size_t s_mem_size = sizeof(T) * NumAlphas + sizeof(uint32_t) * NumAlphas;
 
         lineSearchAndUpdateBatchedKernel<T, BatchSize, NumAlphas>
-            <<<grid, thread_block, s_mem_size>>>(d_xu_traj_batch, d_dz_batch, d_merit_batch, d_merit_initial_batch, d_step_size_batch, d_rho_penalty_batch, d_drho_batch, adapt_rho);
+            <<<grid, thread_block, s_mem_size, stream>>>(d_xu_traj_batch, d_dz_batch, d_merit_batch, d_merit_initial_batch, d_step_size_batch, d_rho_penalty_batch, d_drho_batch, adapt_rho);
 }

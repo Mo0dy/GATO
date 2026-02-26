@@ -69,13 +69,14 @@ void simForwardBatched(
     T *d_uk,
     void *d_GRiD_mem,
     T *d_f_ext_batch,
-    T dt
+    T dt,
+    cudaStream_t stream
 ) {
     dim3 grid(1, BatchSize);
     dim3 block(SIM_FORWARD_THREADS);
     size_t s_mem_size = getSimForwardBatchedKernelSMemSize<T>();
 
-    simForwardBatchedKernel<T, BatchSize><<<grid, block, s_mem_size>>>(
+    simForwardBatchedKernel<T, BatchSize><<<grid, block, s_mem_size, stream>>>(
         d_xkp1_batch,
         d_xk,
         d_uk,

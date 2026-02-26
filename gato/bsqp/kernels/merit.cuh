@@ -114,15 +114,16 @@ __host__ void computeMeritBatched(T*                          d_merit_batch,
                                   T                           N_cost,
                                   T                           q_lim_cost,
                                   T                           vel_lim_cost,
-                                  T                           ctrl_lim_cost)
+                                  T                           ctrl_lim_cost,
+                                  cudaStream_t                stream)
 {
         dim3   grid(KNOT_POINTS, BatchSize, NumAlphas);
         dim3   thread_block(grid::SUGGESTED_THREADS);
         size_t s_mem_size = getComputeMeritBatchedSMemSize<T>();
 
-        gpuErrchk(cudaMemset(d_merit_batch, 0, BatchSize * NumAlphas * sizeof(T)));
+        gpuErrchk(cudaMemsetAsync(d_merit_batch, 0, BatchSize * NumAlphas * sizeof(T), stream));
 
-        computeMeritBatchedKernel<T, BatchSize><<<grid, thread_block, s_mem_size>>>(d_merit_batch,
+        computeMeritBatchedKernel<T, BatchSize><<<grid, thread_block, s_mem_size, stream>>>(d_merit_batch,
                                                                                     d_dz_batch,
                                                                                     d_xu_traj_batch,
                                                                                     inputs.d_x_s_batch,

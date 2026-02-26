@@ -26,6 +26,7 @@ class BSQP {
               q_cost_(1.0), qd_cost_(1e-3), u_cost_(1e-6), N_cost_(50.0), q_lim_cost_(1e-3), vel_lim_cost_(0.0), ctrl_lim_cost_(0.0), 
               rho_(1e-3), adapt_rho_(true)
         {
+                gpuErrchk(cudaStreamCreate(&stream_));
                 allocateMemory();
                 for (uint32_t i = 0; i < BatchSize; i++) {
                         h_drho_batch_init_[i] = static_cast<T>(1.0);
@@ -44,6 +45,7 @@ class BSQP {
             : dt_(dt), max_sqp_iters_(max_sqp_iters), kkt_tol_(kkt_tol), max_pcg_iters_(max_pcg_iters), pcg_tol_(pcg_tol), solve_ratio_(solve_ratio), mu_(mu), q_cost_(q_cost), qd_cost_(qd_cost),
               u_cost_(u_cost), N_cost_(N_cost), q_lim_cost_(q_lim_cost), vel_lim_cost_(vel_lim_cost), ctrl_lim_cost_(ctrl_lim_cost), rho_(rho), adapt_rho_(true)
         {
+                gpuErrchk(cudaStreamCreate(&stream_));
                 allocateMemory();
                 for (uint32_t i = 0; i < BatchSize; i++) {
                         h_drho_batch_init_[i] = static_cast<T>(1.0);
@@ -58,7 +60,7 @@ class BSQP {
                 gpuErrchk(cudaDeviceSynchronize());
         }
 
-        ~BSQP() { freeMemory(); }
+        ~BSQP() { freeMemory(); gpuErrchk(cudaStreamDestroy(stream_)); }
 
         void set_f_ext_batch(T* h_f_ext_batch) { gpuErrchk(cudaMemcpy(d_f_ext_batch_, h_f_ext_batch, 6 * BatchSize * sizeof(T), cudaMemcpyHostToDevice)); }
 
@@ -88,7 +90,7 @@ class BSQP {
 
         void set_rho_adaptation(bool enabled) { adapt_rho_ = enabled; }
 
-        void sim_forward(T* d_xkp1_batch, T* d_xk, T* d_uk, T dt) { simForwardBatched<T, BatchSize>(d_xkp1_batch, d_xk, d_uk, d_GRiD_mem_, d_f_ext_batch_, dt); }
+        void sim_forward(T* d_xkp1_batch, T* d_xk, T* d_uk, T dt) { simForwardBatched<T, BatchSize>(d_xkp1_batch, d_xk, d_uk, d_GRiD_mem_, d_f_ext_batch_, dt, stream_); }
 
         void copy_final_merit_to_host(T* h_out)
         {
@@ -109,32 +111,32 @@ class BSQP {
                 auto sqp_start_time = std::chrono::high_resolution_clock::now();
 
                 // set d_dz_batch_ to zero
-                gpuErrchk(cudaMemset(d_dz_batch_, 0, TRAJ_SIZE * BatchSize * sizeof(T)));
-                gpuErrchk(cudaMemset(d_pcg_iterations_, 0, sizeof(uint32_t) * BatchSize));
-                gpuErrchk(cudaMemset(d_kkt_converged_batch_, 0, sizeof(int32_t) * BatchSize));
+                gpuErrchk(cudaMemsetAsync(d_dz_batch_, 0, TRAJ_SIZE * BatchSize * sizeof(T), stream_));
+                gpuErrchk(cudaMemsetAsync(d_pcg_iterations_, 0, sizeof(uint32_t) * BatchSize, stream_));
+                gpuErrchk(cudaMemsetAsync(d_kkt_converged_batch_, 0, sizeof(int32_t) * BatchSize, stream_));
 
                 computeMeritBatched<T, BatchSize, 1>(
-                    d_merit_initial_batch_, d_dz_batch_, d_xu_traj_batch, d_f_ext_batch_, inputs, d_mu_batch_, d_GRiD_mem_, q_cost_, qd_cost_, u_cost_, N_cost_, q_lim_cost_, vel_lim_cost_, ctrl_lim_cost_);
-                gpuErrchk(cudaMemcpy(d_merit_initial0_batch_, d_merit_initial_batch_, BatchSize * sizeof(T), cudaMemcpyDeviceToDevice));
+                    d_merit_initial_batch_, d_dz_batch_, d_xu_traj_batch, d_f_ext_batch_, inputs, d_mu_batch_, d_GRiD_mem_, q_cost_, qd_cost_, u_cost_, N_cost_, q_lim_cost_, vel_lim_cost_, ctrl_lim_cost_, stream_);
+                gpuErrchk(cudaMemcpyAsync(d_merit_initial0_batch_, d_merit_initial_batch_, BatchSize * sizeof(T), cudaMemcpyDeviceToDevice, stream_));
 
                 // SQP Loop
                 for (uint32_t i = 0; i < max_sqp_iters_; i++) {
-                        setupKKTSystemBatched<T, BatchSize>(kkt_system_batch_, inputs, d_xu_traj_batch, d_f_ext_batch_, d_GRiD_mem_, q_cost_, qd_cost_, u_cost_, N_cost_, q_lim_cost_, vel_lim_cost_, ctrl_lim_cost_);
-                        formSchurSystemBatched<T, BatchSize>(schur_system_batch_, kkt_system_batch_, d_rho_penalty_batch_);
+                        setupKKTSystemBatched<T, BatchSize>(kkt_system_batch_, inputs, d_xu_traj_batch, d_f_ext_batch_, d_GRiD_mem_, q_cost_, qd_cost_, u_cost_, N_cost_, q_lim_cost_, vel_lim_cost_, ctrl_lim_cost_, stream_);
+                        formSchurSystemBatched<T, BatchSize>(schur_system_batch_, kkt_system_batch_, d_rho_penalty_batch_, stream_);
 
                         // gpuErrchk(cudaEventRecord(pcg_start_event_));
-                        solvePCGBatched<T, BatchSize>(d_lambda_batch_, schur_system_batch_, d_pcg_tol_batch_, max_pcg_iters_, d_kkt_converged_batch_, d_pcg_iterations_);
+                        solvePCGBatched<T, BatchSize>(d_lambda_batch_, schur_system_batch_, d_pcg_tol_batch_, max_pcg_iters_, d_kkt_converged_batch_, d_pcg_iterations_, stream_);
                         // gpuErrchk(cudaEventRecord(pcg_stop_event_));
                         // gpuErrchk(cudaEventSynchronize(pcg_stop_event_));
 
-                        computeDzBatched<T, BatchSize>(d_dz_batch_, d_lambda_batch_, kkt_system_batch_);
+                        computeDzBatched<T, BatchSize>(d_dz_batch_, d_lambda_batch_, kkt_system_batch_, stream_);
 
                         // d_q_batch, d_r_batch contain the KKT residuals after computeDzBatched
-                        gpuErrchk(cudaMemcpyAsync(h_q_batch_, kkt_system_batch_.d_q_batch, STATE_P_KNOTS * BatchSize * sizeof(T), cudaMemcpyDeviceToHost));
-                        gpuErrchk(cudaMemcpyAsync(h_c_batch_, kkt_system_batch_.d_c_batch, STATE_P_KNOTS * BatchSize * sizeof(T), cudaMemcpyDeviceToHost));
+                        gpuErrchk(cudaMemcpyAsync(h_q_batch_, kkt_system_batch_.d_q_batch, STATE_P_KNOTS * BatchSize * sizeof(T), cudaMemcpyDeviceToHost, stream_));
+                        gpuErrchk(cudaMemcpyAsync(h_c_batch_, kkt_system_batch_.d_c_batch, STATE_P_KNOTS * BatchSize * sizeof(T), cudaMemcpyDeviceToHost, stream_));
                         // gpuErrchk(cudaMemcpy(h_r_batch_, kkt_system_batch_.d_r_batch, CONTROL_P_KNOTS * BatchSize * sizeof(T), cudaMemcpyDeviceToHost));
 
-                        gpuErrchk(cudaMemcpyAsync(pcg_stats.num_iterations.data(), d_pcg_iterations_, sizeof(uint32_t) * BatchSize, cudaMemcpyDeviceToHost));
+                        gpuErrchk(cudaMemcpyAsync(pcg_stats.num_iterations.data(), d_pcg_iterations_, sizeof(uint32_t) * BatchSize, cudaMemcpyDeviceToHost, stream_));
                         pcg_stats.solve_time_us = 0;
                         sqp_stats.pcg_stats.push_back(pcg_stats);
 
@@ -164,29 +166,29 @@ class BSQP {
 
                         if (num_solved >= BatchSize * solve_ratio_) break;
 
-                        gpuErrchk(cudaMemcpyAsync(d_kkt_converged_batch_, h_kkt_converged_batch_, BatchSize * sizeof(int32_t), cudaMemcpyHostToDevice));
+                        gpuErrchk(cudaMemcpyAsync(d_kkt_converged_batch_, h_kkt_converged_batch_, BatchSize * sizeof(int32_t), cudaMemcpyHostToDevice, stream_));
 
                         computeMeritBatched<T, BatchSize, NUM_ALPHAS>(
-                            d_merit_batch_, d_dz_batch_, d_xu_traj_batch, d_f_ext_batch_, inputs, d_mu_batch_, d_GRiD_mem_, q_cost_, qd_cost_, u_cost_, N_cost_, q_lim_cost_, vel_lim_cost_, ctrl_lim_cost_);
+                            d_merit_batch_, d_dz_batch_, d_xu_traj_batch, d_f_ext_batch_, inputs, d_mu_batch_, d_GRiD_mem_, q_cost_, qd_cost_, u_cost_, N_cost_, q_lim_cost_, vel_lim_cost_, ctrl_lim_cost_, stream_);
                         lineSearchAndUpdateBatched<T, BatchSize, NUM_ALPHAS>(
-                            d_xu_traj_batch, d_dz_batch_, d_merit_batch_, d_merit_initial_batch_, d_step_size_batch_, d_rho_penalty_batch_, d_drho_batch_, adapt_rho_ ? 1 : 0);
+                            d_xu_traj_batch, d_dz_batch_, d_merit_batch_, d_merit_initial_batch_, d_step_size_batch_, d_rho_penalty_batch_, d_drho_batch_, adapt_rho_ ? 1 : 0, stream_);
 
-                        gpuErrchk(cudaMemcpyAsync(ls_stats.min_merit.data(), d_merit_initial_batch_, BatchSize * sizeof(T), cudaMemcpyDeviceToHost));
-                        gpuErrchk(cudaMemcpyAsync(ls_stats.step_size.data(), d_step_size_batch_, BatchSize * sizeof(T), cudaMemcpyDeviceToHost));
+                        gpuErrchk(cudaMemcpyAsync(ls_stats.min_merit.data(), d_merit_initial_batch_, BatchSize * sizeof(T), cudaMemcpyDeviceToHost, stream_));
+                        gpuErrchk(cudaMemcpyAsync(ls_stats.step_size.data(), d_step_size_batch_, BatchSize * sizeof(T), cudaMemcpyDeviceToHost, stream_));
                         sqp_stats.line_search_stats.push_back(ls_stats);
                 }
 
                 // Final merit on updated trajectory for selection
-                gpuErrchk(cudaMemset(d_dz_batch_, 0, TRAJ_SIZE * BatchSize * sizeof(T)));
+                gpuErrchk(cudaMemsetAsync(d_dz_batch_, 0, TRAJ_SIZE * BatchSize * sizeof(T), stream_));
                 computeMeritBatched<T, BatchSize, 1>(
-                    d_merit_initial_batch_, d_dz_batch_, d_xu_traj_batch, d_f_ext_batch_, inputs, d_mu_batch_, d_GRiD_mem_, q_cost_, qd_cost_, u_cost_, N_cost_, q_lim_cost_, vel_lim_cost_, ctrl_lim_cost_);
+                    d_merit_initial_batch_, d_dz_batch_, d_xu_traj_batch, d_f_ext_batch_, inputs, d_mu_batch_, d_GRiD_mem_, q_cost_, qd_cost_, u_cost_, N_cost_, q_lim_cost_, vel_lim_cost_, ctrl_lim_cost_, stream_);
 
-                gpuErrchk(cudaDeviceSynchronize());
+                gpuErrchk(cudaStreamSynchronize(stream_));
                 auto sqp_end_time = std::chrono::high_resolution_clock::now();
-                gpuErrchk(cudaMemset(d_sqp_iters_B_, 0, BatchSize * sizeof(uint32_t)));
-                gpuErrchk(cudaMemset(d_all_kkt_converged_, 0, sizeof(int32_t)));
-                gpuErrchk(cudaMemset(d_kkt_converged_batch_, 0, BatchSize * sizeof(int32_t)));
-                gpuErrchk(cudaMemcpyAsync(d_drho_batch_, h_drho_batch_init_, BatchSize * sizeof(T), cudaMemcpyHostToDevice));
+                gpuErrchk(cudaMemsetAsync(d_sqp_iters_B_, 0, BatchSize * sizeof(uint32_t), stream_));
+                gpuErrchk(cudaMemsetAsync(d_all_kkt_converged_, 0, sizeof(int32_t), stream_));
+                gpuErrchk(cudaMemsetAsync(d_kkt_converged_batch_, 0, BatchSize * sizeof(int32_t), stream_));
+                gpuErrchk(cudaMemcpyAsync(d_drho_batch_, h_drho_batch_init_, BatchSize * sizeof(T), cudaMemcpyHostToDevice, stream_));
                 sqp_stats.solve_time_us = std::chrono::duration_cast<std::chrono::microseconds>(sqp_end_time - sqp_start_time).count();
                 memcpy(sqp_stats.kkt_converged.data(), h_kkt_converged_batch_, BatchSize * sizeof(int32_t));
                 memcpy(sqp_stats.sqp_iterations.data(), h_sqp_iters_B_, BatchSize * sizeof(uint32_t));
@@ -331,8 +333,9 @@ class BSQP {
         T*          h_r_batch_;
         T*          h_c_batch_;
         int32_t*    h_kkt_converged_batch_;
-        cudaEvent_t pcg_start_event_, pcg_stop_event_;
-        float       pcg_time_us_;
+        cudaEvent_t    pcg_start_event_, pcg_stop_event_;
+        cudaStream_t   stream_;
+        float          pcg_time_us_;
         uint32_t*   h_sqp_iters_B_;
         T           dt_;
         uint32_t    max_sqp_iters_;

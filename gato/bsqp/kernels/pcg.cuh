@@ -155,12 +155,12 @@ __host__ size_t getSolvePCGBatchedSMemSize()
 }
 
 template<typename T, uint32_t BatchSize>
-__host__ void solvePCGBatched(T* d_lambda_batch, SchurSystem<T, BatchSize> schur, T* d_epsilon_batch, uint32_t max_pcg_iters, int32_t* d_kkt_converged_batch, uint32_t* d_iterations)
+__host__ void solvePCGBatched(T* d_lambda_batch, SchurSystem<T, BatchSize> schur, T* d_epsilon_batch, uint32_t max_pcg_iters, int32_t* d_kkt_converged_batch, uint32_t* d_iterations, cudaStream_t stream)
 {
         dim3           grid(BatchSize);
         dim3           thread_block(PCG_THREADS);
         const uint32_t s_mem_size = getSolvePCGBatchedSMemSize<T>();
 
         solvePCGBatchedKernel<T, BatchSize>
-            <<<grid, thread_block, s_mem_size>>>(d_iterations, d_lambda_batch, schur.d_S_batch, schur.d_P_inv_batch, schur.d_gamma_batch, d_epsilon_batch, max_pcg_iters, d_kkt_converged_batch);
+            <<<grid, thread_block, s_mem_size, stream>>>(d_iterations, d_lambda_batch, schur.d_S_batch, schur.d_P_inv_batch, schur.d_gamma_batch, d_epsilon_batch, max_pcg_iters, d_kkt_converged_batch);
 }

@@ -128,13 +128,13 @@ __host__ size_t getSetupKKTSystemBatchedSMemSize()
 }
 
 template<typename T, uint32_t BatchSize>
-__host__ void setupKKTSystemBatched(KKTSystem<T, BatchSize> kkt, ProblemInputs<T, BatchSize> inputs, T* d_xu_traj_batch, T* d_f_ext_batch, void* d_GRiD_mem, T q_cost, T qd_cost, T u_cost, T N_cost, T q_lim_cost, T vel_lim_cost, T ctrl_lim_cost)
+__host__ void setupKKTSystemBatched(KKTSystem<T, BatchSize> kkt, ProblemInputs<T, BatchSize> inputs, T* d_xu_traj_batch, T* d_f_ext_batch, void* d_GRiD_mem, T q_cost, T qd_cost, T u_cost, T N_cost, T q_lim_cost, T vel_lim_cost, T ctrl_lim_cost, cudaStream_t stream)
 {
         dim3   grid(KNOT_POINTS, BatchSize);
         dim3   block(KKT_THREADS);
         size_t s_mem_size = getSetupKKTSystemBatchedSMemSize<T>();  // TODO: why is MPCGPU launched with 2 * s_mem_size ?
 
-        setupKKTSystemBatchedKernel<T, BatchSize><<<grid, block, s_mem_size>>>(kkt.d_Q_batch,
+        setupKKTSystemBatchedKernel<T, BatchSize><<<grid, block, s_mem_size, stream>>>(kkt.d_Q_batch,
                                                                                kkt.d_R_batch,
                                                                                kkt.d_q_batch,
                                                                                kkt.d_r_batch,

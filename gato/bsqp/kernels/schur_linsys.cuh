@@ -293,7 +293,7 @@ __host__ size_t getFormSchurSystemBatched2SMemSize()
 }
 
 template<typename T, uint32_t BatchSize>
-__host__ void formSchurSystemBatched(SchurSystem<T, BatchSize> schur, KKTSystem<T, BatchSize> kkt, T* d_rho_penalty_batch)
+__host__ void formSchurSystemBatched(SchurSystem<T, BatchSize> schur, KKTSystem<T, BatchSize> kkt, T* d_rho_penalty_batch, cudaStream_t stream)
 {
         dim3           grid1(KNOT_POINTS, BatchSize);
         dim3           grid2(KNOT_POINTS - 1, BatchSize);
@@ -301,10 +301,10 @@ __host__ void formSchurSystemBatched(SchurSystem<T, BatchSize> schur, KKTSystem<
         const uint32_t s_mem_size1 = getFormSchurSystemBatched1SMemSize<T>();
         const uint32_t s_mem_size2 = getFormSchurSystemBatched2SMemSize<T>();
 
-        formSchurSystemBatchedKernel1<T, BatchSize><<<grid1, thread_block, s_mem_size1>>>(
+        formSchurSystemBatchedKernel1<T, BatchSize><<<grid1, thread_block, s_mem_size1, stream>>>(
             schur.d_S_batch, schur.d_P_inv_batch, schur.d_gamma_batch, kkt.d_Q_batch, kkt.d_R_batch, kkt.d_q_batch, kkt.d_r_batch, kkt.d_A_batch, kkt.d_B_batch, kkt.d_c_batch, d_rho_penalty_batch);
 
-        formSchurSystemBatchedKernel2<T, BatchSize><<<grid2, thread_block, s_mem_size2>>>(schur.d_S_batch, schur.d_P_inv_batch);
+        formSchurSystemBatchedKernel2<T, BatchSize><<<grid2, thread_block, s_mem_size2, stream>>>(schur.d_S_batch, schur.d_P_inv_batch);
 }
 
 // --------------------------------------------------
@@ -443,11 +443,11 @@ __host__ size_t getComputeDzBatchedSMemSize()
 }
 
 template<typename T, uint32_t BatchSize>
-__host__ void computeDzBatched(T* d_dz_batch, T* d_lambda_batch, KKTSystem<T, BatchSize> kkt)
+__host__ void computeDzBatched(T* d_dz_batch, T* d_lambda_batch, KKTSystem<T, BatchSize> kkt, cudaStream_t stream)
 {
         dim3           grid(KNOT_POINTS, BatchSize, 2);
         dim3           thread_block(DZ_THREADS);
         const uint32_t s_mem_size = getComputeDzBatchedSMemSize<T>();
 
-        computeDzBatchedKernel<T, BatchSize><<<grid, thread_block, s_mem_size>>>(d_dz_batch, d_lambda_batch, kkt.d_Q_batch, kkt.d_R_batch, kkt.d_q_batch, kkt.d_r_batch, kkt.d_A_batch, kkt.d_B_batch);
+        computeDzBatchedKernel<T, BatchSize><<<grid, thread_block, s_mem_size, stream>>>(d_dz_batch, d_lambda_batch, kkt.d_Q_batch, kkt.d_R_batch, kkt.d_q_batch, kkt.d_r_batch, kkt.d_A_batch, kkt.d_B_batch);
 }
