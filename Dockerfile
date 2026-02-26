@@ -1,13 +1,4 @@
-# start with NVIDIA CUDA base image and ROS Humble
-FROM nvidia/cuda:12.2.0-devel-ubuntu22.04 AS cuda
-# TODO: is ROS still needed?
-FROM ros:humble-ros-base
-
-
-# CUDA
-COPY --from=cuda /usr/local/cuda /usr/local/cuda
-ENV PATH=/usr/local/cuda/bin:${PATH}
-ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64
+FROM nvidia/cuda:12.9.1-devel-ubuntu22.04
 
 # environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -28,11 +19,6 @@ RUN apt-get update && apt-get install -y \
         gnupg \
         lsb-release \
         software-properties-common \
-        ros-humble-urdfdom \
-        ros-humble-hpp-fcl \
-        ros-humble-urdfdom-headers \
-        python3-colcon-common-extensions \
-        python3-rosdep \
         libeigen3-dev \
         libxinerama-dev \
         libglfw3-dev \
@@ -63,10 +49,6 @@ ENV LD_LIBRARY_PATH=/usr/local/lib/python3.10/dist-packages/torch/lib:${LD_LIBRA
 
 # set working directory
 WORKDIR /workspace
-
-# auto source ROS2
-RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-#RUN echo "[ -f /workspace/install/setup.bash ] && source /workspace/install/setup.bash" >> ~/.bashrc
 
 # auto source python environment
 RUN echo "[ -f /workspace/.venv/bin/activate ] && source /workspace/.venv/bin/activate" >> ~/.bashrc
