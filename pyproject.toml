@@ -18,6 +18,8 @@ dependencies = [
     "scipy>=1.15.2",
     "matplotlib>=3.10.1",
     "torch>=2.6.0",
+    "torchvision>=0.21.0",
+    "torchaudio>=2.6.0",
     "pin>=3.4.0",
     "osqp>=0.6.7.post3",
     "meshcat>=0.3.2",
@@ -32,6 +34,16 @@ dependencies = [
 dev = [
     "ipykernel>=6.29.5",
 ]
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu124" }
+torchvision = { index = "pytorch-cu124" }
+torchaudio = { index = "pytorch-cu124" }
 
 [tool.setuptools]
 package-dir = {"" = "python"}

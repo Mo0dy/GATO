@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y \
 RUN ln -sf /usr/bin/python${PYTHON_VERSION} /usr/bin/python \
         && ln -sf /usr/bin/python${PYTHON_VERSION} /usr/bin/python3
 
-RUN pip3 install --no-cache-dir cmake
+RUN pip3 install --no-cache-dir cmake==3.24.0
 
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:${PATH}"
@@ -46,11 +46,12 @@ ENV PATH="/root/.local/bin:${PATH}"
 WORKDIR /workspace
 
 # create venv and install project dependencies via uv
-# (pyproject.toml is copied first for Docker layer caching)
-COPY pyproject.toml ./
+# (project files are not copied yet, so install only locked dependencies)
+COPY pyproject.toml uv.lock ./
 RUN uv venv .venv --python python${PYTHON_VERSION} \
-        && uv pip install --python .venv/bin/python torch torchvision torchaudio \
-        && uv pip install --python .venv/bin/python -e ".[dev]"
+        && uv sync --python .venv/bin/python --frozen --group dev --no-install-project
+
+ENV PATH="/workspace/.venv/bin:/root/.local/bin:${PATH}"
 
 ENV LD_LIBRARY_PATH=/workspace/.venv/lib/python3.10/site-packages/torch/lib:${LD_LIBRARY_PATH}
 

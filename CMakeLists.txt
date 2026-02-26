@@ -29,7 +29,35 @@ if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
 endif()
 message(STATUS "Targeting CUDA Architectures: ${CMAKE_CUDA_ARCHITECTURES}")
 
+# Prefer the project virtualenv when available
+set(Python3_FIND_VIRTUALENV FIRST)
+if(NOT DEFINED Python3_EXECUTABLE)
+  if(DEFINED ENV{VIRTUAL_ENV} AND EXISTS "$ENV{VIRTUAL_ENV}/bin/python")
+    set(Python3_EXECUTABLE
+        "$ENV{VIRTUAL_ENV}/bin/python"
+        CACHE FILEPATH "Python interpreter" FORCE)
+  elseif(EXISTS "${CMAKE_SOURCE_DIR}/.venv/bin/python")
+    set(Python3_EXECUTABLE
+        "${CMAKE_SOURCE_DIR}/.venv/bin/python"
+        CACHE FILEPATH "Python interpreter" FORCE)
+  endif()
+endif()
+
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development NumPy)
+
+# Resolve pybind11 from the same Python environment selected above
+execute_process(
+  COMMAND ${Python3_EXECUTABLE} -m pybind11 --cmakedir
+  OUTPUT_VARIABLE pybind11_DIR
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+  RESULT_VARIABLE _pybind11_cmakedir_status)
+if(NOT _pybind11_cmakedir_status EQUAL 0)
+  message(
+    FATAL_ERROR
+      "Failed to query pybind11 CMake dir from ${Python3_EXECUTABLE}. Ensure pybind11 is installed in the selected Python environment."
+  )
+endif()
+
 find_package(pybind11 CONFIG REQUIRED)
 find_package(CUDA REQUIRED)
 
