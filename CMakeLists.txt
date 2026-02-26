@@ -2,7 +2,7 @@
 # mkdir build && cd build cmake .. cmake --build . --parallel
 #
 
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.24)
 project(GATO LANGUAGES CXX CUDA)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -21,7 +21,12 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -fPIC -DNDEBUG")
 set(CMAKE_CUDA_FLAGS_DEBUG "${CMAKE_CUDA_FLAGS_DEBUG} -G -g")
 set(CMAKE_CUDA_FLAGS_RELEASE "${CMAKE_CUDA_FLAGS_RELEASE} -use_fast_math -O3")
 
-set(CMAKE_CUDA_ARCHITECTURES 89 86 75)
+# "native" (CMake 3.24+) detects the local GPU at configure time and compiles
+# only for that architecture. Override at configure time with: cmake
+# -DCMAKE_CUDA_ARCHITECTURES="75;86;87;89;100;120" ..
+if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+  set(CMAKE_CUDA_ARCHITECTURES native)
+endif()
 message(STATUS "Targeting CUDA Architectures: ${CMAKE_CUDA_ARCHITECTURES}")
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development NumPy)
@@ -45,14 +50,19 @@ target_compile_definitions(bsqp PRIVATE KNOT_POINTS=16 PLANT_INDY7=1)
 # horizon length and plant options (configurable via -D at configure time)
 set(KNOTS_DEFAULT "8;16;32;64;128")
 set(PLANT_DEFAULT "indy7;iiwa14")
-set(KNOTS "${KNOTS_DEFAULT}" CACHE STRING "Semicolon-separated horizon lengths (e.g., 32;64;128)")
-set(PLANT "${PLANT_DEFAULT}" CACHE STRING "Semicolon-separated plant targets (e.g., indy7;iiwa14)")
+set(KNOTS
+    "${KNOTS_DEFAULT}"
+    CACHE STRING "Semicolon-separated horizon lengths (e.g., 32;64;128)")
+set(PLANT
+    "${PLANT_DEFAULT}"
+    CACHE STRING "Semicolon-separated plant targets (e.g., indy7;iiwa14)")
 # Normalize to semicolon lists (accept commas/spaces)
 string(REPLACE "," ";" KNOTS "${KNOTS}")
 string(REPLACE " " ";" KNOTS "${KNOTS}")
 string(REPLACE "," ";" PLANT "${PLANT}")
 string(REPLACE " " ";" PLANT "${PLANT}")
-message(STATUS "Configuring Python modules for PLANT='${PLANT}' KNOTS='${KNOTS}'")
+message(
+  STATUS "Configuring Python modules for PLANT='${PLANT}' KNOTS='${KNOTS}'")
 
 foreach(plant ${PLANT})
   foreach(knot ${KNOTS})
@@ -69,9 +79,11 @@ foreach(plant ${PLANT})
 
     # Define plant type at compile time
     if(plant STREQUAL "indy7")
-      target_compile_definitions(${MODULE_NAME} PRIVATE KNOT_POINTS=${knot} PLANT_INDY7=1)
+      target_compile_definitions(${MODULE_NAME} PRIVATE KNOT_POINTS=${knot}
+                                                        PLANT_INDY7=1)
     elseif(plant STREQUAL "iiwa14")
-      target_compile_definitions(${MODULE_NAME} PRIVATE KNOT_POINTS=${knot} PLANT_IIWA14=1)
+      target_compile_definitions(${MODULE_NAME} PRIVATE KNOT_POINTS=${knot}
+                                                        PLANT_IIWA14=1)
     endif()
 
     set_target_properties(
