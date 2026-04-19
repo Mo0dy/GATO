@@ -52,3 +52,5 @@ deprecated/
 
 *.md
 !README.md
+felixtools/
+.githooks/
