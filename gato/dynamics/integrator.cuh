@@ -218,7 +218,7 @@ __device__ T compute_integrator_error(T* s_xuk, T* s_xkp1, T* s_temp, void* d_dy
         T* s_qdkp1 = s_qkp1 + STATE_SIZE / 2;
         T* s_qdd = s_temp;
         T* s_err = s_qdd + STATE_SIZE / 2;
-        T* s_extra_temp = s_err + STATE_SIZE / 2;
+        T* s_extra_temp = s_err + STATE_SIZE;
 
         if (d_f_ext == nullptr) {
                 forwardDynamics<T>(s_qdd, s_q, s_qd, s_u, s_extra_temp, d_dynMem_const);

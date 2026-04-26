@@ -95,8 +95,9 @@ template<typename T>
 __host__ size_t getComputeMeritBatchedSMemSize()
 {
         size_t size = sizeof(T)
-                      * (2 * STATE_SIZE + CONTROL_SIZE + grid::EE_POS_SIZE +                                                                                          // reference_traj_k
-                         max(gato::plant::trackingcost_TempMemCt_Shared(STATE_SIZE, CONTROL_SIZE, KNOT_POINTS), gato::plant::forwardDynamics_TempMemSize_Shared()));  // TODO: verify this
+                      * (2 * STATE_SIZE + CONTROL_SIZE + grid::EE_POS_SIZE +  // reference_traj_k
+                         max(gato::plant::trackingcost_TempMemCt_Shared(STATE_SIZE, CONTROL_SIZE, KNOT_POINTS),
+                             STATE_SIZE / 2 + STATE_SIZE + gato::plant::forwardDynamics_TempMemSize_Shared()));
         return size;
 }
 
