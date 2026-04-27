@@ -4,6 +4,16 @@ set -Eeuo pipefail
 source "$(dirname "$0")/common.sh"
 
 STRICT=0
+BUILD_DIR="${GATO_BUILD_DIR:-build}"
+
+require_value() {
+    local option="$1"
+    local value="${2:-}"
+    if [[ -z "${value}" || "${value}" == --* ]]; then
+        printf "\n${RED}${BOLD}${CROSS} %s requires a value.${RESET}\n" "${option}"
+        exit 1
+    fi
+}
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -11,14 +21,22 @@ while [[ $# -gt 0 ]]; do
             STRICT=1
             shift
             ;;
+        --build-dir)
+            require_value "$1" "${2:-}"
+            BUILD_DIR="$2"
+            shift 2
+            ;;
         -h|--help)
             cat <<'EOF'
-Usage: ./tools/test_cuda_compatibility.sh [--strict]
+Usage: ./tools/test_cuda_compatibility.sh [--strict] [--build-dir <dir>]
 
 Checks whether the built CUDA artifacts in this repository contain compatible
 cubin or PTX code for the currently visible GPU(s). By default the script
 warns and exits successfully when required tools or GPUs are unavailable.
 With --strict it fails instead.
+
+Options:
+  --build-dir <dir>  CMake build directory, default: GATO_BUILD_DIR or build.
 EOF
             exit 0
             ;;
@@ -55,8 +73,8 @@ if [[ "${#GPU_CAPABILITIES[@]}" -eq 0 ]]; then
 fi
 
 declare -a ARTIFACTS=()
-if [[ -x build/bsqp ]]; then
-    ARTIFACTS+=("build/bsqp")
+if [[ -x "${BUILD_DIR}/bsqp" ]]; then
+    ARTIFACTS+=("${BUILD_DIR}/bsqp")
 fi
 while IFS= read -r artifact; do
     ARTIFACTS+=("${artifact}")
