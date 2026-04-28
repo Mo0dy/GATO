@@ -63,7 +63,7 @@ ENV PATH=${UV_PROJECT_ENVIRONMENT}/bin:/root/.local/bin:${PATH}
 # install Python dependencies into an image-backed environment
 WORKDIR /tmp/gato-deps
 COPY pyproject.toml uv.lock README.md ./
-RUN uv sync --frozen --no-install-project
+RUN uv sync --frozen --no-install-project --group dev
 
 ENV LD_LIBRARY_PATH=${UV_PROJECT_ENVIRONMENT}/lib/python3.10/site-packages/torch/lib:${LD_LIBRARY_PATH}
 

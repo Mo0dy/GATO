@@ -41,10 +41,12 @@ CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 Makefile
+!/Makefile
 
 .vscode/
 
 python/gato.egg-info/
+test-artifacts/
 
 uv.lock
 

@@ -31,6 +31,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "ipykernel>=6.29.5",
+    "pytest>=8.3.5",
 ]
 
 [tool.setuptools]
@@ -38,3 +39,10 @@ package-dir = {"" = "python"}
 
 [tool.setuptools.packages.find]
 include = ["bsqp"]
+
+[tool.pytest.ini_options]
+markers = [
+    "cuda: requires a CUDA-capable runtime environment",
+    "tracking: runs a short end-to-end MPC tracking scenario",
+    "performance: collects timing metrics and optional artifacts",
+]
