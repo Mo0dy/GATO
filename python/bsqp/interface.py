@@ -3,6 +3,7 @@ import numpy as np
 import pinocchio as pin
 import torch
 
+
 class BSQP:
     def __init__(
         self,
@@ -28,7 +29,7 @@ class BSQP:
         mu_batch=None,
         pcg_tol_batch=None,
         adapt_rho=True,
-        plant_type='indy7',  # 'indy7' or 'iiwa14'
+        plant_type='indy7',  # 'indy7', 'iiwa14', or 'tiago_right'
     ):
         # Dynamically import the correct bsqp_N* module and get the solver class
         # The modules should be named like 'bsqpN{N}_{plant_type}', e.g., 'bsqpN32_indy7'
@@ -37,6 +38,8 @@ class BSQP:
         if plant_type is None:
             if 'iiwa' in model_path.lower():
                 plant_type = 'iiwa14'
+            elif 'tiago' in model_path.lower():
+                plant_type = 'tiago_right'
             else:
                 plant_type = 'indy7'  # default
 
@@ -211,6 +214,11 @@ class BSQP:
 
     def ee_pos(self, q):
         pin.forwardKinematics(self.model, self.data, q)
+        if self.plant_type == "tiago_right":
+            pin.updateFramePlacements(self.model, self.data)
+            torso_id = self.model.getFrameId("torso_lift_link")
+            tool_id = self.model.getFrameId("arm_right_tool_link")
+            return (self.data.oMf[torso_id].inverse() * self.data.oMf[tool_id]).translation
         return self.data.oMi[self.model.njoints - 1].translation
 
     def reset(self):
@@ -225,6 +233,11 @@ class BSQP:
 
     def set_f_ext_B(self, f_ext_B):
         self.f_ext_B = np.asarray(f_ext_B, dtype=np.float32)
+        if self.plant_type == "tiago_right" and np.any(self.f_ext_B):
+            raise NotImplementedError(
+                "External wrench dynamics are not implemented for plant_type='tiago_right'. "
+                "Use a zero wrench or implement Tiago's GRiD external-force path first."
+            )
         self.solver.set_f_ext_batch(self.f_ext_B)
         
     def reset_rho(self):

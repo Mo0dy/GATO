@@ -101,6 +101,7 @@ class MPC_GATO:
         self.dt = dt
         self.batch_size = batch_size
         self.track_full_stats = track_full_stats
+        self.plant_type = plant_type
         
         # Setup external forces if provided
         self.setup_external_forces(constant_f_ext)
@@ -111,6 +112,12 @@ class MPC_GATO:
     def setup_external_forces(self, constant_f_ext):
         """Setup external forces for simulation."""
         self.constant_f_ext_world = constant_f_ext if constant_f_ext is not None else np.zeros(6)
+        # @TODO: remove this again.
+        if self.plant_type == "tiago_right" and np.any(self.constant_f_ext_world):
+            raise NotImplementedError(
+                "External wrench dynamics are not implemented for plant_type='tiago_right'. "
+                "Use constant_f_ext=None or a zero wrench."
+            )
         
         # Create force vector for Pinocchio simulation
         self.actual_f_ext = pin.StdVec_Force()
@@ -365,7 +372,8 @@ class MPC_GATO:
         sim_dt=0.001, 
         goal_timeout=5.0,
         goal_threshold=0.05,
-        velocity_threshold=1.0
+        velocity_threshold=1.0,
+        goal_dwell_time=0.0,
     ):
         """
         Run MPC controller tracking discrete goal positions.
@@ -377,6 +385,7 @@ class MPC_GATO:
             goal_timeout: Max time per goal before timeout
             goal_threshold: Distance threshold for goal reached (m)
             velocity_threshold: Velocity threshold for goal reached (rad/s L1 norm)
+            goal_dwell_time: Time to remain within the threshold before switching goals
             
         Returns:
             q_traj: Joint trajectory (robot only)
@@ -451,6 +460,7 @@ class MPC_GATO:
         
         # Start timing for the current goal
         goal_start_time = total_sim_time
+        goal_dwell_start_time = None
         solve_time = self.dt
         
         # Main control loop
@@ -510,7 +520,14 @@ class MPC_GATO:
             ee_pos = self.solver.ee_pos(q_robot)
             current_dist = np.linalg.norm(ee_pos - current_goal)
             current_vel = np.linalg.norm(dq_robot, ord=1)
-            reached = (current_dist < goal_threshold) and (current_vel < velocity_threshold)
+            within_goal = (current_dist < goal_threshold) and (current_vel < velocity_threshold)
+            if within_goal:
+                if goal_dwell_start_time is None:
+                    goal_dwell_start_time = total_sim_time
+                reached = (total_sim_time - goal_dwell_start_time) >= goal_dwell_time
+            else:
+                goal_dwell_start_time = None
+                reached = False
             timeout = (total_sim_time - goal_start_time) >= goal_timeout
             
             if reached or timeout:
@@ -527,6 +544,7 @@ class MPC_GATO:
                 current_goal = goals[current_goal_idx]
                 ee_g = np.tile(np.concatenate([current_goal, np.zeros(3)]), self.N)
                 goal_start_time = total_sim_time
+                goal_dwell_start_time = None
                 self.solver.reset_rho()
             
             # Prepare next optimization
