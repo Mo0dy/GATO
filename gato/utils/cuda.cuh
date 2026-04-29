@@ -4,6 +4,10 @@
 #include <cstdio>
 #include <iostream>
 
+// Vanilla GRiD-generated headers can also define gpuAssert/gpuErrchk.
+// This is not the case for the older examples. Either this was not a feature in grid or they have
+// been patched.
+#ifndef gpuErrchk
 inline void gpuAssert(cudaError_t code, const char *file, int line, bool abort=true)
 {
    if (code != cudaSuccess) 
@@ -13,6 +17,7 @@ inline void gpuAssert(cudaError_t code, const char *file, int line, bool abort=t
    }
 }
 #define gpuErrchk(ans) { gpuAssert((ans), __FILE__, __LINE__); }
+#endif
 
 void printDeviceInfo() {
    int deviceCount = 0;

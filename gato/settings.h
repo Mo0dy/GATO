@@ -36,6 +36,8 @@ constexpr uint32_t SIM_FORWARD_THREADS = 128;
     #include "dynamics/indy7/indy7_plant.cuh"
 #elif defined(PLANT_IIWA14)
     #include "dynamics/iiwa14/iiwa14_plant.cuh"
+#elif defined(PLANT_TIAGO_RIGHT)
+    #include "dynamics/tiago_right/tiago_right_plant.cuh"
 #else
-    #error "Plant type must be defined: PLANT_INDY7 or PLANT_IIWA14"
+    #error "Plant type must be defined: PLANT_INDY7, PLANT_IIWA14, or PLANT_TIAGO_RIGHT"
 #endif

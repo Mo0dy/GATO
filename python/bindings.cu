@@ -150,6 +150,14 @@ class PyBSQP {
         void set_f_ext_batch(py::array_t<T> f_ext_batch)
         {
                 py::buffer_info f_ext_buf = f_ext_batch.request();
+#if defined(PLANT_TIAGO_RIGHT)
+                const T* values = static_cast<const T*>(f_ext_buf.ptr);
+                for (py::ssize_t i = 0; i < f_ext_buf.size; ++i) {
+                        if (values[i] != static_cast<T>(0)) {
+                                throw py::value_error("External wrench dynamics are not implemented for plant_type='tiago_right'");
+                        }
+                }
+#endif
                 solver_.set_f_ext_batch(static_cast<T*>(f_ext_buf.ptr));
         }
 
@@ -213,6 +221,8 @@ class PyBSQP {
 #define PLANT_SUFFIX indy7
 #elif defined(PLANT_IIWA14)
 #define PLANT_SUFFIX iiwa14
+#elif defined(PLANT_TIAGO_RIGHT)
+#define PLANT_SUFFIX tiago_right
 #else
 #error "Unknown plant configuration for bindings"
 #endif

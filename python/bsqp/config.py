@@ -31,6 +31,29 @@ IIWA14_START_CONFIGS = {
     'home': np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]),
 }
 
+# Standard starting configurations for the Tiago right arm
+TIAGO_RIGHT_START_CONFIGS = {
+    'zero': np.zeros(7),
+    'comfortable': np.array([-0.35, -0.75, 1.0, 0.55, 0.0, 1.0, 0.0]),
+}
+
+TIAGO_TRACKING_SOLVER_PARAMS = {
+    'max_sqp_iters': 5,
+    'kkt_tol': 1e-3,
+    'max_pcg_iters': 120,
+    'pcg_tol': 1e-3,
+    'solve_ratio': 1.0,
+    'mu': 1.0,
+    'q_cost': 4.0,
+    'qd_cost': 1e-2,
+    'u_cost': 2e-6,
+    'N_cost': 80.0,
+    'q_lim_cost': 0.01,
+    'vel_lim_cost': 0.0,
+    'ctrl_lim_cost': 0.0,
+    'rho': 0.01,
+}
+
 # MPC solver parameters
 DEFAULT_SOLVER_PARAMS = {
     'max_sqp_iters': 1,
