@@ -3,6 +3,7 @@ FROM nvidia/cuda:12.9.1-devel-ubuntu22.04
 # environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHON_VERSION=3.10
+ENV UV_PROJECT_ENVIRONMENT=/opt/gato-venv
 
 # system dependencies
 RUN apt-get update && apt-get install -y \
@@ -39,24 +40,24 @@ RUN ln -sf /usr/bin/python${PYTHON_VERSION} /usr/bin/python \
 
 RUN pip3 install --no-cache-dir cmake==3.24.0
 
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.local/bin:${PATH}"
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
+        && ln -sf /root/.local/bin/uv /usr/local/bin/uv
+
+ENV PATH="${UV_PROJECT_ENVIRONMENT}/bin:/root/.local/bin:${PATH}"
+
+# install Python dependencies into an image-backed environment
+WORKDIR /tmp/gato-deps
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --group dev --no-install-project
+
+ENV LD_LIBRARY_PATH=${UV_PROJECT_ENVIRONMENT}/lib/python3.10/site-packages/torch/lib:${LD_LIBRARY_PATH}
 
 # set working directory
 WORKDIR /workspace
 
-# create venv and install project dependencies via uv
-# (project files are not copied yet, so install only locked dependencies)
-COPY pyproject.toml uv.lock ./
-RUN uv venv .venv --python python${PYTHON_VERSION} \
-        && uv sync --python .venv/bin/python --frozen --group dev --no-install-project
-
-ENV PATH="/workspace/.venv/bin:/root/.local/bin:${PATH}"
-
-ENV LD_LIBRARY_PATH=/workspace/.venv/lib/python3.10/site-packages/torch/lib:${LD_LIBRARY_PATH}
-
 # auto-activate venv on shell entry
-RUN echo '[ -f /workspace/.venv/bin/activate ] && source /workspace/.venv/bin/activate' >> ~/.bashrc
+RUN echo '[ -f /opt/gato-venv/bin/activate ] && source /opt/gato-venv/bin/activate' >> ~/.bashrc
+RUN echo 'export PYTHONPATH=/workspace/python${PYTHONPATH:+:$PYTHONPATH}' >> ~/.bashrc
 
 # when container starts
 CMD ["/bin/bash"]

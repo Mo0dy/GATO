@@ -46,8 +46,6 @@ Makefile
 
 python/gato.egg-info/
 
-uv.lock
-
 deprecated/
 
 *.md

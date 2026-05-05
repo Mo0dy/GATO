@@ -1,0 +1,15 @@
+.git
+.gitignore
+.venv
+.codex
+build
+outputs
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.a
+*.o
+*.out
+*.pkl

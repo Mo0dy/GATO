@@ -10,39 +10,35 @@ git clone https://github.com/A2R-Lab/GATO.git
 cd GATO
 ```
 
-Docker is used for containerization and [uv](https://docs.astral.sh/uv/) is used as a Python package/project manager.
+### Requirements
+- Docker
+- [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
-Setup
+Docker is used for containerization and is strongly advised.
+
+### Setup
 
 ```sh
 ./tools/install.sh
 ```
 
-Docker
+This will:
+
+- initialize git submodules
+- rebuild the Docker image
+- recreate the Docker container from that image
+- build the project inside the container
+
+To enter the container later:
 
 ```sh
 ./tools/docker.sh
 ```
 
-Manual Installation
+To force a fresh image rebuild:
 
 ```sh
-uv sync                  # install Python dependencies into .venv
-source .venv/bin/activate
-docker build -t gato .   # build image
-docker run -d -it --gpus all --network host -e DISPLAY=:0 -v $(pwd):/workspace -v /tmp/.X11-unix:/tmp/.X11-unix --name gato-container gato # run container
-docker exec -it --workdir /workspace gato-container bash # enter container
-
-# inside the container, build the CUDA extensions:
-mkdir -p build && cd build && cmake .. && cmake --build . --parallel
-
-docker stop gato-container && docker rm gato-container # stop and remove
-```
-
-GATO
-
-```sh
-./tools/build.sh
+./tools/docker.sh --rebuild-image
 ```
 
 ### Build Options
@@ -60,7 +56,7 @@ cmake --build . --parallel
 
 Built Python modules are written to `python/bsqp/` as `bsqpN{N}_{plant}.so`.
 
-### Requirements
+### Reference Environment
 
 - Ubuntu 22.04
 - CUDA 12.9
@@ -72,7 +68,22 @@ Built Python modules are written to `python/bsqp/` as `bsqpN{N}_{plant}.so`.
 
 ## Usage
 
-See [batch_sqp.cu](examples/bsqp.cu) for a minimal example of a batched trajectory optimization solve in C++/CUDA. Example Jupyter notebooks using GATO for MPC are in [examples/](examples/)
+See [batch_sqp.cu](examples/bsqp.cu) for a minimal example of a batched trajectory optimization solve in C++/CUDA. Example Jupyter notebooks and python benchmarks using GATO for MPC are in [examples/](examples/).
+
+The container shell automatically picks up the image-backed Python environment
+and exports `PYTHONPATH=/workspace/python`.
+
+Run the Python benchmark example inside the container with:
+
+```sh
+python examples/benchmark_fig8.py
+```
+
+Run the C++ example with:
+
+``` sh
+./build/bsqp
+```
 
 ## Related
 
