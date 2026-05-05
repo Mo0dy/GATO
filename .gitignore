@@ -48,8 +48,6 @@ Makefile
 python/gato.egg-info/
 test-artifacts/
 
-uv.lock
-
 deprecated/
 
 *.md
